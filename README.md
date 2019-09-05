@@ -1,1 +1,1 @@
-# fictional-computing-machine
+# Mobile Teacher for iOS
