@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BrowseTableViewController: UITableViewController {
+class BrowseTVC: UITableViewController {
 
     @IBOutlet weak var playButtonPressed: UIButton!
     @IBOutlet weak var downloadButtonPressed: UIButton!

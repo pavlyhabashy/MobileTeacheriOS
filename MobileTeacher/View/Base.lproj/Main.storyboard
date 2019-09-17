@@ -27,7 +27,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nJL-70-GwB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="51" y="548"/>
+            <point key="canvasLocation" x="2145" y="812"/>
         </scene>
         <!--Browse-->
         <scene sceneID="B0K-63-IHh">
@@ -46,12 +46,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z7w-5Z-RT0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1047.8260869565217" y="137.94642857142856"/>
+            <point key="canvasLocation" x="3045" y="477"/>
         </scene>
         <!--Subjects-->
         <scene sceneID="uuX-eO-mi0">
             <objects>
-                <tableViewController id="iCo-qJ-eoH" customClass="SubjectsTableViewController" customModule="MobileTeacher" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="iCo-qJ-eoH" customClass="SubjectsTVC" customModule="MobileTeacher" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="JXm-LB-A8Q">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -105,12 +105,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZR7-V4-byd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2031.8840579710147" y="137.94642857142856"/>
+            <point key="canvasLocation" x="3961" y="477"/>
         </scene>
         <!--Browse-->
         <scene sceneID="o87-dO-Zl2">
             <objects>
-                <tableViewController id="YYs-Pf-Yq0" customClass="BrowseTableViewController" customModule="MobileTeacher" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="YYs-Pf-Yq0" customClass="BrowseTVC" customModule="MobileTeacher" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="lHO-hh-HZD">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -202,10 +202,10 @@
             </objects>
             <point key="canvasLocation" x="3962" y="-944"/>
         </scene>
-        <!--Table View Controller-->
+        <!--InstructionsTVC-->
         <scene sceneID="K5u-HV-Fuu">
             <objects>
-                <tableViewController id="hcv-zJ-YUI" sceneMemberID="viewController">
+                <tableViewController id="hcv-zJ-YUI" customClass="InstructionsTVC" customModule="MobileTeacher" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="7gy-Ba-xMY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -247,7 +247,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HV6-PB-phg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1048" y="852"/>
+            <point key="canvasLocation" x="3045" y="1178"/>
         </scene>
         <!--Downloaded-->
         <scene sceneID="QsV-LB-UFv">
@@ -276,7 +276,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fkl-5b-D1P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2032" y="852"/>
+            <point key="canvasLocation" x="3961" y="1178"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="wPW-qJ-lvi">

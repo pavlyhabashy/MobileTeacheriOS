@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SubjectsTableViewController: UITableViewController {
+class SubjectsTVC: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
