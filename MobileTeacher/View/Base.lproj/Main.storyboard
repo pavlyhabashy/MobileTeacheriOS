@@ -138,9 +138,9 @@
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UUN-xZ-xW9">
                                                             <rect key="frame" x="191" y="0.0" width="183" height="50"/>
-                                                            <state key="normal" title="Download"/>
+                                                            <state key="normal" title="Share"/>
                                                             <connections>
-                                                                <action selector="downloadButtonTapped:" destination="XH5-n0-vCe" eventType="touchUpInside" id="JON-3d-L3w"/>
+                                                                <action selector="shareButtonTapped:" destination="XH5-n0-vCe" eventType="touchUpInside" id="JON-3d-L3w"/>
                                                             </connections>
                                                         </button>
                                                     </subviews>
@@ -153,14 +153,14 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="32" id="X2b-mk-msP"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dJz-2l-kax">
                                                     <rect key="frame" x="8" y="48" width="358" height="59"/>
                                                     <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -188,6 +188,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="ContainerView" destination="Je5-EH-Lgh" id="kmK-eu-haM"/>
                                     <outlet property="containerView" destination="HfN-Jd-H2d" id="CdA-t8-SuS"/>
                                     <outlet property="descriptionLabel" destination="dJz-2l-kax" id="na6-Vp-OkL"/>
                                     <outlet property="titleLabel" destination="Lh6-cK-9nV" id="3CL-2G-0AX"/>
@@ -309,7 +310,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Mg2-Ie-Vuu"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Instructions"/>
                                 <connections>
                                     <segue destination="hcv-zJ-YUI" kind="show" id="CEA-qX-HxH"/>
                                 </connections>
@@ -320,7 +321,7 @@
                                     <constraint firstAttribute="height" constant="50" id="zCs-R3-z1P"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Start Watching"/>
                                 <connections>
                                     <segue destination="YYs-Pf-Yq0" kind="show" id="4Ng-Gk-ZKA"/>
                                 </connections>

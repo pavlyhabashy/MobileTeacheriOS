@@ -9,8 +9,8 @@
 import UIKit
 
 protocol VideoCellDelegate {
-    func didTapPlayButton(title: String)
-    func didTapDownloadButton(url: String)
+    func didTapPlayButton(url: URL)
+    func didTapShareButton(url: URL)
 }
 
 class VideoTableViewCell: UITableViewCell {
@@ -19,24 +19,21 @@ class VideoTableViewCell: UITableViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var ContainerView: UIView!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
+    var videoItem: Video!
     var delegate: VideoCellDelegate?
     
-    @IBAction func playButtonTapped(_ sender: Any) {
-        delegate?.didTapPlayButton(title: "title")
+    func setVideo(video: Video) {
+        videoItem = video
+        titleLabel.text = video.title
+        descriptionLabel.text = video.description
+        
     }
-    @IBAction func downloadButtonTapped(_ sender: Any) {
-        delegate?.didTapDownloadButton(url: "url")
+    
+    @IBAction func playButtonTapped(_ sender: Any) {
+        delegate?.didTapPlayButton(url: videoItem.url)
+    }
+    @IBAction func shareButtonTapped(_ sender: Any) {
+        delegate?.didTapShareButton(url: videoItem.url)
     }
     
 }

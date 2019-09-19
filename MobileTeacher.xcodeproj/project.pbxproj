@@ -14,8 +14,11 @@
 		0B65036023247FF1003375A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B65035F23247FF1003375A2 /* Assets.xcassets */; };
 		0B65036323247FF1003375A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B65036123247FF1003375A2 /* LaunchScreen.storyboard */; };
 		0B65036B23248D96003375A2 /* BrowseTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B65036A23248D96003375A2 /* BrowseTVC.swift */; };
+		0B7DCBBF2332EFF9006E6AFE /* VideoStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7DCBBE2332EFF9006E6AFE /* VideoStruct.swift */; };
 		0BB924512327236200E73BBF /* VideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB924502327236200E73BBF /* VideoTableViewCell.swift */; };
+		0BDF337F23329C7500860624 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BDF337E23329C7500860624 /* GoogleService-Info.plist */; };
 		0BFC0DD3232ACB4300533CAC /* SubjectsTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFC0DD2232ACB4300533CAC /* SubjectsTVC.swift */; };
+		DC8BF70A98A825672DCFF565 /* Pods_MobileTeacher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DBC7AEDCF87B807C1E8B0D8 /* Pods_MobileTeacher.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,8 +31,13 @@
 		0B65036223247FF1003375A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0B65036423247FF1003375A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0B65036A23248D96003375A2 /* BrowseTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseTVC.swift; sourceTree = "<group>"; };
+		0B7DCBBE2332EFF9006E6AFE /* VideoStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoStruct.swift; sourceTree = "<group>"; };
 		0BB924502327236200E73BBF /* VideoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoTableViewCell.swift; sourceTree = "<group>"; };
+		0BDF337E23329C7500860624 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0BFC0DD2232ACB4300533CAC /* SubjectsTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectsTVC.swift; sourceTree = "<group>"; };
+		0FDD0D89004215AFFFE93015 /* Pods-MobileTeacher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileTeacher.release.xcconfig"; path = "Pods/Target Support Files/Pods-MobileTeacher/Pods-MobileTeacher.release.xcconfig"; sourceTree = "<group>"; };
+		474168E1F9723A7F6264F9EB /* Pods-MobileTeacher.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileTeacher.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MobileTeacher/Pods-MobileTeacher.debug.xcconfig"; sourceTree = "<group>"; };
+		5DBC7AEDCF87B807C1E8B0D8 /* Pods_MobileTeacher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MobileTeacher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC8BF70A98A825672DCFF565 /* Pods_MobileTeacher.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -46,6 +55,7 @@
 		0B2B60DB2330644B0023C2BF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0B7DCBBE2332EFF9006E6AFE /* VideoStruct.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -74,7 +84,6 @@
 			isa = PBXGroup;
 			children = (
 				0B65035C23247FF0003375A2 /* MobileTeacher.xcdatamodeld */,
-				0B65036423247FF1003375A2 /* Info.plist */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -92,6 +101,8 @@
 			children = (
 				0B65035423247FF0003375A2 /* MobileTeacher */,
 				0B65035323247FF0003375A2 /* Products */,
+				2C2E05FA8870BA8C0C3CA935 /* Pods */,
+				27A6A5B2441F182A81DF22CF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -107,6 +118,8 @@
 			isa = PBXGroup;
 			children = (
 				0B65035523247FF0003375A2 /* AppDelegate.swift */,
+				0B65036423247FF1003375A2 /* Info.plist */,
+				0BDF337E23329C7500860624 /* GoogleService-Info.plist */,
 				0B2B60DB2330644B0023C2BF /* Model */,
 				0B2B60DD2330646F0023C2BF /* Controller */,
 				0B2B60DC233064610023C2BF /* View */,
@@ -116,6 +129,23 @@
 			path = MobileTeacher;
 			sourceTree = "<group>";
 		};
+		27A6A5B2441F182A81DF22CF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5DBC7AEDCF87B807C1E8B0D8 /* Pods_MobileTeacher.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2C2E05FA8870BA8C0C3CA935 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				474168E1F9723A7F6264F9EB /* Pods-MobileTeacher.debug.xcconfig */,
+				0FDD0D89004215AFFFE93015 /* Pods-MobileTeacher.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -123,9 +153,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0B65036723247FF1003375A2 /* Build configuration list for PBXNativeTarget "MobileTeacher" */;
 			buildPhases = (
+				6FA7B405310F02E6696965E7 /* [CP] Check Pods Manifest.lock */,
 				0B65034E23247FF0003375A2 /* Sources */,
 				0B65034F23247FF0003375A2 /* Frameworks */,
 				0B65035023247FF0003375A2 /* Resources */,
+				0428D595E412F51A310AFC8A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -175,12 +207,78 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B65036323247FF1003375A2 /* LaunchScreen.storyboard in Resources */,
+				0BDF337F23329C7500860624 /* GoogleService-Info.plist in Resources */,
 				0B65036023247FF1003375A2 /* Assets.xcassets in Resources */,
 				0B65035B23247FF0003375A2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0428D595E412F51A310AFC8A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-MobileTeacher/Pods-MobileTeacher-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-ProtoRPC/ProtoRPC.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-RxLibrary/RxLibrary.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProtoRPC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxLibrary.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MobileTeacher/Pods-MobileTeacher-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6FA7B405310F02E6696965E7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MobileTeacher-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0B65034E23247FF0003375A2 /* Sources */ = {
@@ -191,6 +289,7 @@
 				0B65035623247FF0003375A2 /* AppDelegate.swift in Sources */,
 				0B65036B23248D96003375A2 /* BrowseTVC.swift in Sources */,
 				0BFC0DD3232ACB4300533CAC /* SubjectsTVC.swift in Sources */,
+				0B7DCBBF2332EFF9006E6AFE /* VideoStruct.swift in Sources */,
 				0B2B60E1233066860023C2BF /* InstructionsTVC.swift in Sources */,
 				0BB924512327236200E73BBF /* VideoTableViewCell.swift in Sources */,
 			);
@@ -336,11 +435,13 @@
 		};
 		0B65036823247FF1003375A2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 474168E1F9723A7F6264F9EB /* Pods-MobileTeacher.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = W9H8939LY8;
 				INFOPLIST_FILE = MobileTeacher/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -348,17 +449,19 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.phabashy.MobileTeacher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		0B65036923247FF1003375A2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0FDD0D89004215AFFFE93015 /* Pods-MobileTeacher.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = W9H8939LY8;
 				INFOPLIST_FILE = MobileTeacher/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -366,7 +469,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.phabashy.MobileTeacher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

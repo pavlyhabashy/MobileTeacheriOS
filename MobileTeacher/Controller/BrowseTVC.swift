@@ -7,20 +7,22 @@
 //
 
 import UIKit
+import FirebaseFirestore
+import MessageUI
+import SafariServices
+
+var videos = [Video]()
+let db = Firestore.firestore()
 
 class BrowseTVC: UITableViewController {
-
-    @IBOutlet weak var playButtonPressed: UIButton!
-    @IBOutlet weak var downloadButtonPressed: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
         self.tableView.allowsSelection = false
+        
+        readDatabase()
+        
     }
 
     // MARK: - Table view data source
@@ -32,55 +34,18 @@ class BrowseTVC: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 1
+        return videos.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "VideoCell", for: indexPath) as! VideoTableViewCell
-
-        // Configure the cell...
-//        cell.accessoryType = .disclosureIndicator
         cell.delegate = self
+        
+        cell.setVideo(video: videos[indexPath.row])
         
         return cell
     }
-    
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
 
     /*
     // MARK: - Navigation
@@ -91,15 +56,90 @@ class BrowseTVC: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
-}
-
-extension UITableViewController: VideoCellDelegate {
-    func didTapPlayButton(title: String) {
-        print("play")
+    
+    // Read from the database
+    fileprivate func readDatabase() {
+        let settings = db.settings
+        settings.areTimestampsInSnapshotsEnabled = true
+        db.settings = settings
+        
+        db.collection("videos").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    var video = Video()
+                    
+                    // For some reason, the lengths stored in the database are either strings or numbers.
+                    // The following block takes care of that.
+                    var length: Int
+                    if let lengthStr = document.get("length") as? String {
+                        length = Int(lengthStr)!
+                    } else if let lengthInt = document.get("length") as? Int {
+                        length = lengthInt
+                    } else {
+                        length = 0
+                        print("Error")
+                    }
+                    
+                    let (h,m,s) = self.secondsToHoursMinutesSeconds(seconds: length)
+                    video.hours = h
+                    video.minutes = m
+                    video.seconds = s
+                    
+                    video.title = document.get("title") as! String
+                    video.description = document.get("description") as! String
+                    video.url = URL(string: (document.get("url") as! String))!
+                    
+                    // Get tags
+                    let str = document.get("tags") as! String
+                    video.tags = str.components(separatedBy: ", ")
+                    
+                    videos.append(video)
+                    self.tableView.reloadData()
+                }
+            }
+        }
     }
     
-    func didTapDownloadButton(url: String) {
-        print("download")
+    // Converts seconds into hours, minutes, and seconds
+    func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
+        return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
+    }
+    
+    
+    
+    
+}
+
+extension UITableViewController: VideoCellDelegate, SFSafariViewControllerDelegate, MFMessageComposeViewControllerDelegate {
+    
+    func didTapPlayButton(url: URL) {
+        // James works here
+        
+        // Open the URL in Safari View Controller. You can the following
+        let safariVC = SFSafariViewController(url: url)
+        present(safariVC, animated: true, completion: nil)
+        safariVC.delegate = self
+    }
+    
+    func didTapShareButton(url: URL) {
+        if (MFMessageComposeViewController.canSendText()) {
+            let controller = MFMessageComposeViewController()
+            controller.body = "\(url)"
+            controller.recipients = []
+            controller.messageComposeDelegate = self
+            self.present(controller, animated: true, completion: nil)
+        }
+    }
+    
+    // Handles dismissing the Messages controller
+    public func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+    
+    // Handles dismissing the Safari controller
+    public func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+        controller.dismiss(animated: true, completion: nil)
     }
 }
