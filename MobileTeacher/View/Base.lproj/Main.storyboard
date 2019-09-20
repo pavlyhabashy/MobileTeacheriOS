@@ -161,7 +161,7 @@
                                                     <rect key="frame" x="8" y="48" width="358" height="59"/>
                                                     <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -191,6 +191,7 @@
                                     <outlet property="ContainerView" destination="Je5-EH-Lgh" id="kmK-eu-haM"/>
                                     <outlet property="containerView" destination="HfN-Jd-H2d" id="CdA-t8-SuS"/>
                                     <outlet property="descriptionLabel" destination="dJz-2l-kax" id="na6-Vp-OkL"/>
+                                    <outlet property="playButtonOutlet" destination="sZV-wU-CQ7" id="SoH-ti-nqf"/>
                                     <outlet property="titleLabel" destination="Lh6-cK-9nV" id="3CL-2G-0AX"/>
                                 </connections>
                             </tableViewCell>
