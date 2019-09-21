@@ -107,7 +107,7 @@
             </objects>
             <point key="canvasLocation" x="3961" y="477"/>
         </scene>
-        <!--Browse-->
+        <!--Watch-->
         <scene sceneID="o87-dO-Zl2">
             <objects>
                 <tableViewController id="YYs-Pf-Yq0" customClass="BrowseTVC" customModule="MobileTeacher" customModuleProvider="target" sceneMemberID="viewController">
@@ -116,18 +116,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="VideoCell" rowHeight="187" id="XH5-n0-vCe" customClass="VideoTableViewCell" customModule="MobileTeacher" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="187"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="VideoCell" rowHeight="318" id="XH5-n0-vCe" customClass="VideoTableViewCell" customModule="MobileTeacher" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="318"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XH5-n0-vCe" id="HfN-Jd-H2d">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="186.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="317.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Je5-EH-Lgh">
-                                            <rect key="frame" x="20" y="11" width="374" height="165"/>
+                                            <rect key="frame" x="20" y="11" width="374" height="296"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="hTk-qs-TDM">
-                                                    <rect key="frame" x="0.0" y="115" width="374" height="50"/>
+                                                    <rect key="frame" x="0.0" y="246" width="374" height="50"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sZV-wU-CQ7">
                                                             <rect key="frame" x="0.0" y="0.0" width="183" height="50"/>
@@ -158,24 +158,45 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dJz-2l-kax">
-                                                    <rect key="frame" x="8" y="48" width="358" height="59"/>
+                                                    <rect key="frame" x="8" y="48" width="358" height="130.5"/>
                                                     <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DjE-yg-Iw2" customClass="TagListView" customModule="TagListView">
+                                                    <rect key="frame" x="8" y="186.5" width="358" height="51.5"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="10"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                            <real key="value" value="0.0"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="paddingX">
+                                                            <real key="value" value="6"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="paddingY">
+                                                            <real key="value" value="3"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="DjE-yg-Iw2" secondAttribute="trailing" constant="8" id="2qd-pm-5lT"/>
                                                 <constraint firstItem="dJz-2l-kax" firstAttribute="leading" secondItem="Je5-EH-Lgh" secondAttribute="leading" constant="8" id="3bB-hR-yg2"/>
-                                                <constraint firstItem="hTk-qs-TDM" firstAttribute="top" secondItem="dJz-2l-kax" secondAttribute="bottom" constant="8" id="Fr6-go-U82"/>
                                                 <constraint firstAttribute="trailing" secondItem="hTk-qs-TDM" secondAttribute="trailing" id="IGx-OT-hpx"/>
                                                 <constraint firstItem="Lh6-cK-9nV" firstAttribute="top" secondItem="Je5-EH-Lgh" secondAttribute="top" constant="8" id="Jfe-CT-M4G"/>
                                                 <constraint firstAttribute="trailing" secondItem="Lh6-cK-9nV" secondAttribute="trailing" constant="8" id="NvI-eR-CsT"/>
                                                 <constraint firstItem="Lh6-cK-9nV" firstAttribute="leading" secondItem="Je5-EH-Lgh" secondAttribute="leading" constant="8" id="PnS-VJ-OeL"/>
                                                 <constraint firstAttribute="bottom" secondItem="hTk-qs-TDM" secondAttribute="bottom" id="Tfd-9a-hDa"/>
+                                                <constraint firstItem="DjE-yg-Iw2" firstAttribute="top" secondItem="dJz-2l-kax" secondAttribute="bottom" constant="8" id="c4i-qc-vgE"/>
+                                                <constraint firstItem="hTk-qs-TDM" firstAttribute="top" secondItem="DjE-yg-Iw2" secondAttribute="bottom" constant="8" id="dzm-Cs-sjr"/>
                                                 <constraint firstItem="hTk-qs-TDM" firstAttribute="leading" secondItem="Je5-EH-Lgh" secondAttribute="leading" id="nu9-Iv-nwi"/>
                                                 <constraint firstItem="dJz-2l-kax" firstAttribute="top" secondItem="Lh6-cK-9nV" secondAttribute="bottom" constant="8" id="rf4-db-cYf"/>
+                                                <constraint firstItem="DjE-yg-Iw2" firstAttribute="leading" secondItem="Je5-EH-Lgh" secondAttribute="leading" constant="8" id="uj1-Af-h1Q"/>
                                                 <constraint firstAttribute="trailing" secondItem="dJz-2l-kax" secondAttribute="trailing" constant="8" id="umR-d1-SI1"/>
                                             </constraints>
                                         </view>
@@ -192,17 +213,18 @@
                                     <outlet property="containerView" destination="HfN-Jd-H2d" id="CdA-t8-SuS"/>
                                     <outlet property="descriptionLabel" destination="dJz-2l-kax" id="na6-Vp-OkL"/>
                                     <outlet property="playButtonOutlet" destination="sZV-wU-CQ7" id="SoH-ti-nqf"/>
+                                    <outlet property="tagListView" destination="DjE-yg-Iw2" id="TDY-iU-Z4D"/>
                                     <outlet property="titleLabel" destination="Lh6-cK-9nV" id="3CL-2G-0AX"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Browse" id="ENC-ZR-gbp"/>
+                    <navigationItem key="navigationItem" title="Watch" id="ENC-ZR-gbp"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uxQ-4i-F4r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3962" y="-944"/>
+            <point key="canvasLocation" x="3960.8695652173915" y="-944.19642857142856"/>
         </scene>
         <!--InstructionsTVC-->
         <scene sceneID="K5u-HV-Fuu">

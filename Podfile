@@ -8,5 +8,6 @@ target 'MobileTeacher' do
   # Pods for MobileTeacher
   pod 'Firebase/Core'
   pod 'Firebase/Firestore'
+  pod 'TagListView', '~> 1.0'
 
 end

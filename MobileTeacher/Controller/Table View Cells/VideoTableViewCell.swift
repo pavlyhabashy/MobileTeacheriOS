@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import TagListView
 
 protocol VideoCellDelegate {
     func didTapPlayButton(url: URL)
@@ -19,6 +20,7 @@ class VideoTableViewCell: UITableViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var ContainerView: UIView!
     @IBOutlet weak var playButtonOutlet: UIButton!
+    @IBOutlet weak var tagListView: TagListView!
     
     var videoItem: Video!
     var delegate: VideoCellDelegate?
@@ -32,7 +34,9 @@ class VideoTableViewCell: UITableViewCell {
         videoItem = video
         titleLabel.text = video.title
         descriptionLabel.text = video.description
-        
+        tagListView.textFont = UIFont.systemFont(ofSize: 14)
+        tagListView.removeAllTags()
+        tagListView.addTags(video.tags)
     }
     
     @IBAction func playButtonTapped(_ sender: Any) {

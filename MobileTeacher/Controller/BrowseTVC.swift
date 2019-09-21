@@ -89,10 +89,24 @@ class BrowseTVC: UITableViewController {
                     
                     video.title = document.get("title") as! String
                     video.description = document.get("description") as! String
+                    
+                    // Add period to description
+                    if video.description.suffix(1) == " " {
+                        video.description = String(video.description.dropLast())
+                        video.description = video.description + "."
+                    }
+                    else if video.description.suffix(1) == "." {
+                        // Do nothing
+                    }
+                    else {
+                        video.description = video.description + "."
+                    }
+                    
                     video.url = URL(string: (document.get("url") as! String))!
                     
                     // Get tags
-                    let str = document.get("tags") as! String
+                    var str = document.get("tags") as! String
+                    str = str.capitalizingFirstLetter()
                     video.tags = str.components(separatedBy: ", ")
                     
                     videos.append(video)
@@ -110,6 +124,16 @@ class BrowseTVC: UITableViewController {
     
     
     
+}
+
+extension String {
+    func capitalizingFirstLetter() -> String {
+        return prefix(1).capitalized + dropFirst()
+    }
+    
+    mutating func capitalizeFirstLetter() {
+        self = self.capitalizingFirstLetter()
+    }
 }
 
 extension UITableViewController: VideoCellDelegate, SFSafariViewControllerDelegate, MFMessageComposeViewControllerDelegate {
