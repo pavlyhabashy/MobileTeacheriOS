@@ -22,7 +22,10 @@ class BrowseTVC: UITableViewController {
         self.tableView.allowsSelection = false
         
         readDatabase()
-        
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        videos.removeAll()
     }
 
     // MARK: - Table view data source
@@ -41,9 +44,7 @@ class BrowseTVC: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "VideoCell", for: indexPath) as! VideoTableViewCell
         cell.delegate = self
-        
         cell.setVideo(video: videos[indexPath.row])
-        
         return cell
     }
 
@@ -110,8 +111,8 @@ class BrowseTVC: UITableViewController {
                     video.tags = str.components(separatedBy: ", ")
                     
                     videos.append(video)
-                    self.tableView.reloadData()
                 }
+                self.tableView.reloadData()
             }
         }
     }
