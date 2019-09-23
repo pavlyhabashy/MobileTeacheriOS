@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import TagListView
+//import TagListView
 
 protocol VideoCellDelegate {
     func didTapPlayButton(url: URL)
@@ -20,23 +20,26 @@ class VideoTableViewCell: UITableViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var ContainerView: UIView!
     @IBOutlet weak var playButtonOutlet: UIButton!
-    @IBOutlet weak var tagListView: TagListView!
+    @IBOutlet weak var videoLengthLabel: UILabel!
+    @IBOutlet weak var videoLengthContainer: UIView!
+    //    @IBOutlet weak var tagListView: TagListView!
+    @IBOutlet weak var cellContainerView: UIView!
+    
     
     var videoItem: Video!
     var delegate: VideoCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+        videoLengthContainer.layer.cornerRadius = 5
+//        cellContainerView.layer.addShadow()
     }
     
     func setVideo(video: Video) {
         videoItem = video
-        titleLabel.text = video.title
+        titleLabel.text = "              \(video.title)"
         descriptionLabel.text = video.description
-        tagListView.textFont = UIFont.systemFont(ofSize: 14)
-        tagListView.removeAllTags()
-        tagListView.addTags(video.tags)
+        videoLengthLabel.text = "\(video.minutes):\(String(format: "%02d", video.seconds))"
     }
     
     @IBAction func playButtonTapped(_ sender: Any) {
@@ -46,6 +49,26 @@ class VideoTableViewCell: UITableViewCell {
         delegate?.didTapShareButton(url: videoItem.url)
     }
     
+}
+
+extension CALayer {
+    
+    func addShadow() {
+        self.shadowOffset = .zero
+        self.shadowOpacity = 0.2
+        self.shadowRadius = 5
+        self.shadowColor = UIColor.black.cgColor
+        self.masksToBounds = false
+//        if cornerRadius != 0 {
+//            addShadowWithRoundedCorners()
+//        }
+    }
+    func roundCorners(radius: CGFloat) {
+        self.cornerRadius = radius
+//        if shadowOpacity != 0 {
+//            addShadowWithRoundedCorners()
+//        }
+    }
 }
 
 extension UIButton {
