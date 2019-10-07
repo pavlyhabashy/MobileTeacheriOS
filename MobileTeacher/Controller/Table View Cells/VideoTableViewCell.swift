@@ -12,6 +12,7 @@ import UIKit
 protocol VideoCellDelegate {
     func didTapPlayButton(url: URL)
     func didTapShareButton(url: URL)
+    func didTapDownloadButton(url: URL)
 }
 
 class VideoTableViewCell: UITableViewCell {
@@ -20,10 +21,12 @@ class VideoTableViewCell: UITableViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var ContainerView: UIView!
     @IBOutlet weak var playButtonOutlet: UIButton!
+    @IBOutlet weak var shareButtonOutlet: UIButton!
     @IBOutlet weak var videoLengthLabel: UILabel!
     @IBOutlet weak var videoLengthContainer: UIView!
-    //    @IBOutlet weak var tagListView: TagListView!
     @IBOutlet weak var cellContainerView: UIView!
+    @IBOutlet weak var downloadButtonOutlet: UIButton!
+    
     
     
     var videoItem: Video!
@@ -31,13 +34,13 @@ class VideoTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        videoLengthContainer.layer.cornerRadius = 5
-//        cellContainerView.layer.addShadow()
+        videoLengthContainer.layer.cornerRadius = 4
+        playButtonOutlet.showsTouchWhenHighlighted = false
     }
     
     func setVideo(video: Video) {
         videoItem = video
-        titleLabel.text = "              \(video.title)"
+        titleLabel.text = "\(video.title)"
         descriptionLabel.text = video.description
         videoLengthLabel.text = "\(video.minutes):\(String(format: "%02d", video.seconds))"
     }
@@ -48,27 +51,10 @@ class VideoTableViewCell: UITableViewCell {
     @IBAction func shareButtonTapped(_ sender: Any) {
         delegate?.didTapShareButton(url: videoItem.url)
     }
-    
-}
-
-extension CALayer {
-    
-    func addShadow() {
-        self.shadowOffset = .zero
-        self.shadowOpacity = 0.2
-        self.shadowRadius = 5
-        self.shadowColor = UIColor.black.cgColor
-        self.masksToBounds = false
-//        if cornerRadius != 0 {
-//            addShadowWithRoundedCorners()
-//        }
+    @IBAction func downloadButtonTapped(_ sender: Any) {
+        delegate?.didTapDownloadButton(url: videoItem.url)
     }
-    func roundCorners(radius: CGFloat) {
-        self.cornerRadius = radius
-//        if shadowOpacity != 0 {
-//            addShadowWithRoundedCorners()
-//        }
-    }
+    
 }
 
 extension UIButton {
