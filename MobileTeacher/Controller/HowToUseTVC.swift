@@ -8,8 +8,8 @@
 
 import UIKit
 
-class InstructionsTVC: UITableViewController {
-
+class HowToUseTVC: UITableViewController, UINavigationControllerDelegate {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -86,5 +86,10 @@ class InstructionsTVC: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    @IBAction func doneButtonPressed(_ sender: Any) {
+        self.navigationController?.dismiss(animated: true, completion: {
+        })
+    }
 
 }

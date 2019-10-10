@@ -10,22 +10,20 @@ import UIKit
 import FirebaseFirestore
 import MessageUI
 import SafariServices
+import AVKit
 
-var videos = [Video]()
+
 let db = Firestore.firestore()
+var downloadTask: URLSessionDownloadTask?
 
 class BrowseTVC: UITableViewController {
     
+    var videos = [Video]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.tableView.allowsSelection = false
-        
-        readDatabase()
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        videos.removeAll()
+        self.readDatabase()
     }
 
     // MARK: - Table view data source
@@ -48,15 +46,6 @@ class BrowseTVC: UITableViewController {
         return cell
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     // Read from the database
     fileprivate func readDatabase() {
@@ -68,6 +57,7 @@ class BrowseTVC: UITableViewController {
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
+//                print(querySnapshot!.documents.count)
                 for document in querySnapshot!.documents {
                     var video = Video()
                     
@@ -105,14 +95,32 @@ class BrowseTVC: UITableViewController {
                     
                     video.url = URL(string: (document.get("url") as! String))!
                     
+                    let string = video.url.absoluteString
+                    if string.contains("id=") {
+                        
+                        let array = string.components(separatedBy: "id=")
+//                        print(array[1])
+                        
+                        video.downloadURL = URL(string: "https://drive.google.com/uc?export=download&id=\(array[1])")
+                        
+                    } else if string.contains("/file/d") {
+                        let array = string.components(separatedBy: "/")
+//                        print(array[5])
+                        video.downloadURL = URL(string: "https://drive.google.com/uc?export=download&id=\(array[5])")
+                    } else {
+                        print("nope")
+                    }
+                    
                     // Get tags
                     var str = document.get("tags") as! String
                     str = str.capitalizingFirstLetter()
                     video.tags = str.components(separatedBy: ", ")
                     
-                    videos.append(video)
+                    self.videos.append(video)
                 }
-                self.tableView.reloadData()
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
             }
         }
     }
@@ -121,8 +129,6 @@ class BrowseTVC: UITableViewController {
     func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
         return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
     }
-    
-    
     
     
 }
@@ -137,25 +143,88 @@ extension String {
     }
 }
 
-extension UITableViewController: VideoCellDelegate, SFSafariViewControllerDelegate, MFMessageComposeViewControllerDelegate {
+extension UITableViewController: VideoCellDelegate, SFSafariViewControllerDelegate, MFMessageComposeViewControllerDelegate, URLSessionDownloadDelegate {
     
     func didTapPlayButton(url: URL) {
-        // James works here
         
-        // Open the URL in Safari View Controller. You can the following
-        let safariVC = SFSafariViewController(url: url)
-        present(safariVC, animated: true, completion: nil)
-        safariVC.delegate = self
+        let newUrl = url.absoluteString.replacingOccurrences(of: "https://", with: "googledrive://")
+        print(newUrl)
+        let toUrl = URL(string: newUrl) ?? nil
+        if UIApplication.shared.canOpenURL(NSURL(string: newUrl)! as URL) {
+            UIApplication.shared.openURL(NSURL(string: newUrl)! as URL)
+        } else {
+            // Open the URL in Safari View Controller. You can the following
+            let safariVC = SFSafariViewController(url: url)
+            present(safariVC, animated: true, completion: nil)
+            safariVC.delegate = self
+        }
     }
     
     func didTapShareButton(url: URL) {
-        if (MFMessageComposeViewController.canSendText()) {
-            let controller = MFMessageComposeViewController()
-            controller.body = "\(url)"
-            controller.recipients = []
-            controller.messageComposeDelegate = self
-            self.present(controller, animated: true, completion: nil)
+        
+        // Compose new message with URL
+//        if (MFMessageComposeViewController.canSendText()) {
+//            let controller = MFMessageComposeViewController()
+//            controller.body = "\(url)"
+//            controller.recipients = []
+//            controller.messageComposeDelegate = self
+//            self.present(controller, animated: true, completion: nil)
+//        }
+        
+        // Bring up Share Sheet
+        let items = [url]
+        let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        present(ac, animated: true)
+        
+    }
+    
+    // Tapping the download button starts downloading the video.
+    // Once it's done, an AV Player will pop up asynchronously.
+    // Currently does not work.
+    func didTapDownloadButton(url: URL) {
+        
+        print("Attempting to download file")
+        
+        // Cancel previous task
+        downloadTask?.cancel()
+        
+        // Initialize download
+        let operationQueue = OperationQueue()
+        let configuration = URLSessionConfiguration.default
+        let urlSession = URLSession(configuration: configuration, delegate: self, delegateQueue: operationQueue)
+
+        downloadTask = urlSession.downloadTask(with: URL(string: "https://drive.google.com/uc?export=download&id=1jlgGUrFWtDsGu8DQW5QiZGsm7v6rykB0")!)
+                downloadTask?.resume()
+        
+        // Change the download button of first cell to "Downloaded" with a checkmark icon.
+        // Commented until we figure out downloads.
+//        let indexPath = IndexPath(row: 0, section: 0)
+//        let cell = tableView.cellForRow(at: indexPath) as! VideoTableViewCell
+//        cell.downloadButtonOutlet.setTitle("Downloaded", for: .normal)
+//        if #available(iOS 13.0, *) {
+//            cell.downloadButtonOutlet.setImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)
+//        } else {
+//            // Fallback on earlier versions
+//        }
+//
+//        cell.downloadButtonOutlet.isEnabled = false
+    }
+    
+    public func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
+        print("finsished downloading file")
+        print(location)
+        
+        DispatchQueue.main.async {
+            let player = AVPlayer(url: location)  // video path coming from above function
+
+            let playerViewController = AVPlayerViewController()
+            playerViewController.player = player
+            self.present(playerViewController, animated: true) {
+                playerViewController.player!.play()
+            }
         }
+        
+        
     }
     
     // Handles dismissing the Messages controller
@@ -167,4 +236,5 @@ extension UITableViewController: VideoCellDelegate, SFSafariViewControllerDelega
     public func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
         controller.dismiss(animated: true, completion: nil)
     }
+    
 }
