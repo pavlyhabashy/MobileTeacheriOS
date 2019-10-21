@@ -20,6 +20,13 @@ class BrowseTVC: UITableViewController {
     
     var videos = [Video]()
     
+    //Added to store tags
+    //var tagDict = [String: [Video]]()
+    
+    //For testing only
+    var tagDict = [String: [String]]()
+    var selectedVideos = [String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.allowsSelection = false
@@ -116,7 +123,11 @@ class BrowseTVC: UITableViewController {
                     str = str.capitalizingFirstLetter()
                     video.tags = str.components(separatedBy: ", ")
                     
+                    //Add tags/video values to tag dictionary
+                    self.addTags(tags: str, video: video)
+                    
                     self.videos.append(video)
+                    print(self.tagDict)
                 }
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
@@ -128,6 +139,24 @@ class BrowseTVC: UITableViewController {
     // Converts seconds into hours, minutes, and seconds
     func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
         return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
+    }
+    
+    func addTags(tags: String, video: Video){
+        for t in tags.components(separatedBy: ", "){
+            var list = tagDict[t] ?? []
+            list.append(video.title)
+            //list.append(video)
+            tagDict[t] = list
+        }
+    }
+    
+    func addToFilteredVideos(tag: String){
+        let taggedVideos = tagDict[tag] ?? []
+        let taggedSet = Set(taggedVideos)
+        
+        let videoSet = Set(selectedVideos)
+        
+        self.selectedVideos = Array(videoSet.union(taggedSet))
     }
     
     
