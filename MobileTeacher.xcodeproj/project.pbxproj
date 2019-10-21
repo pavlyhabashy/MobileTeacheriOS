@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B0A1E312356D045002D7052 /* InstructionButtonTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0A1E302356D045002D7052 /* InstructionButtonTVCell.swift */; };
 		0B206B1A23440D2300C90777 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B206B1923440D2300C90777 /* HomeVC.swift */; };
+		0B2A8FAD235D5F0D000D1B86 /* SearchTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2A8FAC235D5F0D000D1B86 /* SearchTVC.swift */; };
 		0B2B60E1233066860023C2BF /* HowToUseTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2B60E0233066860023C2BF /* HowToUseTVC.swift */; };
 		0B5949542345551F00538CFC /* UploadVideoTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5949532345551F00538CFC /* UploadVideoTVC.swift */; };
 		0B65035623247FF0003375A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B65035523247FF0003375A2 /* AppDelegate.swift */; };
@@ -19,12 +21,15 @@
 		0B7DCBBF2332EFF9006E6AFE /* VideoStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7DCBBE2332EFF9006E6AFE /* VideoStruct.swift */; };
 		0BB924512327236200E73BBF /* VideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB924502327236200E73BBF /* VideoTableViewCell.swift */; };
 		0BDF337F23329C7500860624 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BDF337E23329C7500860624 /* GoogleService-Info.plist */; };
+		0BFAA6F623569643008AFBDE /* HowToCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFAA6F523569643008AFBDE /* HowToCollectionVC.swift */; };
 		0BFC0DD3232ACB4300533CAC /* SubjectsTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFC0DD2232ACB4300533CAC /* SubjectsTVC.swift */; };
 		DC8BF70A98A825672DCFF565 /* Pods_MobileTeacher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DBC7AEDCF87B807C1E8B0D8 /* Pods_MobileTeacher.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B0A1E302356D045002D7052 /* InstructionButtonTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionButtonTVCell.swift; sourceTree = "<group>"; };
 		0B206B1923440D2300C90777 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
+		0B2A8FAC235D5F0D000D1B86 /* SearchTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchTVC.swift; path = MobileTeacher/Controller/SearchTVC.swift; sourceTree = SOURCE_ROOT; };
 		0B2B60E0233066860023C2BF /* HowToUseTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HowToUseTVC.swift; path = MobileTeacher/Controller/HowToUseTVC.swift; sourceTree = SOURCE_ROOT; };
 		0B5949532345551F00538CFC /* UploadVideoTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadVideoTVC.swift; sourceTree = "<group>"; };
 		0B65035223247FF0003375A2 /* MobileTeacher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileTeacher.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -38,6 +43,7 @@
 		0B7DCBBE2332EFF9006E6AFE /* VideoStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoStruct.swift; sourceTree = "<group>"; };
 		0BB924502327236200E73BBF /* VideoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoTableViewCell.swift; sourceTree = "<group>"; };
 		0BDF337E23329C7500860624 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0BFAA6F523569643008AFBDE /* HowToCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HowToCollectionVC.swift; path = MobileTeacher/Controller/HowToCollectionVC.swift; sourceTree = SOURCE_ROOT; };
 		0BFC0DD2232ACB4300533CAC /* SubjectsTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectsTVC.swift; sourceTree = "<group>"; };
 		0FDD0D89004215AFFFE93015 /* Pods-MobileTeacher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileTeacher.release.xcconfig"; path = "Pods/Target Support Files/Pods-MobileTeacher/Pods-MobileTeacher.release.xcconfig"; sourceTree = "<group>"; };
 		474168E1F9723A7F6264F9EB /* Pods-MobileTeacher.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileTeacher.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MobileTeacher/Pods-MobileTeacher.debug.xcconfig"; sourceTree = "<group>"; };
@@ -82,6 +88,8 @@
 				0B5949532345551F00538CFC /* UploadVideoTVC.swift */,
 				0BFC0DD2232ACB4300533CAC /* SubjectsTVC.swift */,
 				0B206B1923440D2300C90777 /* HomeVC.swift */,
+				0BFAA6F523569643008AFBDE /* HowToCollectionVC.swift */,
+				0B2A8FAC235D5F0D000D1B86 /* SearchTVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -98,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				0BB924502327236200E73BBF /* VideoTableViewCell.swift */,
+				0B0A1E302356D045002D7052 /* InstructionButtonTVCell.swift */,
 			);
 			path = "Table View Cells";
 			sourceTree = "<group>";
@@ -294,9 +303,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B65035E23247FF0003375A2 /* MobileTeacher.xcdatamodeld in Sources */,
+				0B2A8FAD235D5F0D000D1B86 /* SearchTVC.swift in Sources */,
 				0B206B1A23440D2300C90777 /* HomeVC.swift in Sources */,
+				0BFAA6F623569643008AFBDE /* HowToCollectionVC.swift in Sources */,
 				0B65035623247FF0003375A2 /* AppDelegate.swift in Sources */,
 				0B65036B23248D96003375A2 /* BrowseTVC.swift in Sources */,
+				0B0A1E312356D045002D7052 /* InstructionButtonTVCell.swift in Sources */,
 				0BFC0DD3232ACB4300533CAC /* SubjectsTVC.swift in Sources */,
 				0B7DCBBF2332EFF9006E6AFE /* VideoStruct.swift in Sources */,
 				0B5949542345551F00538CFC /* UploadVideoTVC.swift in Sources */,

@@ -18,29 +18,46 @@ class HowToUseTVC: UITableViewController, UINavigationControllerDelegate {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        self.tableView.allowsSelection = false
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 5
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let placeholderCell: UITableViewCell = UITableViewCell()
+        
+        if (indexPath.row == 0) {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "StepOne", for: indexPath) as! InstructionButtonTVCell
+            cell.delegate = self
+            return cell
+        } else if (indexPath.row == 1) {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "StepTwo", for: indexPath)
+            return cell
+        } else if (indexPath.row == 2) {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "StepThree", for: indexPath)
+            return cell
+        } else if (indexPath.row == 3) {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "StepFour", for: indexPath)
+            return cell
+        } else if (indexPath.row == 4) {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "StepFive", for: indexPath)
+            return cell
+        }
 
-        // Configure the cell...
-
-        return cell
+        return placeholderCell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -92,4 +109,12 @@ class HowToUseTVC: UITableViewController, UINavigationControllerDelegate {
         })
     }
 
+}
+
+extension UITableViewController: InstructionCellDelegate {
+    func didTapDownload(url: URL) {
+        UIApplication.shared.open(url, options: [:]) { (success) in
+            print(success)
+        }
+    }
 }

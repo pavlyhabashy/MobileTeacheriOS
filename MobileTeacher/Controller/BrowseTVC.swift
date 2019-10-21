@@ -16,14 +16,22 @@ import AVKit
 let db = Firestore.firestore()
 var downloadTask: URLSessionDownloadTask?
 
+var globalTags = [String:[Video]]()
+
 class BrowseTVC: UITableViewController {
     
     var videos = [Video]()
+    var tags = [String:[Video]]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.allowsSelection = false
         self.readDatabase()
+        
+        
+//        for (tag, list) in tags {
+//            print(tag)
+//        }
     }
 
     // MARK: - Table view data source
@@ -116,10 +124,18 @@ class BrowseTVC: UITableViewController {
                     str = str.capitalizingFirstLetter()
                     video.tags = str.components(separatedBy: ", ")
                     
+                    // Add videos to 'tags' dictionary
+                    for i in video.tags {
+                        var list = self.tags[i.capitalizingFirstLetter()] ?? []
+                        list.append(video)
+                        self.tags[i.capitalizingFirstLetter()] = list
+                    }
+                    
                     self.videos.append(video)
                 }
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
+                    globalTags = self.tags
                 }
             }
         }

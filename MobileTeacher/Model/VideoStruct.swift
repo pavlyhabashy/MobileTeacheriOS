@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Video {
+struct Video : Hashable {
     var title: String = ""
     var description: String = ""
     var tags: [String] = []
@@ -18,4 +18,8 @@ struct Video {
     var minutes: Int = 0
     var seconds: Int = 0
     var downloadLocation: URL!
+    
+    static func == (lhs: Video, rhs: Video) -> Bool {
+        return lhs.title == rhs.title
+    }
 }

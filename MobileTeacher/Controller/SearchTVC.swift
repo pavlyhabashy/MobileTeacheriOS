@@ -1,23 +1,39 @@
 //
-//  UploadVideoTVC.swift
+//  SearchTVC.swift
 //  MobileTeacher
 //
-//  Created by Pavly Habashy on 10/2/19.
+//  Created by Pavly Habashy on 10/20/19.
 //  Copyright © 2019 Pavly Habashy. All rights reserved.
 //
 
 import UIKit
 
-class UploadVideoTVC: UITableViewController {
+class SearchTVC: UITableViewController {
+    
+    struct Objects : Hashable {
+        static func == (lhs: SearchTVC.Objects, rhs: SearchTVC.Objects) -> Bool {
+            return lhs.tag == rhs.tag && lhs.list == rhs.list
+        }
+        
+
+        var tag : String!
+        var list : [Video]!
+        
+        
+    }
+
+    var objectArray = [Objects]()
+    var selectedVideos = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        for (key, value) in globalTags {
+            print("\(key) -> \(value)")
+            objectArray.append(Objects(tag: key, list: value))
+        }
+        
+        objectArray.sort { $0.tag < $1.tag }
         
     }
 
@@ -25,23 +41,40 @@ class UploadVideoTVC: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return objectArray.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "tag", for: indexPath)
 
-        // Configure the cell...
+        cell.textLabel?.text = objectArray[indexPath.row].tag
 
         return cell
     }
-    */
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCell.AccessoryType.checkmark {
+            tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.none
+        } else {
+            tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.checkmark
+        }
+    }
+    
+//    func addToFilteredVideos(tag: String){
+//        let taggedVideos = globalTags[tag] ?? []
+//        let taggedSet = Set(taggedVideos)
+//
+//        let videoSet = Set(selectedVideos)
+//
+//        self.selectedVideos = Array(videoSet.union(taggedSet))
+//        // videoSet.union(taggedSet)
+//    }
 
     /*
     // Override to support conditional editing of the table view.
@@ -87,9 +120,9 @@ class UploadVideoTVC: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
     @IBAction func doneButtonPressed(_ sender: Any) {
         self.navigationController?.dismiss(animated: true, completion: {
         })
     }
-    
 }
