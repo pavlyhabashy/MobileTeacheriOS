@@ -15,23 +15,40 @@ import AVKit
 
 let db = Firestore.firestore()
 var downloadTask: URLSessionDownloadTask?
-
 var globalTags = [String:[Video]]()
+
 
 class BrowseTVC: UITableViewController {
     
+    
     var videos = [Video]()
+    var selectedVideos = [Video]()
+    var allVideos = [Video]()
     var tags = [String:[Video]]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        DataManager.shared.browseTVC = self
         self.tableView.allowsSelection = false
         self.readDatabase()
-        
-        
-//        for (tag, list) in tags {
-//            print(tag)
-//        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        videos.removeAll()
+        selectedVideoTags.removeAll()
+        allVideos.removeAll()
+        tags.removeAll()
+        globalTags.removeAll()
+        objectArray.removeAll()
+    }
+    
+    func updateTableView(taggedVideos: Set<Video>) {
+        if taggedVideos.count > 0 {
+            videos = Array(taggedVideos)
+        } else {
+            videos = allVideos
+        }
+        tableView.reloadData()
     }
 
     // MARK: - Table view data source
@@ -57,6 +74,9 @@ class BrowseTVC: UITableViewController {
     
     // Read from the database
     fileprivate func readDatabase() {
+        self.tags.removeAll()
+        globalTags.removeAll()
+        objectArray.removeAll()
         let settings = db.settings
         settings.areTimestampsInSnapshotsEnabled = true
         db.settings = settings
@@ -107,13 +127,11 @@ class BrowseTVC: UITableViewController {
                     if string.contains("id=") {
                         
                         let array = string.components(separatedBy: "id=")
-//                        print(array[1])
                         
                         video.downloadURL = URL(string: "https://drive.google.com/uc?export=download&id=\(array[1])")
                         
                     } else if string.contains("/file/d") {
                         let array = string.components(separatedBy: "/")
-//                        print(array[5])
                         video.downloadURL = URL(string: "https://drive.google.com/uc?export=download&id=\(array[5])")
                     } else {
                         print("nope")
@@ -135,7 +153,13 @@ class BrowseTVC: UITableViewController {
                 }
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
+                    self.allVideos = self.videos
                     globalTags = self.tags
+                    
+                    for (key, value) in globalTags {
+                        objectArray.append(Objects(tag: key, selected: false, list: value))
+                    }
+                    objectArray.sort { $0.tag < $1.tag }
                 }
             }
         }
@@ -145,7 +169,6 @@ class BrowseTVC: UITableViewController {
     func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
         return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
     }
-    
     
 }
 
@@ -164,7 +187,7 @@ extension UITableViewController: VideoCellDelegate, SFSafariViewControllerDelega
     func didTapPlayButton(url: URL) {
         
         let newUrl = url.absoluteString.replacingOccurrences(of: "https://", with: "googledrive://")
-        print(newUrl)
+//        print(newUrl)
         let toUrl = URL(string: newUrl) ?? nil
         if UIApplication.shared.canOpenURL(NSURL(string: newUrl)! as URL) {
             UIApplication.shared.openURL(NSURL(string: newUrl)! as URL)

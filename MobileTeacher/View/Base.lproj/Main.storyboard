@@ -5,7 +5,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -233,7 +232,7 @@
                     <navigationItem key="navigationItem" title="Videos" id="ENC-ZR-gbp">
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="p7h-ac-OhG">
                             <connections>
-                                <segue destination="ico-Or-Sec" kind="popoverPresentation" popoverAnchorBarButtonItem="p7h-ac-OhG" id="Nks-Vj-4V0">
+                                <segue destination="ico-Or-Sec" kind="popoverPresentation" identifier="searchSegue" popoverAnchorBarButtonItem="p7h-ac-OhG" id="Nks-Vj-4V0">
                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                 </segue>
                             </connections>
@@ -253,28 +252,46 @@
         <!--Search-->
         <scene sceneID="E4K-2a-s7A">
             <objects>
-                <tableViewController id="XgP-TS-WV7" customClass="SearchTVC" customModule="MobileTeacher" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="XgP-TS-WV7" customClass="FilterTVC" customModule="MobileTeacher" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="vy8-L1-Xkp">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="tag" editingAccessoryType="checkmark" textLabel="3LU-sU-yI2" style="IBUITableViewCellStyleDefault" id="UlK-5n-1bx">
-                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="tag" id="UlK-5n-1bx" customClass="TagTVCell" customModule="MobileTeacher" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="59.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UlK-5n-1bx" id="uaS-w1-uFF">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="59.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3LU-sU-yI2">
-                                            <rect key="frame" x="20" y="0.0" width="374" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dYB-Zl-wdG">
+                                            <rect key="frame" x="345" y="14" width="51" height="31.5"/>
+                                            <connections>
+                                                <action selector="switchTapped:" destination="UlK-5n-1bx" eventType="valueChanged" id="VGu-eo-MP8"/>
+                                            </connections>
+                                        </switch>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mqO-kB-Noc">
+                                            <rect key="frame" x="20" y="11" width="319" height="37.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="mqO-kB-Noc" firstAttribute="bottom" secondItem="uaS-w1-uFF" secondAttribute="bottomMargin" id="3mK-e7-kx8"/>
+                                        <constraint firstItem="mqO-kB-Noc" firstAttribute="leading" secondItem="uaS-w1-uFF" secondAttribute="leadingMargin" id="4Gv-5s-BV6"/>
+                                        <constraint firstItem="dYB-Zl-wdG" firstAttribute="leading" secondItem="mqO-kB-Noc" secondAttribute="trailing" constant="6" id="HlT-eb-jGg"/>
+                                        <constraint firstItem="dYB-Zl-wdG" firstAttribute="trailing" secondItem="uaS-w1-uFF" secondAttribute="trailingMargin" id="ORU-tO-tOk"/>
+                                        <constraint firstItem="dYB-Zl-wdG" firstAttribute="top" secondItem="uaS-w1-uFF" secondAttribute="topMargin" constant="3" id="lUt-Z0-EVl"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="dYB-Zl-wdG" secondAttribute="bottom" constant="3" id="nJP-cC-D3m"/>
+                                        <constraint firstItem="mqO-kB-Noc" firstAttribute="top" secondItem="uaS-w1-uFF" secondAttribute="topMargin" id="wkC-LC-Ues"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="switchStatus" destination="dYB-Zl-wdG" id="GfI-wG-Q5K"/>
+                                    <outlet property="tagLabel" destination="mqO-kB-Noc" id="MYn-8v-OaP"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -329,41 +346,6 @@
             </objects>
             <point key="canvasLocation" x="3067" y="96"/>
         </scene>
-        <!--How to Use-->
-        <scene sceneID="MC2-Bq-IzG">
-            <objects>
-                <collectionViewController id="6a5-JP-fjW" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" id="E1t-Bq-e6c">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Npc-gG-n4p">
-                            <size key="itemSize" width="50" height="50"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="Cell" id="Otb-To-FS2">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="RhF-54-wnJ">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </collectionViewCellContentView>
-                            </collectionViewCell>
-                        </cells>
-                        <connections>
-                            <outlet property="dataSource" destination="6a5-JP-fjW" id="1l7-yj-frn"/>
-                            <outlet property="delegate" destination="6a5-JP-fjW" id="U1e-DR-Y1D"/>
-                        </connections>
-                    </collectionView>
-                    <navigationItem key="navigationItem" title="How to Use" id="nrK-3u-omu"/>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Gty-tM-6j3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6894.202898550725" y="-610.04464285714278"/>
-        </scene>
         <!--Instructions-->
         <scene sceneID="K5u-HV-Fuu">
             <objects>
@@ -389,8 +371,10 @@
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Download Google Drive from the App Store and sign in with Google account." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DKj-Rl-4pS">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DKj-Rl-4pS">
                                             <rect key="frame" x="20" y="65" width="374" height="48"/>
+                                            <string key="text">You need Google Drive to use Mobile Teacher. Download Google Drive from the App Store and sign in with your Google account.
+</string>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -443,9 +427,8 @@
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uUR-XU-ldz">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Open the Mobile Teacher app and tap &quot;Watch Videos&quot;." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uUR-XU-ldz">
                                             <rect key="frame" x="20" y="65" width="374" height="114"/>
-                                            <string key="text">Tap 'Watch Videos' on the home screen of the Mobile Teacher app. You can also do so by tapping the 'Done' button at the top of this page.</string>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -478,7 +461,7 @@
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap 'Play' on a video. The Google Drive app will open and start playing the video." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Rp-yc-WD1">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose a video you want to watch and tap &quot;Play&quot;. The Google Drive app will open and start playing the video." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Rp-yc-WD1">
                                             <rect key="frame" x="20" y="65" width="374" height="114"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <nil key="textColor"/>
@@ -512,7 +495,7 @@
                                             <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To download a video in Google Drive, tap ••• at the top right and tap 'Make available offline'." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4e0-0L-eBH">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To download a video to watch offline  in Google Drive, tap ••• at the top right and then tap &quot;Make available offline&quot;." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4e0-0L-eBH">
                                             <rect key="frame" x="20" y="65" width="374" height="114"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <nil key="textColor"/>
@@ -546,7 +529,7 @@
                                             <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To watch offline videos, open the Google Drive app, tap the ☰ on the top left, tap 'Offline', and find the video in the list." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C8s-p5-NOl">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To watch videos offline, open the Google Drive app, tap the ☰ on the top left, tap &quot;Offline&quot;, and find the video in the list." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C8s-p5-NOl">
                                             <rect key="frame" x="20" y="65" width="374" height="114"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <nil key="textColor"/>
@@ -776,24 +759,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d5Z-Bi-VNJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2157" y="95"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="AOe-FC-RDO">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gR8-kf-rh4" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="saT-FX-ZBM">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="6a5-JP-fjW" kind="relationship" relationship="rootViewController" id="Pws-gS-MRA"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="UFe-5A-84m" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5984.057971014493" y="-610.04464285714278"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gd4-zk-deb">

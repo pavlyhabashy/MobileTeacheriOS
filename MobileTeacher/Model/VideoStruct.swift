@@ -20,6 +20,6 @@ struct Video : Hashable {
     var downloadLocation: URL!
     
     static func == (lhs: Video, rhs: Video) -> Bool {
-        return lhs.title == rhs.title
+        return lhs.url == rhs.url
     }
 }
