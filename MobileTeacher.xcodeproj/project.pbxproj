@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -23,6 +23,7 @@
 		0B6DD7F523604F4900AA9EBF /* ObjectsStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6DD7F423604F4900AA9EBF /* ObjectsStruct.swift */; };
 		0B7DCBBF2332EFF9006E6AFE /* VideoStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7DCBBE2332EFF9006E6AFE /* VideoStruct.swift */; };
 		0BB924512327236200E73BBF /* VideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB924502327236200E73BBF /* VideoTableViewCell.swift */; };
+		0BBEC2ED23798A7900BAB407 /* ContactTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBEC2EC23798A7900BAB407 /* ContactTVCell.swift */; };
 		0BDF337F23329C7500860624 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BDF337E23329C7500860624 /* GoogleService-Info.plist */; };
 		0BFC0DD3232ACB4300533CAC /* SubjectsTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFC0DD2232ACB4300533CAC /* SubjectsTVC.swift */; };
 		DC8BF70A98A825672DCFF565 /* Pods_MobileTeacher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DBC7AEDCF87B807C1E8B0D8 /* Pods_MobileTeacher.framework */; };
@@ -47,6 +48,7 @@
 		0B6DD7F423604F4900AA9EBF /* ObjectsStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ObjectsStruct.swift; path = MobileTeacher/Controller/ObjectsStruct.swift; sourceTree = SOURCE_ROOT; };
 		0B7DCBBE2332EFF9006E6AFE /* VideoStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoStruct.swift; sourceTree = "<group>"; };
 		0BB924502327236200E73BBF /* VideoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoTableViewCell.swift; sourceTree = "<group>"; };
+		0BBEC2EC23798A7900BAB407 /* ContactTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTVCell.swift; sourceTree = "<group>"; };
 		0BDF337E23329C7500860624 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0BFC0DD2232ACB4300533CAC /* SubjectsTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectsTVC.swift; sourceTree = "<group>"; };
 		0FDD0D89004215AFFFE93015 /* Pods-MobileTeacher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileTeacher.release.xcconfig"; path = "Pods/Target Support Files/Pods-MobileTeacher/Pods-MobileTeacher.release.xcconfig"; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 				0BB924502327236200E73BBF /* VideoTableViewCell.swift */,
 				0B0A1E302356D045002D7052 /* InstructionButtonTVCell.swift */,
 				0B6DD7F0235FF33700AA9EBF /* TagTVCell.swift */,
+				0BBEC2EC23798A7900BAB407 /* ContactTVCell.swift */,
 			);
 			path = "Table View Cells";
 			sourceTree = "<group>";
@@ -243,40 +246,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-MobileTeacher/Pods-MobileTeacher-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
-				"${BUILT_PRODUCTS_DIR}/TagListView/TagListView.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC-ProtoRPC/ProtoRPC.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC-RxLibrary/RxLibrary.framework",
-				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-MobileTeacher/Pods-MobileTeacher-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TagListView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProtoRPC.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxLibrary.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-MobileTeacher/Pods-MobileTeacher-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MobileTeacher/Pods-MobileTeacher-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MobileTeacher/Pods-MobileTeacher-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6FA7B405310F02E6696965E7 /* [CP] Check Pods Manifest.lock */ = {
@@ -319,6 +297,7 @@
 				0B0A1E312356D045002D7052 /* InstructionButtonTVCell.swift in Sources */,
 				0BFC0DD3232ACB4300533CAC /* SubjectsTVC.swift in Sources */,
 				0B7DCBBF2332EFF9006E6AFE /* VideoStruct.swift in Sources */,
+				0BBEC2ED23798A7900BAB407 /* ContactTVCell.swift in Sources */,
 				0B5949542345551F00538CFC /* UploadVideoTVC.swift in Sources */,
 				0B2B60E1233066860023C2BF /* HowToUseTVC.swift in Sources */,
 				0BB924512327236200E73BBF /* VideoTableViewCell.swift in Sources */,
