@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 class HomeVC: UIViewController {
 
@@ -15,6 +16,30 @@ class HomeVC: UIViewController {
     @IBOutlet weak var howToUseOutlet: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let db = Firestore.firestore()
+        let settings = db.settings
+        settings.areTimestampsInSnapshotsEnabled = true
+        db.settings = settings
+        
+        db.collection("update").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    let b:Bool = document.get("updateAvailable") as! Bool
+                    if b{
+                        DispatchQueue.main.async {
+                            let alert = UIAlertController(title: "Update Availiable", message: "Please visit the app store to update the app.", preferredStyle: .alert)
+
+                            alert.addAction(UIAlertAction(title: "Thanks", style: .default, handler: nil))
+
+                            self.present(alert, animated: true)
+                        }
+                    }
+                }
+            }
+        }
 
         // Do any additional setup after loading the view.
         watchVideosOutlet.layer.cornerRadius = 15
