@@ -31,9 +31,14 @@ class BrowseTVC: UITableViewController {
         DataManager.shared.browseTVC = self
         self.tableView.allowsSelection = false
         self.readDatabase()
+        
+        if #available(iOS 13.0, *) {
+        } else {
+            self.navigationItem.rightBarButtonItem = nil
+        }
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         videos.removeAll()
         selectedVideoTags.removeAll()
         allVideos.removeAll()
@@ -78,7 +83,6 @@ class BrowseTVC: UITableViewController {
         globalTags.removeAll()
         objectArray.removeAll()
         let settings = db.settings
-        settings.areTimestampsInSnapshotsEnabled = true
         db.settings = settings
         
         db.collection("videos").getDocuments() { (querySnapshot, err) in
@@ -187,10 +191,8 @@ extension UITableViewController: VideoCellDelegate, SFSafariViewControllerDelega
     func didTapPlayButton(url: URL) {
         
         let newUrl = url.absoluteString.replacingOccurrences(of: "https://", with: "googledrive://")
-//        print(newUrl)
-        let toUrl = URL(string: newUrl) ?? nil
         if UIApplication.shared.canOpenURL(NSURL(string: newUrl)! as URL) {
-            UIApplication.shared.openURL(NSURL(string: newUrl)! as URL)
+            UIApplication.shared.open(NSURL(string: newUrl)! as URL, options: [:], completionHandler: nil)
         } else {
             // Open the URL in Safari View Controller. You can the following
             let safariVC = SFSafariViewController(url: url)
@@ -200,15 +202,6 @@ extension UITableViewController: VideoCellDelegate, SFSafariViewControllerDelega
     }
     
     func didTapShareButton(url: URL) {
-        
-        // Compose new message with URL
-//        if (MFMessageComposeViewController.canSendText()) {
-//            let controller = MFMessageComposeViewController()
-//            controller.body = "\(url)"
-//            controller.recipients = []
-//            controller.messageComposeDelegate = self
-//            self.present(controller, animated: true, completion: nil)
-//        }
         
         // Bring up Share Sheet
         let items = [url]
@@ -234,19 +227,6 @@ extension UITableViewController: VideoCellDelegate, SFSafariViewControllerDelega
 
         downloadTask = urlSession.downloadTask(with: URL(string: "https://drive.google.com/uc?export=download&id=1jlgGUrFWtDsGu8DQW5QiZGsm7v6rykB0")!)
                 downloadTask?.resume()
-        
-        // Change the download button of first cell to "Downloaded" with a checkmark icon.
-        // Commented until we figure out downloads.
-//        let indexPath = IndexPath(row: 0, section: 0)
-//        let cell = tableView.cellForRow(at: indexPath) as! VideoTableViewCell
-//        cell.downloadButtonOutlet.setTitle("Downloaded", for: .normal)
-//        if #available(iOS 13.0, *) {
-//            cell.downloadButtonOutlet.setImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)
-//        } else {
-//            // Fallback on earlier versions
-//        }
-//
-//        cell.downloadButtonOutlet.isEnabled = false
     }
     
     public func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {

@@ -19,7 +19,6 @@ class HomeVC: UIViewController {
         
         let db = Firestore.firestore()
         let settings = db.settings
-        settings.areTimestampsInSnapshotsEnabled = true
         db.settings = settings
         
         db.collection("update").getDocuments() { (querySnapshot, err) in
@@ -28,11 +27,16 @@ class HomeVC: UIViewController {
             } else {
                 for document in querySnapshot!.documents {
                     let b:Bool = document.get("updateAvailable") as! Bool
+                    let url:String = document.get("url") as! String
                     if b{
                         DispatchQueue.main.async {
-                            let alert = UIAlertController(title: "Update Availiable", message: "Please visit the app store to update the app.", preferredStyle: .alert)
-
-                            alert.addAction(UIAlertAction(title: "Thanks", style: .default, handler: nil))
+                            let alert = UIAlertController(title: "Update Available", message: "Please visit the App Store to update the app.", preferredStyle: .alert)
+                            
+                            alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+                            alert.addAction(UIAlertAction(title: "Update", style: .default, handler: {AlertAction in
+                                UIApplication.shared.open(URL(string: url)!, options: [:]) { (success) in
+                                }
+                            }))
 
                             self.present(alert, animated: true)
                         }
@@ -62,18 +66,6 @@ class HomeVC: UIViewController {
     func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
            return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
        }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
 
 }
 

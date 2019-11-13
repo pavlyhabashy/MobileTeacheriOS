@@ -8,18 +8,13 @@
 
 import UIKit
 import MessageUI
+import SafariServices
 
 class HowToUseTVC: UITableViewController, UINavigationControllerDelegate {
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
         self.tableView.allowsSelection = false
     }
 
@@ -42,6 +37,8 @@ class HowToUseTVC: UITableViewController, UINavigationControllerDelegate {
         if (indexPath.row == 0) {
             let cell = tableView.dequeueReusableCell(withIdentifier: "StepOne", for: indexPath) as! InstructionButtonTVCell
             cell.delegate = self
+            cell.url = URL(string: "itms-apps://apps.apple.com/us/app/google-drive/id507874739")!
+            cell.buttonType = "openApp"
             return cell
         } else if (indexPath.row == 1) {
             let cell = tableView.dequeueReusableCell(withIdentifier: "StepTwo", for: indexPath)
@@ -63,52 +60,6 @@ class HowToUseTVC: UITableViewController, UINavigationControllerDelegate {
 
         return placeholderCell
     }
-    
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     @IBAction func doneButtonPressed(_ sender: Any) {
         self.navigationController?.dismiss(animated: true, completion: {
@@ -187,9 +138,16 @@ extension UITableViewController: InstructionCellDelegate, ContactCellDelegate, M
         controller.dismiss(animated: true)
     }
     
-    func didTapDownload(url: URL) {
-        UIApplication.shared.open(url, options: [:]) { (success) in
-            print(success)
+    func didTapDownload(url: URL, buttonType: String) {
+        if buttonType == "openApp" {
+            UIApplication.shared.open(url, options: [:]) { (success) in
+                print(success)
+            }
+        } else if buttonType == "openURL" {
+            let safariVC = SFSafariViewController(url: url)
+            present(safariVC, animated: true, completion: nil)
+            safariVC.delegate = self
         }
     }
+
 }

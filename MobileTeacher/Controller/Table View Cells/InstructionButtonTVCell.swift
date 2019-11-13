@@ -9,13 +9,16 @@
 import UIKit
 
 protocol InstructionCellDelegate {
-    func didTapDownload(url: URL)
+    func didTapDownload(url: URL, buttonType: String)
+    
 }
 
 class InstructionButtonTVCell: UITableViewCell {
     
     @IBOutlet weak var downloadButtonOutlet: UIButton!
     var delegate: InstructionCellDelegate?
+    var url: URL!
+    var buttonType: String!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,13 +28,9 @@ class InstructionButtonTVCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    @IBAction func downloadDriveButtonTapped(_ sender: Any) {
-        delegate?.didTapDownload(url: URL(string: "itms-apps://apps.apple.com/us/app/google-drive/id507874739")!)
-        // https://apps.apple.com/us/app/google-drive/id507874739
-        print("tapped")
     }
     
+    @IBAction func downloadDriveButtonTapped(_ sender: Any) {
+        delegate?.didTapDownload(url: url, buttonType: buttonType)
+    }
 }
