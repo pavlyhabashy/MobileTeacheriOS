@@ -124,6 +124,10 @@ extension UITableViewController: InstructionCellDelegate, ContactCellDelegate, M
                                         UIPasteboard.general.string = "mobileteacher.org@gmail.com"
                                         let generator = UINotificationFeedbackGenerator()
                                         generator.notificationOccurred(.success)
+                                        let alert = UIAlertController(title: "Email copied", message: "mobileteacher.org@gmail.com has been copied to your clipboard.", preferredStyle: .alert)
+                                                                   
+                                        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+                                        self.present(alert, animated: true)
         })
         
         alert.addAction(UIAlertAction(title: "Cancel",
