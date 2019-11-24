@@ -505,7 +505,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="YYs-Pf-Yq0" kind="show" id="eWS-4y-FND"/>
+                                    <segue destination="YYs-Pf-Yq0" kind="show" identifier="watchSegue" id="eWS-4y-FND"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="csb-LU-vSy">
@@ -528,7 +528,7 @@
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                 <state key="normal" title="How to Use"/>
                                 <connections>
-                                    <segue destination="SWe-ph-A5O" kind="popoverPresentation" popoverAnchorView="kdr-0P-xDK" id="vkk-iY-ncf">
+                                    <segue destination="SWe-ph-A5O" kind="popoverPresentation" identifier="howToUseSegue" popoverAnchorView="kdr-0P-xDK" id="vkk-iY-ncf">
                                         <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                     </segue>
                                 </connections>
@@ -541,7 +541,7 @@
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                 <state key="normal" title="Upload Video"/>
                                 <connections>
-                                    <segue destination="PsU-gM-sQU" kind="presentation" id="RzV-xz-RkK"/>
+                                    <segue destination="PsU-gM-sQU" kind="presentation" identifier="uploadSegue" id="RzV-xz-RkK"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -612,7 +612,7 @@
             </objects>
             <point key="canvasLocation" x="2157" y="95"/>
         </scene>
-        <!--Upload Video-->
+        <!--Video Info-->
         <scene sceneID="fTR-ci-zj9">
             <objects>
                 <viewController id="BqW-qC-lGc" customClass="UploadVideoTVC" customModule="MobileTeacher" customModuleProvider="target" sceneMemberID="viewController">
@@ -622,13 +622,67 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="HSz-E3-IOM"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Upload Video" id="268-hF-MyB">
-                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="6XG-EU-xbI"/>
+                    <navigationItem key="navigationItem" title="Video Info" id="268-hF-MyB">
+                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="6XG-EU-xbI">
+                            <connections>
+                                <action selector="cancelButtonPressed:" destination="BqW-qC-lGc" id="oE1-6o-s1z"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="o1L-e0-RSa" kind="show" identifier="uploadVideoSegue" id="RsL-4D-Y9h"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4wr-oD-KzE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3000" y="94"/>
+        </scene>
+        <!--Upload Video-->
+        <scene sceneID="qKu-1C-qBC">
+            <objects>
+                <viewController id="o1L-e0-RSa" customClass="UploadVC" customModule="MobileTeacher" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mKT-m5-Ter">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dny-SM-jlt">
+                                <rect key="frame" x="20" y="738" width="374" height="50"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="b9X-pr-MqJ"/>
+                                    <constraint firstAttribute="height" constant="50" id="fTX-Sa-hsb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                <state key="normal" title="Choose Video">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="chooseVideoPressed:" destination="o1L-e0-RSa" eventType="touchUpInside" id="bBh-19-Syb"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="xoZ-88-H68" firstAttribute="trailing" secondItem="dny-SM-jlt" secondAttribute="trailing" constant="20" id="TaF-Ic-pb2"/>
+                            <constraint firstItem="xoZ-88-H68" firstAttribute="bottom" secondItem="dny-SM-jlt" secondAttribute="bottom" constant="20" id="hC3-6Y-vsO"/>
+                            <constraint firstItem="dny-SM-jlt" firstAttribute="leading" secondItem="xoZ-88-H68" secondAttribute="leading" constant="20" id="qhU-XU-906"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="xoZ-88-H68"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Upload Video" id="HlO-nK-QJc">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="cancel" id="esW-lb-Pdl">
+                            <connections>
+                                <action selector="cancelButtonPressed:" destination="o1L-e0-RSa" id="ZDa-Hy-6aS"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="chooseVideoButtonOutlet" destination="dny-SM-jlt" id="i13-LY-SIh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sOO-VZ-X84" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3908.6956521739135" y="93.75"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gd4-zk-deb">

@@ -9,7 +9,7 @@
 import UIKit
 import Eureka
 
-class UploadVideoTVC: FormViewController {
+class UploadVideoTVC: FormViewController, UIAdaptivePresentationControllerDelegate {
     
     var languages = [
         "Mandarin Chinese",
@@ -33,10 +33,9 @@ class UploadVideoTVC: FormViewController {
         "Tamil",
         "Italian",
         "Turkish",
-        "Cantonese/Yue"
-    ]
+        "Cantonese/Yue"    ]
     
-    let countries = ["Select a country","Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua & Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia & Herzegovina","Botswana","Brazil","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Cape Verde","Cayman Islands","Chad","Chile","China","Colombia","Congo","Cook Islands","Costa Rica","Cote D Ivoire","Croatia","Cruise Ship","Cuba","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Estonia","Ethiopia","Falkland Islands","Faroe Islands","Fiji","Finland","France","French Polynesia","French West Indies","Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea Bissau","Guyana","Haiti","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kuwait","Kyrgyz Republic","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Mauritania","Mauritius","Mexico","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Namibia","Nepal","Netherlands","Netherlands Antilles","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","Norway","Oman","Pakistan","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda","Saint Pierre & Miquelon","Samoa","San Marino","Satellite","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","South Africa","South Korea","Spain","Sri Lanka","St Kitts & Nevis","St Lucia","St Vincent","St. Lucia","Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor L'Este","Togo","Tonga","Trinidad & Tobago","Tunisia","Turkey","Turkmenistan","Turks & Caicos","Uganda","Ukraine","United Arab Emirates","United Kingdom", "United States of America", "Uruguay","Uzbekistan","Venezuela","Vietnam","Virgin Islands (US)","Yemen","Zambia","Zimbabwe"]
+    var countries = ["Select a country","Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua & Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia & Herzegovina","Botswana","Brazil","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Cape Verde","Cayman Islands","Chad","Chile","China","Colombia","Congo","Cook Islands","Costa Rica","Cote D Ivoire","Croatia","Cruise Ship","Cuba","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Estonia","Ethiopia","Falkland Islands","Faroe Islands","Fiji","Finland","France","French Polynesia","French West Indies","Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea Bissau","Guyana","Haiti","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kuwait","Kyrgyz Republic","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Mauritania","Mauritius","Mexico","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Namibia","Nepal","Netherlands","Netherlands Antilles","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","Norway","Oman","Pakistan","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda","Saint Pierre & Miquelon","Samoa","San Marino","Satellite","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","South Africa","South Korea","Spain","Sri Lanka","St Kitts & Nevis","St Lucia","St Vincent","St. Lucia","Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor L'Este","Togo","Tonga","Trinidad & Tobago","Tunisia","Turkey","Turkmenistan","Turks & Caicos","Uganda","Ukraine","United Arab Emirates","United Kingdom", "United States of America", "Uruguay","Uzbekistan","Venezuela","Vietnam","Virgin Islands (US)","Yemen","Zambia","Zimbabwe"]
 
     
     override func viewDidLoad() {
@@ -44,17 +43,16 @@ class UploadVideoTVC: FormViewController {
         
         languages.sort()
         languages.insert("Select a language", at: 0)
+        languages.append("Other")
+        countries.append("Other")
         
         animateScroll = true
         
-        
-//        form +++ Section(header: "", footer: "")
-//            <<< ButtonRow(){
-//                $0.title = "Choose Video"
-//                $0.onCellSelection { (string, buttonrow) in
-//
-//                }
-//        }
+        if #available(iOS 13.0, *) {
+            self.isModalInPresentation = true
+        } else {
+            // Fallback on earlier versions
+        }
         
         form +++ Section(header: "Name", footer: "If you work with a U.S. Peace Corps Volunteer (PCV) or English Language Fellow (ELF), please enter their name also.")
             <<< NameRow("Name"){ row in
@@ -138,7 +136,7 @@ class UploadVideoTVC: FormViewController {
         
         form +++ SelectableSection<ListCheckRow<String>>(header: "Subject", footer: "What subject does the teacher teach in the video?", selectionType: .singleSelection(enableDeselection: true))
         
-        let subjects = ["English", "Math", "Science", "History", "Art", "Music", "Health", "Other"]
+        let subjects = ["Languages", "Math", "Science", "History", "Art", "Music", "Health", "Other"]
         for option in subjects {
             form.last! <<< ListCheckRow<String>(option){ listRow in
                 listRow.title = option
@@ -248,6 +246,8 @@ class UploadVideoTVC: FormViewController {
         <<< TextRow("School") { row in
             row.title = "Name of Institution"
             row.placeholder = "Enter name here"
+            row.add(rule: RuleRequired())
+            row.validationOptions = .validatesOnChange
         }.cellUpdate{ (cell, row) in
             if #available(iOS 13.0, *) {
                 cell.textLabel?.textColor = .label
@@ -274,6 +274,10 @@ class UploadVideoTVC: FormViewController {
                         cell.textField.textColor = .black
                     }
                 }
+            }
+            
+            if !row.isValid {
+                cell.titleLabel?.textColor = .systemRed
             }
         }
         
@@ -318,7 +322,7 @@ class UploadVideoTVC: FormViewController {
         
 
         // Check for subject
-        if let subject = dict["English"] as? String {
+        if let subject = dict["Languages"] as? String {
             print(subject)
         } else if let subject = dict["Math"] as? String {
             print(subject)
@@ -383,6 +387,8 @@ class UploadVideoTVC: FormViewController {
             return
         }
         
+        performSegue(withIdentifier: "uploadVideoSegue", sender: nil)
+        
     }
     
     func missingFieldAlert(error: String) {
@@ -399,9 +405,29 @@ class UploadVideoTVC: FormViewController {
         return emailPred.evaluate(with: emailStr)
     }
     
-    @IBAction func doneButtonPressed(_ sender: Any) {
-        self.navigationController?.dismiss(animated: true, completion: {
-        })
+    @IBAction func cancelButtonPressed(_ sender: Any) {
+        
+        let alert = UIAlertController(title: "Are you sure you want to discard this form?", message: "You have entered information in this form. If you discard the form, your information will be deleted. Are you sure you want to discard the form anyway?", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Discard", style: .destructive, handler: {
+            alert in
+            self.navigationController?.dismiss(animated: true, completion: {
+            })
+        }))
+        self.present(alert, animated: true)
     }
+    
+    func presentationControllerDidAttemptToDismiss(_ presentationController: UIPresentationController) {
+        let alert = UIAlertController(title: "Are you sure you want to discard this form?", message: "You have entered information in this form. If you discard the form, your information will be deleted. Are you sure you want to discard the form anyway?", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Discard", style: .destructive, handler: {
+            alert in
+            self.navigationController?.dismiss(animated: true, completion: {
+            })
+        }))
+        self.present(alert, animated: true)
+    }
+    
+    
     
 }

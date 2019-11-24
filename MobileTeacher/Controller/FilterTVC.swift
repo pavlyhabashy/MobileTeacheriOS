@@ -20,6 +20,12 @@ class FilterTVC: UITableViewController {
         super.viewDidLoad()
         UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
         taggedVideos.removeAll()
+        
+        if #available(iOS 13.0, *) {
+            self.isModalInPresentation = true
+        } else {
+            // Fallback on earlier versions
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {

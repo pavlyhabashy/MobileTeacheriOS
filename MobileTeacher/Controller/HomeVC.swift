@@ -66,7 +66,20 @@ class HomeVC: UIViewController {
     func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
            return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
        }
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "uploadSegue" {
+            
+            // Get the presented navigationController and the view controller it contains
+            let navigationController = segue.destination as! UINavigationController
+            let modalViewController = navigationController.topViewController
+              
+            // Set the modal view controller to be the delegate of the presentationController for this presentation,
+            // so that modal view controller can respond to attempted dismissals
+            navigationController.presentationController?.delegate = modalViewController as? UIAdaptivePresentationControllerDelegate
+        }
+    }
 }
 
 extension UIButton {
