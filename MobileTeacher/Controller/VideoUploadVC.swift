@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UploadVC: UIViewController {
+class VideoUploadVC: UIViewController {
 
     @IBOutlet weak var chooseVideoButtonOutlet: UIButton!
     override func viewDidLoad() {
@@ -16,6 +16,7 @@ class UploadVC: UIViewController {
 
         // Do any additional setup after loading the view.
         chooseVideoButtonOutlet.layer.cornerRadius = 15
+
     }
     
 
@@ -39,6 +40,8 @@ class UploadVC: UIViewController {
             self.present(alert, animated: true)
     }
     @IBAction func chooseVideoPressed(_ sender: Any) {
+        // Willie Shen
+        performSegue(withIdentifier: "uploadingSegue", sender: nil)
     }
     
 }

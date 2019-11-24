@@ -615,7 +615,7 @@
         <!--Video Info-->
         <scene sceneID="fTR-ci-zj9">
             <objects>
-                <viewController id="BqW-qC-lGc" customClass="UploadVideoTVC" customModule="MobileTeacher" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BqW-qC-lGc" customClass="VideoFormVC" customModule="MobileTeacher" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HgE-l2-PDX">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -637,10 +637,10 @@
             </objects>
             <point key="canvasLocation" x="3000" y="94"/>
         </scene>
-        <!--Upload Video-->
+        <!--Choose Video-->
         <scene sceneID="qKu-1C-qBC">
             <objects>
-                <viewController id="o1L-e0-RSa" customClass="UploadVC" customModule="MobileTeacher" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="o1L-e0-RSa" customClass="VideoUploadVC" customModule="MobileTeacher" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mKT-m5-Ter">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -669,7 +669,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="xoZ-88-H68"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Upload Video" id="HlO-nK-QJc">
+                    <navigationItem key="navigationItem" title="Choose Video" id="HlO-nK-QJc">
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="cancel" id="esW-lb-Pdl">
                             <connections>
                                 <action selector="cancelButtonPressed:" destination="o1L-e0-RSa" id="ZDa-Hy-6aS"/>
@@ -678,11 +678,53 @@
                     </navigationItem>
                     <connections>
                         <outlet property="chooseVideoButtonOutlet" destination="dny-SM-jlt" id="i13-LY-SIh"/>
+                        <segue destination="yMs-b7-vmm" kind="show" identifier="uploadingSegue" id="Y5o-Qr-mHs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sOO-VZ-X84" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3908.6956521739135" y="93.75"/>
+            <point key="canvasLocation" x="3910" y="94"/>
+        </scene>
+        <!--Uploading-->
+        <scene sceneID="ejB-al-SiB">
+            <objects>
+                <viewController id="yMs-b7-vmm" customClass="UploadingVC" customModule="MobileTeacher" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ICI-ix-gz6">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G3E-Xd-9SV">
+                                <rect key="frame" x="20" y="738" width="374" height="50"/>
+                                <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Hlz-8d-QZF"/>
+                                    <constraint firstAttribute="height" constant="50" id="ZSj-AQ-pfJ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelButtonPressed:" destination="yMs-b7-vmm" eventType="touchUpInside" id="0fM-iM-5Ts"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="G3E-Xd-9SV" firstAttribute="leading" secondItem="Ii9-LH-fLi" secondAttribute="leading" constant="20" id="MXn-vQ-4vA"/>
+                            <constraint firstItem="Ii9-LH-fLi" firstAttribute="trailing" secondItem="G3E-Xd-9SV" secondAttribute="trailing" constant="20" id="VEf-NS-mfD"/>
+                            <constraint firstItem="Ii9-LH-fLi" firstAttribute="bottom" secondItem="G3E-Xd-9SV" secondAttribute="bottom" constant="20" id="lbV-or-ssk"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Ii9-LH-fLi"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Uploading" id="eug-dl-vpa"/>
+                    <connections>
+                        <outlet property="cancelButtonOutlet" destination="G3E-Xd-9SV" id="ESa-4a-HeM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UX9-GB-cIo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4930" y="94"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gd4-zk-deb">

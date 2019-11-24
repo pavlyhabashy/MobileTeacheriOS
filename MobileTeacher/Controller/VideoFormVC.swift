@@ -9,7 +9,7 @@
 import UIKit
 import Eureka
 
-class UploadVideoTVC: FormViewController, UIAdaptivePresentationControllerDelegate {
+class VideoFormVC: FormViewController, UIAdaptivePresentationControllerDelegate {
     
     var languages = [
         "Mandarin Chinese",
