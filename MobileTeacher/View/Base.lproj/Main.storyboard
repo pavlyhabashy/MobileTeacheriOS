@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QZK-Rv-449">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QZK-Rv-449">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -509,13 +509,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="csb-LU-vSy">
-                                <rect key="frame" x="20" y="220" width="374" height="26.5"/>
+                                <rect key="frame" x="20" y="220" width="374" height="24"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mobile Teacher" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PyS-ZU-fHw">
-                                <rect key="frame" x="20" y="254.5" width="374" height="48"/>
+                                <rect key="frame" x="20" y="252" width="374" height="48"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -660,10 +660,29 @@
                                     <action selector="chooseVideoPressed:" destination="o1L-e0-RSa" eventType="touchUpInside" id="bBh-19-Syb"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kXM-e0-wuv">
+                                <rect key="frame" x="20" y="594" width="374" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                <state key="normal" title="Upload">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="uploadPressed:" destination="o1L-e0-RSa" eventType="touchUpInside" id="ltf-ds-Y9g"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wou-3H-pKy">
+                                <rect key="frame" x="66" y="199" width="287" height="264"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="wou-3H-pKy" firstAttribute="top" secondItem="xoZ-88-H68" secondAttribute="top" constant="91" id="09w-5w-d9b"/>
+                            <constraint firstItem="wou-3H-pKy" firstAttribute="leading" secondItem="xoZ-88-H68" secondAttribute="leading" constant="66" id="2be-lh-LzY"/>
+                            <constraint firstItem="dny-SM-jlt" firstAttribute="top" secondItem="kXM-e0-wuv" secondAttribute="bottom" constant="114" id="Lt7-ZS-5ZC"/>
                             <constraint firstItem="xoZ-88-H68" firstAttribute="trailing" secondItem="dny-SM-jlt" secondAttribute="trailing" constant="20" id="TaF-Ic-pb2"/>
+                            <constraint firstItem="xoZ-88-H68" firstAttribute="trailing" secondItem="wou-3H-pKy" secondAttribute="trailing" constant="61" id="Vqi-je-uAj"/>
+                            <constraint firstItem="kXM-e0-wuv" firstAttribute="top" secondItem="wou-3H-pKy" secondAttribute="bottom" constant="131" id="dx0-ax-H8K"/>
                             <constraint firstItem="xoZ-88-H68" firstAttribute="bottom" secondItem="dny-SM-jlt" secondAttribute="bottom" constant="20" id="hC3-6Y-vsO"/>
                             <constraint firstItem="dny-SM-jlt" firstAttribute="leading" secondItem="xoZ-88-H68" secondAttribute="leading" constant="20" id="qhU-XU-906"/>
                         </constraints>
@@ -678,12 +697,14 @@
                     </navigationItem>
                     <connections>
                         <outlet property="chooseVideoButtonOutlet" destination="dny-SM-jlt" id="i13-LY-SIh"/>
+                        <outlet property="uploadButton" destination="kXM-e0-wuv" id="Sgk-xL-lTw"/>
+                        <outlet property="videoThumbnail" destination="wou-3H-pKy" id="Ymi-4z-mhX"/>
                         <segue destination="yMs-b7-vmm" kind="show" identifier="uploadingSegue" id="Y5o-Qr-mHs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sOO-VZ-X84" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3910" y="94"/>
+            <point key="canvasLocation" x="3908.6956521739135" y="93.75"/>
         </scene>
         <!--Uploading-->
         <scene sceneID="ejB-al-SiB">
