@@ -45,7 +45,7 @@ class VideoFormVC: FormViewController, UIAdaptivePresentationControllerDelegate 
         languages.insert("Select a language", at: 0)
         languages.append("Other")
         countries.append("Other")
-        
+                
         animateScroll = true
         
         if #available(iOS 13.0, *) {

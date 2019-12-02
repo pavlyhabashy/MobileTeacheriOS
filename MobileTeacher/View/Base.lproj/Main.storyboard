@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QZK-Rv-449">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QZK-Rv-449">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -509,13 +509,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="csb-LU-vSy">
-                                <rect key="frame" x="20" y="220" width="374" height="24"/>
+                                <rect key="frame" x="20" y="220" width="374" height="26.5"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mobile Teacher" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PyS-ZU-fHw">
-                                <rect key="frame" x="20" y="252" width="374" height="48"/>
+                                <rect key="frame" x="20" y="254.5" width="374" height="48"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -646,11 +646,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dny-SM-jlt">
-                                <rect key="frame" x="20" y="738" width="374" height="50"/>
+                                <rect key="frame" x="20" y="668" width="374" height="50"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="b9X-pr-MqJ"/>
-                                    <constraint firstAttribute="height" constant="50" id="fTX-Sa-hsb"/>
+                                    <constraint firstAttribute="height" constant="50" id="FSY-0K-3bf"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                 <state key="normal" title="Choose Video">
@@ -660,9 +659,12 @@
                                     <action selector="chooseVideoPressed:" destination="o1L-e0-RSa" eventType="touchUpInside" id="bBh-19-Syb"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kXM-e0-wuv">
-                                <rect key="frame" x="20" y="594" width="374" height="30"/>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kXM-e0-wuv">
+                                <rect key="frame" x="20" y="738" width="374" height="50"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="xZl-J5-Ow8"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                 <state key="normal" title="Upload">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -671,20 +673,49 @@
                                     <action selector="uploadPressed:" destination="o1L-e0-RSa" eventType="touchUpInside" id="ltf-ds-Y9g"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wou-3H-pKy">
-                                <rect key="frame" x="66" y="199" width="287" height="264"/>
-                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Preview" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C5Z-Qm-aVh">
+                                <rect key="frame" x="20" y="336" width="374" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="X96-GZ-ehe"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vuC-cs-QC5">
+                                <rect key="frame" x="20" y="108" width="374" height="220"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wou-3H-pKy">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="220"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="220" id="HeI-Fk-QtH"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="wou-3H-pKy" firstAttribute="top" secondItem="vuC-cs-QC5" secondAttribute="top" id="AEg-7g-yLN"/>
+                                    <constraint firstAttribute="height" constant="220" id="CLj-FQ-0oa"/>
+                                    <constraint firstItem="wou-3H-pKy" firstAttribute="leading" secondItem="vuC-cs-QC5" secondAttribute="leading" id="MvZ-wI-WBF"/>
+                                    <constraint firstAttribute="trailing" secondItem="wou-3H-pKy" secondAttribute="trailing" id="Qzo-s4-0f9"/>
+                                    <constraint firstAttribute="bottom" secondItem="wou-3H-pKy" secondAttribute="bottom" id="lii-53-ZMa"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="wou-3H-pKy" firstAttribute="top" secondItem="xoZ-88-H68" secondAttribute="top" constant="91" id="09w-5w-d9b"/>
-                            <constraint firstItem="wou-3H-pKy" firstAttribute="leading" secondItem="xoZ-88-H68" secondAttribute="leading" constant="66" id="2be-lh-LzY"/>
-                            <constraint firstItem="dny-SM-jlt" firstAttribute="top" secondItem="kXM-e0-wuv" secondAttribute="bottom" constant="114" id="Lt7-ZS-5ZC"/>
-                            <constraint firstItem="xoZ-88-H68" firstAttribute="trailing" secondItem="dny-SM-jlt" secondAttribute="trailing" constant="20" id="TaF-Ic-pb2"/>
-                            <constraint firstItem="xoZ-88-H68" firstAttribute="trailing" secondItem="wou-3H-pKy" secondAttribute="trailing" constant="61" id="Vqi-je-uAj"/>
-                            <constraint firstItem="kXM-e0-wuv" firstAttribute="top" secondItem="wou-3H-pKy" secondAttribute="bottom" constant="131" id="dx0-ax-H8K"/>
-                            <constraint firstItem="xoZ-88-H68" firstAttribute="bottom" secondItem="dny-SM-jlt" secondAttribute="bottom" constant="20" id="hC3-6Y-vsO"/>
-                            <constraint firstItem="dny-SM-jlt" firstAttribute="leading" secondItem="xoZ-88-H68" secondAttribute="leading" constant="20" id="qhU-XU-906"/>
+                            <constraint firstItem="vuC-cs-QC5" firstAttribute="leading" secondItem="xoZ-88-H68" secondAttribute="leading" constant="20" id="39t-Z5-n8a"/>
+                            <constraint firstItem="xoZ-88-H68" firstAttribute="trailing" secondItem="vuC-cs-QC5" secondAttribute="trailing" constant="20" id="7dc-yV-Lil"/>
+                            <constraint firstItem="xoZ-88-H68" firstAttribute="trailing" secondItem="dny-SM-jlt" secondAttribute="trailing" constant="20" id="Huj-hj-PbP"/>
+                            <constraint firstItem="xoZ-88-H68" firstAttribute="trailing" secondItem="kXM-e0-wuv" secondAttribute="trailing" constant="20" id="MDA-Q4-3Sf"/>
+                            <constraint firstItem="kXM-e0-wuv" firstAttribute="leading" secondItem="xoZ-88-H68" secondAttribute="leading" constant="20" id="Nmx-Av-6wv"/>
+                            <constraint firstItem="kXM-e0-wuv" firstAttribute="top" secondItem="dny-SM-jlt" secondAttribute="bottom" constant="20" id="OHf-UO-ugi"/>
+                            <constraint firstItem="xoZ-88-H68" firstAttribute="bottom" secondItem="kXM-e0-wuv" secondAttribute="bottom" constant="20" id="YeG-Au-9sh"/>
+                            <constraint firstItem="xoZ-88-H68" firstAttribute="trailing" secondItem="C5Z-Qm-aVh" secondAttribute="trailing" constant="20" id="l5T-5s-DUJ"/>
+                            <constraint firstItem="dny-SM-jlt" firstAttribute="leading" secondItem="xoZ-88-H68" secondAttribute="leading" constant="20" id="s0q-GR-9t3"/>
+                            <constraint firstItem="vuC-cs-QC5" firstAttribute="top" secondItem="xoZ-88-H68" secondAttribute="top" id="u1T-bY-bT9"/>
+                            <constraint firstItem="C5Z-Qm-aVh" firstAttribute="top" secondItem="vuC-cs-QC5" secondAttribute="bottom" constant="8" id="zgc-7l-B8w"/>
+                            <constraint firstItem="C5Z-Qm-aVh" firstAttribute="leading" secondItem="xoZ-88-H68" secondAttribute="leading" constant="20" id="ziq-NR-QMp"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="xoZ-88-H68"/>
                     </view>
@@ -697,7 +728,9 @@
                     </navigationItem>
                     <connections>
                         <outlet property="chooseVideoButtonOutlet" destination="dny-SM-jlt" id="i13-LY-SIh"/>
+                        <outlet property="thumbnailContainerView" destination="vuC-cs-QC5" id="kIf-Oz-wg6"/>
                         <outlet property="uploadButton" destination="kXM-e0-wuv" id="Sgk-xL-lTw"/>
+                        <outlet property="uploadButtonOutlet" destination="kXM-e0-wuv" id="UeU-r9-IJI"/>
                         <outlet property="videoThumbnail" destination="wou-3H-pKy" id="Ymi-4z-mhX"/>
                         <segue destination="yMs-b7-vmm" kind="show" identifier="uploadingSegue" id="Y5o-Qr-mHs"/>
                     </connections>
@@ -745,7 +778,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UX9-GB-cIo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4930" y="94"/>
+            <point key="canvasLocation" x="4928.985507246377" y="93.75"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gd4-zk-deb">
