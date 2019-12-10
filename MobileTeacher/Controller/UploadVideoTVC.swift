@@ -26,7 +26,7 @@ class UploadVideoTVC: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 5
+        return 4
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -36,19 +36,16 @@ class UploadVideoTVC: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "UploadStepOne", for: indexPath)
             return cell
         } else if (indexPath.row == 1) {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "UploadStepTwo", for: indexPath)
-            return cell
-        } else if (indexPath.row == 2) {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "UploadStepThree", for: indexPath)  as! InstructionButtonTVCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "UploadStepTwo", for: indexPath)  as! InstructionButtonTVCell
             cell.delegate = self
             cell.url = URL(string: "https://docs.google.com/forms/d/1ojgGZX6K4XeZvpdfLWEWdmO6mn_i62tLmrWAV0uVAMo/viewform")!
             cell.buttonType = "openURL"
             return cell
+        } else if (indexPath.row == 2) {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "UploadStepThree", for: indexPath)
+            return cell
         } else if (indexPath.row == 3) {
             let cell = tableView.dequeueReusableCell(withIdentifier: "UploadStepFour", for: indexPath)
-            return cell
-        } else if (indexPath.row == 4) {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "UploadStepFive", for: indexPath)
             return cell
         }
 
