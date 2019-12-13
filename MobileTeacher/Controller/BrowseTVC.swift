@@ -8,29 +8,37 @@
 
 import UIKit
 import FirebaseFirestore
+import FirebaseStorage
 import MessageUI
 import SafariServices
 import AVKit
+import SkeletonView
 
 
-let db = Firestore.firestore()
+
 var downloadTask: URLSessionDownloadTask?
 var globalTags = [String:[Video]]()
 
 
-class BrowseTVC: UITableViewController {
+
+class BrowseTVC: UITableViewController, VideoCellDelegate, AVPlayerViewControllerDelegate, SkeletonTableViewDataSource, SkeletonTableViewDelegate {
     
     
     var videos = [Video]()
     var selectedVideos = [Video]()
     var allVideos = [Video]()
     var tags = [String:[Video]]()
+    let db = Firestore.firestore()
+    var player = AVPlayer()
+    var playerVC = AVPlayerViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         DataManager.shared.browseTVC = self
         self.tableView.allowsSelection = false
         self.readDatabase()
+        
+        playerVC.delegate = self
         
         if #available(iOS 13.0, *) {
         } else {
@@ -39,12 +47,24 @@ class BrowseTVC: UITableViewController {
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        videos.removeAll()
-        selectedVideoTags.removeAll()
-        allVideos.removeAll()
-        tags.removeAll()
-        globalTags.removeAll()
-        objectArray.removeAll()
+//        videos.removeAll()
+//        selectedVideoTags.removeAll()
+//        allVideos.removeAll()
+//        tags.removeAll()
+//        globalTags.removeAll()
+//        objectArray.removeAll()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        view.layoutSkeletonIfNeeded()
+    }
+    
+    func numSections(in collectionSkeletonView: UITableView) -> Int {
+        return 1
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        return "VideoCell"
     }
     
     func updateTableView(taggedVideos: Set<Video>) {
@@ -55,27 +75,33 @@ class BrowseTVC: UITableViewController {
         }
         tableView.reloadData()
     }
-
+    
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
+        if videos.count == 0 {
+            return 5
+        }
         return videos.count
     }
-
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "VideoCell", for: indexPath) as! VideoTableViewCell
         cell.delegate = self
-        cell.setVideo(video: videos[indexPath.row])
+        if videos.count > 0 {
+            cell.hideAnimation()
+            cell.setVideo(video: videos[indexPath.row])
+        }
         return cell
     }
-
+    
     
     // Read from the database
     fileprivate func readDatabase() {
@@ -89,7 +115,7 @@ class BrowseTVC: UITableViewController {
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
-//                print(querySnapshot!.documents.count)
+                //                print(querySnapshot!.documents.count)
                 for document in querySnapshot!.documents {
                     var video = Video()
                     
@@ -141,6 +167,11 @@ class BrowseTVC: UITableViewController {
                         print("nope")
                     }
                     
+                    if let storage = document.get("storage") as? String {
+                        video.storage = storage
+                        print(storage)
+                    }
+                    
                     // Get tags
                     var str = document.get("tags") as! String
                     str = str.capitalizingFirstLetter()
@@ -174,20 +205,6 @@ class BrowseTVC: UITableViewController {
         return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
     }
     
-}
-
-extension String {
-    func capitalizingFirstLetter() -> String {
-        return prefix(1).capitalized + dropFirst()
-    }
-    
-    mutating func capitalizeFirstLetter() {
-        self = self.capitalizingFirstLetter()
-    }
-}
-
-extension UITableViewController: VideoCellDelegate, SFSafariViewControllerDelegate, MFMessageComposeViewControllerDelegate, URLSessionDownloadDelegate {
-    
     func didTapPlayButton(url: URL) {
         
         let newUrl = url.absoluteString.replacingOccurrences(of: "https://", with: "googledrive://")
@@ -213,35 +230,81 @@ extension UITableViewController: VideoCellDelegate, SFSafariViewControllerDelega
     // Tapping the download button starts downloading the video.
     // Once it's done, an AV Player will pop up asynchronously.
     // Currently does not work.
-    func didTapDownloadButton(url: URL) {
+    func didTapDownloadButton(url: String) {
         
         print("Attempting to download file")
         
         // Cancel previous task
-        downloadTask?.cancel()
+        //        downloadTask?.cancel()
+        //
+        //        // Initialize download
+        //        let operationQueue = OperationQueue()
+        //        let configuration = URLSessionConfiguration.default
+        //        let urlSession = URLSession(configuration: configuration, delegate: self, delegateQueue: operationQueue)
+        //
+        //        downloadTask = urlSession.downloadTask(with: url)
+        //                downloadTask?.resume()
         
-        // Initialize download
-        let operationQueue = OperationQueue()
-        let configuration = URLSessionConfiguration.default
-        let urlSession = URLSession(configuration: configuration, delegate: self, delegateQueue: operationQueue)
-
-        downloadTask = urlSession.downloadTask(with: URL(string: "https://drive.google.com/uc?export=download&id=1jlgGUrFWtDsGu8DQW5QiZGsm7v6rykB0")!)
-                downloadTask?.resume()
-    }
-    
-    public func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
-        print("finsished downloading file")
-        print(location)
+        let vidRef = Storage.storage().reference().child(url)
         
-        DispatchQueue.main.async {
-            let player = AVPlayer(url: location)  // video path coming from above function
-
-            let playerViewController = AVPlayerViewController()
-            playerViewController.player = player
-            self.present(playerViewController, animated: true) {
-                playerViewController.player!.play()
+        vidRef.downloadURL{url, error in
+            if error != nil{
+                print(error!)
+                return
+            } else {
+                
+                let asset = AVAsset(url: url!)
+                
+                print("Duration of Video from Firebase:\(CMTimeGetSeconds(asset.duration))")
+                vidRef.getMetadata { metadata, error in
+                    if let error = error {
+                        // Uh-oh, an error occurred!
+                    } else {
+                        // Metadata now contains the metadata for 'images/forest.jpg'
+                        let size = Double(metadata!.size) / 1024.0 / 1024.0
+                        print(Double(round(100*size)/100))
+                    }
+                }
+                
+                //print("URL")
+                //print(url)
+                
+                self.player = AVPlayer(url: url!)
+                self.playerVC.player = self.player
+                self.present(self.playerVC, animated: true) {
+                    self.player.play()
+                }
             }
         }
+    }
+    
+}
+
+extension String {
+    func capitalizingFirstLetter() -> String {
+        return prefix(1).capitalized + dropFirst()
+    }
+    
+    mutating func capitalizeFirstLetter() {
+        self = self.capitalizingFirstLetter()
+    }
+}
+
+extension UITableViewController: SFSafariViewControllerDelegate, MFMessageComposeViewControllerDelegate, URLSessionDownloadDelegate {
+    
+    public func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
+        //        print("finsished downloading file")
+        //        print(location)
+        //
+        //        DispatchQueue.main.async {
+        //            let player = AVPlayer(url: location)  // video path coming from above function
+        //
+        //            let playerViewController = AVPlayerViewController()
+        //            playerViewController.player = player
+        //            self.present(playerViewController, animated: true) {
+        //                playerViewController.player!.play()
+        //            }
+        //        }
         
         
     }

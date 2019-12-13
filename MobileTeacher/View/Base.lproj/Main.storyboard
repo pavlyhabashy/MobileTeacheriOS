@@ -27,29 +27,50 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Je5-EH-Lgh">
                                             <rect key="frame" x="20" y="11" width="374" height="232"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="hTk-qs-TDM">
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="hTk-qs-TDM">
                                                     <rect key="frame" x="0.0" y="182" width="374" height="50"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sZV-wU-CQ7">
-                                                            <rect key="frame" x="0.0" y="0.0" width="186" height="50"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="119.5" height="50"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                             <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="5" maxY="0.0"/>
                                                             <state key="normal" title="Play" image="play.fill" catalog="system">
                                                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="heavy"/>
                                                             </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                            </userDefinedRuntimeAttributes>
                                                             <connections>
                                                                 <action selector="playButtonTapped:" destination="XH5-n0-vCe" eventType="touchUpInside" id="177-SR-NMJ"/>
                                                             </connections>
                                                         </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2D0-9T-THO">
+                                                            <rect key="frame" x="127.5" y="0.0" width="119" height="50"/>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                            <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="5" maxY="0.0"/>
+                                                            <state key="normal" title="Download" image="square.and.arrow.down" catalog="system">
+                                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="bold"/>
+                                                            </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                            </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="downloadButtonTapped:" destination="XH5-n0-vCe" eventType="touchUpInside" id="1xz-eV-gme"/>
+                                                            </connections>
+                                                        </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UUN-xZ-xW9">
-                                                            <rect key="frame" x="188" y="0.0" width="186" height="50"/>
+                                                            <rect key="frame" x="254.5" y="0.0" width="119.5" height="50"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                             <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="5" maxY="0.0"/>
                                                             <state key="normal" title="Share" image="square.and.arrow.up" catalog="system">
                                                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="bold"/>
                                                             </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                            </userDefinedRuntimeAttributes>
                                                             <connections>
                                                                 <action selector="shareButtonTapped:" destination="XH5-n0-vCe" eventType="touchUpInside" id="JON-3d-L3w"/>
                                                             </connections>
@@ -58,6 +79,9 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="A1s-nf-EOW"/>
                                                     </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </stackView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" text="A really really really long title here to test" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lh6-cK-9nV">
                                                     <rect key="frame" x="8" y="8" width="295" height="27.5"/>
@@ -65,6 +89,9 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                     <size key="shadowOffset" width="0.0" height="0.0"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dJz-2l-kax">
                                                     <rect key="frame" x="8" y="43.5" width="358" height="130.5"/>
@@ -72,6 +99,9 @@
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" name="underPageBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7zQ-gQ-X63">
                                                     <rect key="frame" x="311" y="13" width="55" height="22"/>
@@ -81,6 +111,9 @@
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                             <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                            </userDefinedRuntimeAttributes>
                                                         </label>
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="quaternaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.17999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
@@ -92,6 +125,9 @@
                                                         <constraint firstAttribute="bottom" secondItem="KNl-iK-Kfs" secondAttribute="bottom" id="gJv-7a-su4"/>
                                                         <constraint firstAttribute="trailing" secondItem="KNl-iK-Kfs" secondAttribute="trailing" id="nAr-gZ-qMB"/>
                                                     </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
                                             <constraints>
@@ -108,6 +144,9 @@
                                                 <constraint firstItem="7zQ-gQ-X63" firstAttribute="top" secondItem="Je5-EH-Lgh" secondAttribute="top" constant="13" id="rFi-jt-c8U"/>
                                                 <constraint firstAttribute="trailing" secondItem="dJz-2l-kax" secondAttribute="trailing" constant="8" id="umR-d1-SI1"/>
                                             </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
                                         </view>
                                     </subviews>
                                     <constraints>
@@ -116,14 +155,22 @@
                                         <constraint firstItem="Je5-EH-Lgh" firstAttribute="trailing" secondItem="HfN-Jd-H2d" secondAttribute="trailingMargin" id="79v-oC-ace"/>
                                         <constraint firstItem="Je5-EH-Lgh" firstAttribute="bottom" secondItem="HfN-Jd-H2d" secondAttribute="bottomMargin" id="crh-7m-kDm"/>
                                     </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                    </userDefinedRuntimeAttributes>
                                 </tableViewCellContentView>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="ContainerView" destination="Je5-EH-Lgh" id="kmK-eu-haM"/>
                                     <outlet property="cellContainerView" destination="Je5-EH-Lgh" id="G7A-7M-Dse"/>
                                     <outlet property="containerView" destination="HfN-Jd-H2d" id="CdA-t8-SuS"/>
                                     <outlet property="descriptionLabel" destination="dJz-2l-kax" id="na6-Vp-OkL"/>
+                                    <outlet property="downloadButtonOutlet" destination="2D0-9T-THO" id="VR9-3F-USO"/>
                                     <outlet property="playButtonOutlet" destination="sZV-wU-CQ7" id="SoH-ti-nqf"/>
                                     <outlet property="shareButtonOutlet" destination="UUN-xZ-xW9" id="gmV-xE-zX3"/>
+                                    <outlet property="stackViewOutlet" destination="hTk-qs-TDM" id="qG6-GN-J0Z"/>
                                     <outlet property="titleLabel" destination="Lh6-cK-9nV" id="3CL-2G-0AX"/>
                                     <outlet property="videoLengthContainer" destination="7zQ-gQ-X63" id="iTu-Ld-kqD"/>
                                     <outlet property="videoLengthLabel" destination="KNl-iK-Kfs" id="ypE-Ai-5bP"/>
@@ -131,6 +178,9 @@
                             </tableViewCell>
                         </prototypes>
                         <sections/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                        </userDefinedRuntimeAttributes>
                     </tableView>
                     <navigationItem key="navigationItem" title="Videos" id="ENC-ZR-gbp">
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="p7h-ac-OhG">
@@ -143,12 +193,6 @@
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uxQ-4i-F4r" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <view contentMode="scaleToFill" id="cvD-IM-8PX">
-                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                    <viewLayoutGuide key="safeArea" id="FXx-tb-KrL"/>
-                </view>
             </objects>
             <point key="canvasLocation" x="2157" y="-646"/>
         </scene>
@@ -801,6 +845,7 @@
     </scenes>
     <resources>
         <image name="play.fill" catalog="system" width="58" height="64"/>
+        <image name="square.and.arrow.down" catalog="system" width="60" height="64"/>
         <image name="square.and.arrow.up" catalog="system" width="56" height="64"/>
     </resources>
 </document>

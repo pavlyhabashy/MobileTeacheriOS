@@ -11,4 +11,5 @@ target 'MobileTeacher' do
   pod 'Firebase/Firestore'
   pod 'Firebase/Storage'
   pod 'Eureka'
+  pod 'SkeletonView'
 end

@@ -61,6 +61,9 @@ class HomeVC: UIViewController {
 //        howToUseOutlet.layer.borderColor = #colorLiteral(red: 0.3277398944, green: 0.5051055551, blue: 0.190628171, alpha: 1)
         howToUseOutlet.layer.cornerRadius = 15
         
+        globalTags.removeAll()
+        objectArray.removeAll()
+        selectedVideoTags.removeAll()
     }
     
     func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
