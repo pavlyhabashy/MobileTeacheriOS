@@ -86,7 +86,7 @@ class BrowseTVC: UITableViewController, VideoCellDelegate, AVPlayerViewControlle
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         if videos.count == 0 {
-            return 5
+            return 3
         }
         return videos.count
     }
@@ -235,15 +235,30 @@ class BrowseTVC: UITableViewController, VideoCellDelegate, AVPlayerViewControlle
         print("Attempting to download file")
         
         // Cancel previous task
-        //        downloadTask?.cancel()
-        //
-        //        // Initialize download
-        //        let operationQueue = OperationQueue()
-        //        let configuration = URLSessionConfiguration.default
-        //        let urlSession = URLSession(configuration: configuration, delegate: self, delegateQueue: operationQueue)
-        //
-        //        downloadTask = urlSession.downloadTask(with: url)
-        //                downloadTask?.resume()
+//        downloadTask?.cancel()
+//
+//        // Initialize download
+//        let operationQueue = OperationQueue()
+//        let configuration = URLSessionConfiguration.default
+//        let urlSession = URLSession(configuration: configuration, delegate: self, delegateQueue: operationQueue)
+//
+//        downloadTask = urlSession.downloadTask(with: url)
+//                downloadTask?.resume()
+        
+        // Deprecated
+//        let alert: UIAlertView = UIAlertView(title: "Title", message: "Please wait...", delegate: nil, cancelButtonTitle: "Cancel")
+//
+//
+//        let loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRect(x: 50, y: 10, width: 37, height: 37)) as UIActivityIndicatorView
+//        loadingIndicator.center = self.view.center
+//        loadingIndicator.hidesWhenStopped = true
+//        loadingIndicator.style = UIActivityIndicatorView.Style.gray
+//        loadingIndicator.startAnimating();
+//
+//        alert.setValue(loadingIndicator, forKey: "accessoryView")
+//        loadingIndicator.startAnimating()
+//
+//        alert.show()
         
         let vidRef = Storage.storage().reference().child(url)
         

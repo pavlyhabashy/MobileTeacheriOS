@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SkeletonView
 //import TagListView
 
 protocol VideoCellDelegate {
@@ -37,14 +38,21 @@ class VideoTableViewCell: UITableViewCell {
         super.awakeFromNib()
         videoLengthContainer.layer.cornerRadius = 4
         playButtonOutlet.showsTouchWhenHighlighted = false
-//        playButtonOutlet.imageView?.isSkeletonable = true
-//        downloadButtonOutlet.imageView?.isSkeletonable = true
-//        shareButtonOutlet.imageView?.isSkeletonable = true
         playButtonOutlet.titleLabel?.isHidden = true
         downloadButtonOutlet.titleLabel?.isHidden = true
         shareButtonOutlet.titleLabel?.isHidden = true
         [titleLabel, descriptionLabel, ContainerView,  videoLengthLabel, videoLengthContainer, cellContainerView, stackViewOutlet, playButtonOutlet, downloadButtonOutlet, shareButtonOutlet].forEach {
-            $0?.showAnimatedGradientSkeleton()
+            
+            if #available(iOS 13.0, *) {
+                if traitCollection.userInterfaceStyle == .light {
+                    $0?.showAnimatedGradientSkeleton()
+                } else {
+                    let gradient = SkeletonGradient(baseColor: .secondarySystemBackground)
+                    $0?.showAnimatedGradientSkeleton(usingGradient: gradient)
+                }
+            } else {
+                $0?.showAnimatedGradientSkeleton()
+            }
         }
         
         
@@ -59,7 +67,7 @@ class VideoTableViewCell: UITableViewCell {
     
     func hideAnimation() {
         [titleLabel, descriptionLabel, ContainerView, videoLengthLabel, videoLengthContainer, cellContainerView, stackViewOutlet, playButtonOutlet, downloadButtonOutlet, shareButtonOutlet].forEach {
-            $0?.hideSkeleton()
+            $0?.hideSkeleton(transition: .crossDissolve(0.25))
         }
     }
     
