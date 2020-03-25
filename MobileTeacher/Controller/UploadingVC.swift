@@ -9,7 +9,8 @@
 import UIKit
 import FirebaseStorage
 //import AVKit
-
+import FirebaseCore
+import FirebaseFirestore
 
 
 class UploadingVC: UIViewController {
@@ -18,6 +19,9 @@ class UploadingVC: UIViewController {
     
     var uuid:String!
     let shapeLayer = CAShapeLayer()
+    var dict: Dictionary<String, Any>!
+    var db:Firestore!
+    var length:Int!
     
     let percentLabel: UILabel = {
         let label = UILabel()
@@ -34,23 +38,80 @@ class UploadingVC: UIViewController {
         navigationItem.hidesBackButton = true
         cancelButtonOutlet.layer.cornerRadius = 15
         
+        db = Firestore.firestore()
+        //https://github.com/firebase/snippets-ios/blob/279f77d7842595a1c5ecc699e45b6de6c97b905e/firestore/swift/firestore-smoketest/ViewController.swift#L156-L168
+        
+        
         setupLoadingIndicator()
         startUpload()
     }
     
     func startUpload() {
+        var downloadURL:URL!
         uploadTask.observe(.success){snapshot in
             print("UUID")
             print(self.uuid!)
             
             //sleep(1) //https://firebase.google.com/docs/storage/ios/download-files
-            //            let vidRef = Storage.storage().reference().child("\(self.uuid!).mov")
+                        let vidRef = Storage.storage().reference().child("\(self.uuid!).mov")
             //
-            //            vidRef.downloadURL{url, error in
-            //                if error != nil{
+                        vidRef.downloadURL{url, error in
+                            if error != nil{
             //                    print(error!)
-            //                    return
-            //                }else{
+                                return
+                            }else{
+                                downloadURL = url
+                                
+                                //get the subject
+                                var sub:String!
+                                
+                                if let subject = self.dict["Languages"] as? String {
+                                    sub = subject
+                                } else if let subject = self.dict["Math"] as? String {
+                                    sub = subject
+                                } else if let subject = self.dict["Science"] as? String {
+                                    sub = subject
+                                } else if let subject = self.dict["History"] as? String {
+                                    sub = subject
+                                } else if let subject = self.dict["Art"] as? String {
+                                    sub = subject
+                                } else if let subject = self.dict["Music"] as? String {
+                                    sub = subject
+                                } else if let subject = self.dict["Health"] as? String {
+                                   sub = subject
+                                } else if let subject = self.dict["Other"] as? String {
+                                    sub = subject
+                                }
+                                
+                                
+                                //get the levels
+                                var levels = [String]()
+                                
+                                if let level = self.dict["Beginner"] as? String {
+                                    //print(level)
+                                    levels.append(level)
+                                }
+                                if let level = self.dict["Intermediate"] as? String {
+                                    //print(level)
+                                    levels.append(level)
+                                }
+                                if let level = self.dict["Advanced"] as? String {
+                                    //print(level)
+                                    levels.append(level)
+                                }
+                                
+                                self.db.collection("test").addDocument(data:[
+                                    "country": self.dict["Country"] as! String,
+                                    "language": self.dict["Language"] as! String,
+                                    "school": self.dict["School"] as! String,
+                                    "url": downloadURL!.absoluteString,
+                                    "subject": sub!,
+                                    "level": levels,
+                                    "length": self.length,
+                                    "title": self.dict["Video Name"],
+                                    "description": self.dict["Video Description"]
+                                    
+                                ])
             //
             //                    let asset = AVAsset(url: url!)
             //
@@ -66,15 +127,15 @@ class UploadingVC: UIViewController {
             //
             //                    //self.present(playerViewController, animated: true){
             //                    //  player.play()
-            //                    //}//https://www.raywenderlich.com/5191-video-streaming-tutorial-for-ios-getting-started
-            //                }
+                                }//https://www.raywenderlich.com/5191-video-streaming-tutorial-for-ios-getting-started
+                            }
             //
-            //            }
+                        }
             //            print(vidRef)
             
             //https://stackoverflow.com/questions/26347777/swift-how-to-remove-optional-string-character
             
-        }
+        
         //https://www.youtube.com/watch?v=ZaW-xPmjutA&t=845s
         uploadTask.observe(.progress){snapshot in
             let percentComplete =  CGFloat(snapshot.progress!.completedUnitCount) / CGFloat(snapshot.progress!.totalUnitCount)
@@ -87,6 +148,8 @@ class UploadingVC: UIViewController {
                 self.cancelButtonOutlet.backgroundColor = .systemBlue
                 self.cancelButtonOutlet.setTitle("Dismiss",for: .normal)
                 self.shapeLayer.strokeColor = UIColor.green.cgColor
+                
+                
             }
             
             print(percentage)
