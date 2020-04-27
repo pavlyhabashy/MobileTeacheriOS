@@ -61,12 +61,28 @@ class HomeVC: UIViewController {
 //        howToUseOutlet.layer.borderColor = #colorLiteral(red: 0.3277398944, green: 0.5051055551, blue: 0.190628171, alpha: 1)
         howToUseOutlet.layer.cornerRadius = 15
         
+        globalTags.removeAll()
+        objectArray.removeAll()
+        selectedVideoTags.removeAll()
     }
     
     func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
            return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
        }
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "uploadSegue" {
+            
+            // Get the presented navigationController and the view controller it contains
+            let navigationController = segue.destination as! UINavigationController
+            let modalViewController = navigationController.topViewController
+              
+            // Set the modal view controller to be the delegate of the presentationController for this presentation,
+            // so that modal view controller can respond to attempted dismissals
+            navigationController.presentationController?.delegate = modalViewController as? UIAdaptivePresentationControllerDelegate
+        }
+    }
 }
 
 extension UIButton {

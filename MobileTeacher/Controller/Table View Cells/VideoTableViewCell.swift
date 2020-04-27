@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import SkeletonView
 //import TagListView
 
 protocol VideoCellDelegate {
     func didTapPlayButton(url: URL)
     func didTapShareButton(url: URL)
-    func didTapDownloadButton(url: URL)
+    func didTapDownloadButton(url: String)
 }
 
 class VideoTableViewCell: UITableViewCell {
@@ -26,6 +27,7 @@ class VideoTableViewCell: UITableViewCell {
     @IBOutlet weak var videoLengthContainer: UIView!
     @IBOutlet weak var cellContainerView: UIView!
     @IBOutlet weak var downloadButtonOutlet: UIButton!
+    @IBOutlet weak var stackViewOutlet: UIStackView!
     
     
     
@@ -36,6 +38,24 @@ class VideoTableViewCell: UITableViewCell {
         super.awakeFromNib()
         videoLengthContainer.layer.cornerRadius = 4
         playButtonOutlet.showsTouchWhenHighlighted = false
+        playButtonOutlet.titleLabel?.isHidden = true
+        downloadButtonOutlet.titleLabel?.isHidden = true
+        shareButtonOutlet.titleLabel?.isHidden = true
+        [titleLabel, descriptionLabel, ContainerView,  videoLengthLabel, videoLengthContainer, cellContainerView, stackViewOutlet, playButtonOutlet, downloadButtonOutlet, shareButtonOutlet].forEach {
+            
+            if #available(iOS 13.0, *) {
+                if traitCollection.userInterfaceStyle == .light {
+                    $0?.showAnimatedGradientSkeleton()
+                } else {
+                    let gradient = SkeletonGradient(baseColor: .secondarySystemBackground)
+                    $0?.showAnimatedGradientSkeleton(usingGradient: gradient)
+                }
+            } else {
+                $0?.showAnimatedGradientSkeleton()
+            }
+        }
+        
+        
     }
     
     func setVideo(video: Video) {
@@ -45,6 +65,12 @@ class VideoTableViewCell: UITableViewCell {
         videoLengthLabel.text = "\(video.minutes):\(String(format: "%02d", video.seconds))"
     }
     
+    func hideAnimation() {
+        [titleLabel, descriptionLabel, ContainerView, videoLengthLabel, videoLengthContainer, cellContainerView, stackViewOutlet, playButtonOutlet, downloadButtonOutlet, shareButtonOutlet].forEach {
+            $0?.hideSkeleton(transition: .crossDissolve(0.25))
+        }
+    }
+    
     @IBAction func playButtonTapped(_ sender: Any) {
         delegate?.didTapPlayButton(url: videoItem.url)
     }
@@ -52,7 +78,7 @@ class VideoTableViewCell: UITableViewCell {
         delegate?.didTapShareButton(url: videoItem.url)
     }
     @IBAction func downloadButtonTapped(_ sender: Any) {
-        delegate?.didTapDownloadButton(url: videoItem.url)
+        delegate?.didTapDownloadButton(url: videoItem.storage)
     }
     
 }
