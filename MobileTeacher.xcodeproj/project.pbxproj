@@ -27,6 +27,8 @@
 		0BC25EFF238A553B00AC48CF /* VideoFormVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC25EFE238A553A00AC48CF /* VideoFormVC.swift */; };
 		0BC25F03238A60CE00AC48CF /* UploadingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC25F02238A60CE00AC48CF /* UploadingVC.swift */; };
 		0BDF337F23329C7500860624 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BDF337E23329C7500860624 /* GoogleService-Info.plist */; };
+		9828895223F4E74F00264B13 /* VideoDOA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9828895123F4E74F00264B13 /* VideoDOA.swift */; };
+		9828895423F4EA5900264B13 /* VideoStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9828895323F4EA5900264B13 /* VideoStorage.swift */; };
 		DC8BF70A98A825672DCFF565 /* Pods_MobileTeacher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DBC7AEDCF87B807C1E8B0D8 /* Pods_MobileTeacher.framework */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +58,8 @@
 		0FDD0D89004215AFFFE93015 /* Pods-MobileTeacher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileTeacher.release.xcconfig"; path = "Pods/Target Support Files/Pods-MobileTeacher/Pods-MobileTeacher.release.xcconfig"; sourceTree = "<group>"; };
 		474168E1F9723A7F6264F9EB /* Pods-MobileTeacher.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileTeacher.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MobileTeacher/Pods-MobileTeacher.debug.xcconfig"; sourceTree = "<group>"; };
 		5DBC7AEDCF87B807C1E8B0D8 /* Pods_MobileTeacher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MobileTeacher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9828895123F4E74F00264B13 /* VideoDOA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDOA.swift; sourceTree = "<group>"; };
+		9828895323F4EA5900264B13 /* VideoStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoStorage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +80,8 @@
 				0B6DD7F423604F4900AA9EBF /* ObjectsStruct.swift */,
 				0B6DD7F223604F2100AA9EBF /* DataManagerClass.swift */,
 				0B7DCBBE2332EFF9006E6AFE /* VideoStruct.swift */,
+				9828895123F4E74F00264B13 /* VideoDOA.swift */,
+				9828895323F4EA5900264B13 /* VideoStorage.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -305,6 +311,8 @@
 				0B2B60E1233066860023C2BF /* HowToUseTVC.swift in Sources */,
 				0B5503282386361F00C07710 /* VideoUploadVC.swift in Sources */,
 				0BB924512327236200E73BBF /* VideoTableViewCell.swift in Sources */,
+				9828895223F4E74F00264B13 /* VideoDOA.swift in Sources */,
+				9828895423F4EA5900264B13 /* VideoStorage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

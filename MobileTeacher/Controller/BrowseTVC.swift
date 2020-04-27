@@ -13,6 +13,7 @@ import MessageUI
 import SafariServices
 import AVKit
 import SkeletonView
+import FirebaseStorage
 
 
 
@@ -206,16 +207,49 @@ class BrowseTVC: UITableViewController, VideoCellDelegate, AVPlayerViewControlle
     }
     
     func didTapPlayButton(url: URL) {
-        
-        let newUrl = url.absoluteString.replacingOccurrences(of: "https://", with: "googledrive://")
-        if UIApplication.shared.canOpenURL(NSURL(string: newUrl)! as URL) {
-            UIApplication.shared.open(NSURL(string: newUrl)! as URL, options: [:], completionHandler: nil)
-        } else {
-            // Open the URL in Safari View Controller. You can the following
-            let safariVC = SFSafariViewController(url: url)
-            present(safariVC, animated: true, completion: nil)
-            safariVC.delegate = self
-        }
+        //try to play the video in app
+        //TODO: get the video link from firebase!
+//        let storage = Storage.storage()
+//        let storageRef = storage.reference()
+//        let starsRef = storageRef.child("15C567FD-73D1-4F6B-984A-854F49B2DB37.mov")
+//        starsRef.downloadURL { (url, error) in
+//            print("titties")
+//            print(url?.absoluteString)
+//            if let error = error {
+//                // Handle any errors
+//                // Show unable to play video at this time
+//            } else {
+//                // Get the download URL for 'images/stars.jpg'
+//                if let downloadURL = url{
+//                    self.player = AVPlayer(url: downloadURL)
+//                    self.playerVC.player = self.player
+//
+//                    print("downloadUrl obtained and set")
+//                    self.present(self.playerVC, animated: true) { () -> Void in
+//                        self.playerVC.player?.play()
+//                    }
+//                }
+//            }
+//        }
+        let baseUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+
+           let assetUrl = baseUrl.appendingPathComponent("MyFileSaveName.mp4")
+
+           let url = assetUrl
+           print(url)
+           let avAssest = AVAsset(url: url)
+           let playerItem = AVPlayerItem(asset: avAssest)
+
+
+           let player = AVPlayer(playerItem: playerItem)
+
+           let playerViewController = AVPlayerViewController()
+           playerViewController.player = player
+
+           self.present(playerViewController, animated: true, completion: {
+               player.play()
+           })
+
     }
     
     func didTapShareButton(url: URL) {
@@ -260,39 +294,103 @@ class BrowseTVC: UITableViewController, VideoCellDelegate, AVPlayerViewControlle
 //
 //        alert.show()
         
-        let vidRef = Storage.storage().reference().child(url)
+//        FIRStorage.storage().referenceForURL(detailFullsizeUrl).metadataWithCompletion { (metadata, error) in
+//        if error != nil{
+//            print("error getting metadata")
+//        } else {
+//            let downloadUrl = metadata?.downloadURL()
+//            print(downloadUrl)
+//
+//            if downloadUrl != nil{
+//                self.avPlayer = AVPlayer(URL: downloadUrl!)
+//                self.avPlayerViewController.player = self.avPlayer
+//                print("downloadUrl obtained and set")
+//            }
+//        }
         
-        vidRef.downloadURL{url, error in
-            if error != nil{
-                print(error!)
-                return
-            } else {
-                
-                let asset = AVAsset(url: url!)
-                
-                print("Duration of Video from Firebase:\(CMTimeGetSeconds(asset.duration))")
-                vidRef.getMetadata { metadata, error in
-                    if let error = error {
-                        // Uh-oh, an error occurred!
-                    } else {
-                        // Metadata now contains the metadata for 'images/forest.jpg'
-                        let size = Double(metadata!.size) / 1024.0 / 1024.0
-                        print(Double(round(100*size)/100))
+//        let vidRef = Storage.storage().reference().child(url)
+//
+//        vidRef.downloadURL{url, error in
+//            if error != nil{
+//                print(error!)
+//                return
+//            } else {
+//
+//                let asset = AVAsset(url: url!)
+//
+//                print("Duration of Video from Firebase:\(CMTimeGetSeconds(asset.duration))")
+//                vidRef.getMetadata { metadata, error in
+//                    if let error = error {
+//                        // Uh-oh, an error occurred!
+//                    } else {
+//                        // Metadata now contains the metadata for 'images/forest.jpg'
+//                        let size = Double(metadata!.size) / 1024.0 / 1024.0
+//                        print(Double(round(100*size)/100))
+//                    }
+//                }
+//
+//                //print("URL")
+//                //print(url)
+//
+//                self.player = AVPlayer(url: url!)
+//                self.playerVC.player = self.player
+//                self.present(self.playerVC, animated: true) {
+//                    self.player.play()
+//                }
+//            }
+//        }
+//    }
+    
+    let storage = Storage.storage()
+    let storageRef = storage.reference()
+    let starsRef = storageRef.child("15C567FD-73D1-4F6B-984A-854F49B2DB37.mov")
+    starsRef.downloadURL { (url, error) in
+        print("titties")
+        print(url?.absoluteString)
+        if let error = error {
+            // Handle any errors
+            // Show unable to play video at this time
+        } else {
+            // Get the download URL for 'images/stars.jpg'
+            if let downloadURL = url{
+                let videoUrl = downloadURL.absoluteString
+                let session = URLSession.shared
+                let docsUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+
+                let destinationUrl = docsUrl.appendingPathComponent("MyFileSaveName.mp4")
+                if(FileManager().fileExists(atPath: destinationUrl.path)){
+                        print("\n\nfile already exists\n\n")
+                }
+                else{
+                    //DispatchQueue.global(qos: .background).async {
+                    var request = URLRequest(url: URL(string: videoUrl)!)
+                    request.httpMethod = "GET"
+                    _ = session.dataTask(with: request, completionHandler: { (data, response, error) in
+                    if(error != nil){
+                        print("\n\nsome error occured\n\n")
+                        return
                     }
-                }
-                
-                //print("URL")
-                //print(url)
-                
-                self.player = AVPlayer(url: url!)
-                self.playerVC.player = self.player
-                self.present(self.playerVC, animated: true) {
-                    self.player.play()
-                }
+                    if let response = response as? HTTPURLResponse{
+                        if response.statusCode == 200{
+                            DispatchQueue.main.async {
+                                if let data = data{
+                                    if let _ = try? data.write(to: destinationUrl, options: Data.WritingOptions.atomic){
+                                        print("\n\nurl data written\n\n")
+                                    }
+                                    else{
+                                        print("\n\nerror again\n\n")
+                                    }
+                                }//end if let data
+                            }//end dispatch main
+                        }//end if let response.status
+                    }
+                }).resume()
+                            //}//end dispatch global
+                        }//end outer else
             }
         }
     }
-    
+}
 }
 
 extension String {

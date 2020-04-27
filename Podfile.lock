@@ -280,7 +280,7 @@ DEPENDENCIES:
   - SkeletonView
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - abseil
     - BoringSSL-GRPC
     - Eureka
@@ -330,4 +330,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 2cc2b70ccf4df1df07b239b7c86d98a6c3a774ca
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.7.5
