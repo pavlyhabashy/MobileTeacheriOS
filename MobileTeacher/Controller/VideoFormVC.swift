@@ -134,6 +134,84 @@ class VideoFormVC: FormViewController, UIAdaptivePresentationControllerDelegate 
                 }
             }
         
+        form +++ Section(header: "Video Name", footer: "")
+            <<< NameRow("Video Name"){ row in
+                row.title = "Video Name"
+                row.placeholder = "Enter video name here"
+                row.add(rule: RuleRequired())
+                row.validationOptions = .validatesOnChange
+            }.cellUpdate{ (cell, row) in
+                
+                if #available(iOS 13.0, *) {
+                    cell.textLabel?.textColor = .label
+                } else {
+                    // Fallback on earlier versions
+                    cell.textLabel?.textColor = .black
+                }
+                if cell.textField.isEditing {
+                    cell.textLabel?.textColor = .systemBlue
+                    if #available(iOS 13.0, *) {
+                        cell.textField.textColor = .label
+                    } else {
+                        // Fallback on earlier versions
+                        cell.textField.textColor = .black
+                    }
+                } else {
+                    if cell.textField.text == "" {
+                        cell.textField.textColor = .lightGray
+                    } else {
+                        if #available(iOS 13.0, *) {
+                            cell.textField.textColor = .label
+                        } else {
+                            // Fallback on earlier versions
+                            cell.textField.textColor = .black
+                        }
+                    }
+                }
+                if !row.isValid {
+                    cell.titleLabel?.textColor = .systemRed
+                }
+            }
+        
+        form +++ Section(header: "Video Description", footer: "")
+            <<< TextAreaRow("Video Description"){ row in
+                row.title = "Video Description"
+                row.placeholder = "Enter video description here"
+                row.add(rule: RuleRequired())
+                row.validationOptions = .validatesOnChange
+            }.cellUpdate{ (cell, row) in
+                
+                if #available(iOS 13.0, *) {
+                    cell.textLabel?.textColor = .label
+                } else {
+                    // Fallback on earlier versions
+                    cell.textLabel?.textColor = .black
+                }
+                if /*cell.textField.isEditing*/cell.textView.isEditable {
+                    cell.textLabel?.textColor = .systemBlue
+                    if #available(iOS 13.0, *) {
+                        cell.textView.textColor = .label
+                    } else {
+                        // Fallback on earlier versions
+                        cell.textView.textColor = .black
+                    }
+                } else {
+                    if cell.textView.text == "" {
+                        cell.textView.textColor = .lightGray
+                    } else {
+                        if #available(iOS 13.0, *) {
+                            cell.textView.textColor = .label
+                        } else {
+                            // Fallback on earlier versions
+                            cell.textView.textColor = .black
+                        }
+                    }
+                }
+                if !row.isValid {
+                    cell.textView.textColor = .systemRed
+                }
+            } //https://developer.apple.com/documentation/uikit/uitextview
+        
         form +++ SelectableSection<ListCheckRow<String>>(header: "Subject", footer: "What subject does the teacher teach in the video?", selectionType: .singleSelection(enableDeselection: true))
         
         let subjects = ["Languages", "Math", "Science", "History", "Art", "Music", "Health", "Other"]
@@ -320,6 +398,19 @@ class VideoFormVC: FormViewController, UIAdaptivePresentationControllerDelegate 
             return
         }
         
+        if let videoName = dict["Video Name"] as? String {
+            print(videoName)
+        } else {
+            missingFieldAlert(error: "Video Name")
+            return
+        }
+        
+        if let videoDescription = dict["Video Description"] as? String {
+            print(videoDescription)
+        } else {
+            missingFieldAlert(error: "Video Description")
+            return
+        }
 
         // Check for subject
         if let subject = dict["Languages"] as? String {
@@ -387,7 +478,7 @@ class VideoFormVC: FormViewController, UIAdaptivePresentationControllerDelegate 
             return
         }
         
-        performSegue(withIdentifier: "uploadVideoSegue", sender: nil)
+        performSegue(withIdentifier: "uploadVideoSegue", sender: dict)
         
     }
     
@@ -428,6 +519,16 @@ class VideoFormVC: FormViewController, UIAdaptivePresentationControllerDelegate 
         self.present(alert, animated: true)
     }
     
+    
+    //https://medium.com/infancyit/traveling-through-the-app-the-segue-magic-part-1-a8091e863164
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+        
+        if segue.destination is VideoUploadVC{
+            let vc = segue.destination as? VideoUploadVC
+            vc?.dict = sender as! Dictionary<String, Any>
+            
+        }
+    }
     
     
 }

@@ -14,9 +14,11 @@ class VideoUploadVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
     
     let vidSelectorController = UIImagePickerController()
     
+    var dict: Dictionary<String, Any>!
     var uuid:String!
     var url:NSURL!
     var uploadTask:StorageUploadTask!
+    var length:Int!
     
     // Outlets
     @IBOutlet weak var videoThumbnail: UIImageView!
@@ -26,7 +28,8 @@ class VideoUploadVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print("UploadVideo")
+        print(dict)
         vidSelectorController.delegate = self
         
         chooseVideoButtonOutlet.layer.cornerRadius = 15
@@ -61,6 +64,8 @@ class VideoUploadVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
             let vc = segue.destination as? UploadingVC
             vc?.uploadTask = self.uploadTask
             vc?.uuid = self.uuid
+            vc?.dict = self.dict
+            vc?.length = self.length
         }
     }
     
@@ -109,6 +114,9 @@ class VideoUploadVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
             
             videoThumbnail.image = thumbnail
             print("Duration:\(CMTimeGetSeconds(asset.duration))")
+            length = Int(CMTimeGetSeconds(asset.duration))
+            //https://docs.swift.org/swift-book/LanguageGuide/TheBasics.html
+            print(length!)
         } catch let error {
             print(error)
             return
