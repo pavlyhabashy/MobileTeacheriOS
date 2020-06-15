@@ -213,7 +213,7 @@ class BrowseTVC: UITableViewController, VideoCellDelegate, AVPlayerViewControlle
 //        let storageRef = storage.reference()
 //        let starsRef = storageRef.child("15C567FD-73D1-4F6B-984A-854F49B2DB37.mov")
 //        starsRef.downloadURL { (url, error) in
-//            print("titties")
+
 //            print(url?.absoluteString)
 //            if let error = error {
 //                // Handle any errors
@@ -345,7 +345,7 @@ class BrowseTVC: UITableViewController, VideoCellDelegate, AVPlayerViewControlle
     let storageRef = storage.reference()
     let starsRef = storageRef.child("15C567FD-73D1-4F6B-984A-854F49B2DB37.mov")
     starsRef.downloadURL { (url, error) in
-        print("titties")
+
         print(url?.absoluteString)
         if let error = error {
             // Handle any errors
