@@ -54,7 +54,14 @@ class VideoFormVC: FormViewController, UIAdaptivePresentationControllerDelegate 
             // Fallback on earlier versions
         }
         
-        form +++ Section(header: "Name", footer: "If you work with a U.S. Peace Corps Volunteer (PCV) or English Language Fellow (ELF), please enter their name also.")
+        form +++ Section(header: "Name", footer: "If you work with a U.S. Peace Corps Volunteer (PCV) or English Language Fellow (ELF), please enter their name also."){section in
+        
+            }
+            +++ Section(header:"", footer:""){section in
+                
+                section.header?.height = { 0 }
+                section.footer?.height = {0}
+            }
             <<< NameRow("Name"){ row in
                 row.title = "Teacher's Name"
                 row.placeholder = "Enter name here"
@@ -212,8 +219,8 @@ class VideoFormVC: FormViewController, UIAdaptivePresentationControllerDelegate 
                 }
             } //https://developer.apple.com/documentation/uikit/uitextview
         
-        form +++ SelectableSection<ListCheckRow<String>>(header: "Subject", footer: "What subject does the teacher teach in the video?", selectionType: .singleSelection(enableDeselection: true))
-        
+        form +++ Section(header: "Subject", footer: "What subject does the teacher teach in the video?")
+        form +++ SelectableSection<ListCheckRow<String>>(header: nil, footer : nil, selectionType: .singleSelection(enableDeselection: true))
         let subjects = ["Languages", "Math", "Science", "History", "Art", "Music", "Health", "Other"]
         for option in subjects {
             form.last! <<< ListCheckRow<String>(option){ listRow in
@@ -269,7 +276,8 @@ class VideoFormVC: FormViewController, UIAdaptivePresentationControllerDelegate 
 //            }
         }
         
-        form +++ SelectableSection<ListCheckRow<String>>(header: "Level of Students", footer: "Check all that apply.", selectionType: .multipleSelection)
+        form +++ Section(header: "Level of Students", footer: "Check all that apply.")
+        form +++ SelectableSection<ListCheckRow<String>>(header: nil, footer: nil, selectionType: .multipleSelection)
         
         let levels = ["Beginner", "Intermediate", "Advanced"]
         for option in levels {
@@ -287,6 +295,11 @@ class VideoFormVC: FormViewController, UIAdaptivePresentationControllerDelegate 
             }
         }
         form +++ Section(header: "Country/Region/Territory", footer: "Where is the teacher in the video?")
+        +++ Section(header:"", footer:""){section in
+                
+            section.header?.height = { 0 }
+            section.footer?.height = {0}
+        }
             <<< PickerInputRow<String>("Country"){
 //                $0.title = "Country/Region/Territory"
                 $0.options = countries
@@ -305,6 +318,11 @@ class VideoFormVC: FormViewController, UIAdaptivePresentationControllerDelegate 
         
         
         form +++ Section(header: "Language", footer: "What language does the teacher speak in the video?")
+        +++ Section(header:"", footer:""){section in
+                
+            section.header?.height = { 0 }
+            section.footer?.height = {0}
+        }
         <<< PickerInputRow<String>("Language"){
             $0.options = languages
             $0.value = $0.options.first
@@ -321,6 +339,11 @@ class VideoFormVC: FormViewController, UIAdaptivePresentationControllerDelegate 
         }
         
         +++ Section(header: "School/University", footer: "What is the name of the school or university where the teacher works?")
+        +++ Section(header:"", footer:""){section in
+                
+            section.header?.height = { 0 }
+            section.footer?.height = {0}
+        }
         <<< TextRow("School") { row in
             row.title = "Name of Institution"
             row.placeholder = "Enter name here"
