@@ -219,8 +219,13 @@ class VideoFormVC: FormViewController, UIAdaptivePresentationControllerDelegate 
                 }
             } //https://developer.apple.com/documentation/uikit/uitextview
         
-        form +++ Section(header: "Subject", footer: "What subject does the teacher teach in the video?")
-        form +++ SelectableSection<ListCheckRow<String>>(header: nil, footer : nil, selectionType: .singleSelection(enableDeselection: true))
+        form +++ Section(header: "Subject", footer: "What subject does the teacher teach in the video?"){ section in
+
+        }
+        form +++ SelectableSection<ListCheckRow<String>>(header: "", footer : "", selectionType: .singleSelection(enableDeselection: true)){section in
+            section.header?.height = { CGFloat.leastNormalMagnitude }
+            section.footer?.height = { CGFloat.leastNormalMagnitude }
+        }
         let subjects = ["Languages", "Math", "Science", "History", "Art", "Music", "Health", "Other"]
         for option in subjects {
             form.last! <<< ListCheckRow<String>(option){ listRow in
@@ -277,7 +282,10 @@ class VideoFormVC: FormViewController, UIAdaptivePresentationControllerDelegate 
         }
         
         form +++ Section(header: "Level of Students", footer: "Check all that apply.")
-        form +++ SelectableSection<ListCheckRow<String>>(header: nil, footer: nil, selectionType: .multipleSelection)
+        form +++ SelectableSection<ListCheckRow<String>>(header: "", footer: "", selectionType: .multipleSelection){section in
+            section.header?.height = { CGFloat.leastNormalMagnitude }
+            section.footer?.height = { CGFloat.leastNormalMagnitude }
+        }
         
         let levels = ["Beginner", "Intermediate", "Advanced"]
         for option in levels {
