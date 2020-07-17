@@ -54,8 +54,8 @@ class VideoFormVC: FormViewController, UIAdaptivePresentationControllerDelegate 
             // Fallback on earlier versions
         }
         
-        form +++ Section(header: "Name", footer: "If you work with a U.S. Peace Corps Volunteer (PCV) or English Language Fellow (ELF), please enter their name also."){section in
-        
+        form +++ Section(header: "Name", footer: ""){section in
+                section.footer?.height = {0}
             }
             +++ Section(header:"", footer:""){section in
                 
@@ -220,11 +220,11 @@ class VideoFormVC: FormViewController, UIAdaptivePresentationControllerDelegate 
             } //https://developer.apple.com/documentation/uikit/uitextview
         
         form +++ Section(header: "Subject", footer: "What subject does the teacher teach in the video?"){ section in
-
+            
         }
         form +++ SelectableSection<ListCheckRow<String>>(header: "", footer : "", selectionType: .singleSelection(enableDeselection: true)){section in
             section.header?.height = { CGFloat.leastNormalMagnitude }
-            section.footer?.height = { CGFloat.leastNormalMagnitude }
+            //section.footer?.height = { 20 }
         }
         let subjects = ["Languages", "Math", "Science", "History", "Art", "Music", "Health", "Other"]
         for option in subjects {
@@ -284,7 +284,7 @@ class VideoFormVC: FormViewController, UIAdaptivePresentationControllerDelegate 
         form +++ Section(header: "Level of Students", footer: "Check all that apply.")
         form +++ SelectableSection<ListCheckRow<String>>(header: "", footer: "", selectionType: .multipleSelection){section in
             section.header?.height = { CGFloat.leastNormalMagnitude }
-            section.footer?.height = { CGFloat.leastNormalMagnitude }
+            //section.footer?.height = { CGFloat.leastNormalMagnitude }
         }
         
         let levels = ["Beginner", "Intermediate", "Advanced"]
@@ -306,7 +306,7 @@ class VideoFormVC: FormViewController, UIAdaptivePresentationControllerDelegate 
         +++ Section(header:"", footer:""){section in
                 
             section.header?.height = { 0 }
-            section.footer?.height = {0}
+            //section.footer?.height = {0}
         }
             <<< PickerInputRow<String>("Country"){
 //                $0.title = "Country/Region/Territory"
@@ -329,7 +329,7 @@ class VideoFormVC: FormViewController, UIAdaptivePresentationControllerDelegate 
         +++ Section(header:"", footer:""){section in
                 
             section.header?.height = { 0 }
-            section.footer?.height = {0}
+            //section.footer?.height = {0}
         }
         <<< PickerInputRow<String>("Language"){
             $0.options = languages
@@ -350,7 +350,7 @@ class VideoFormVC: FormViewController, UIAdaptivePresentationControllerDelegate 
         +++ Section(header:"", footer:""){section in
                 
             section.header?.height = { 0 }
-            section.footer?.height = {0}
+            //section.footer?.height = {0}
         }
         <<< TextRow("School") { row in
             row.title = "Name of Institution"
