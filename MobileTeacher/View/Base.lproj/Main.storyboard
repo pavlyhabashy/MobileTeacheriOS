@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QZK-Rv-449">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QZK-Rv-449">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -191,10 +191,13 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="hcP-7U-6iS" kind="show" identifier="downloadSegue" id="KKW-1g-7tx"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uxQ-4i-F4r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2156.521739130435" y="-646.20535714285711"/>
+            <point key="canvasLocation" x="2126" y="-749"/>
         </scene>
         <!--Search-->
         <scene sceneID="E4K-2a-s7A">
@@ -824,6 +827,72 @@
             </objects>
             <point key="canvasLocation" x="4928.985507246377" y="93.75"/>
         </scene>
+        <!--Download Video-->
+        <scene sceneID="xTJ-MS-ojf">
+            <objects>
+                <viewController id="hcP-7U-6iS" customClass="DownloadVC" customModule="MobileTeacher" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="es2-ab-uIC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LAV-dz-R2g">
+                                <rect key="frame" x="207" y="263" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iLM-pF-Xfj">
+                                <rect key="frame" x="207" y="538" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Are you sure you want to download this file?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XTf-Lv-Sob">
+                                <rect key="frame" x="39" y="664" width="336" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Av9-Po-Vpd">
+                                <rect key="frame" x="111" y="744" width="69" height="30"/>
+                                <state key="normal" title="Download"/>
+                                <connections>
+                                    <action selector="downloadClick:" destination="hcP-7U-6iS" eventType="touchUpInside" id="EWG-5u-Yuc"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IxN-Pv-MHY">
+                                <rect key="frame" x="254" y="744" width="69" height="30"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="XTf-Lv-Sob" firstAttribute="centerX" secondItem="es2-ab-uIC" secondAttribute="centerX" id="2mG-Y4-CgH"/>
+                            <constraint firstItem="IxN-Pv-MHY" firstAttribute="top" secondItem="XTf-Lv-Sob" secondAttribute="bottom" constant="59" id="7UA-Cw-A4V"/>
+                            <constraint firstItem="IxN-Pv-MHY" firstAttribute="width" secondItem="Av9-Po-Vpd" secondAttribute="width" id="9FS-W1-qyf"/>
+                            <constraint firstItem="iLM-pF-Xfj" firstAttribute="centerX" secondItem="es2-ab-uIC" secondAttribute="centerX" id="I7k-fw-W9X"/>
+                            <constraint firstItem="LAV-dz-R2g" firstAttribute="top" secondItem="s1z-pw-DHz" secondAttribute="top" constant="123" id="K6d-sR-x4A"/>
+                            <constraint firstItem="Av9-Po-Vpd" firstAttribute="leading" secondItem="s1z-pw-DHz" secondAttribute="leading" constant="111" id="N1W-fQ-2xC"/>
+                            <constraint firstItem="IxN-Pv-MHY" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Av9-Po-Vpd" secondAttribute="trailing" constant="8" symbolic="YES" id="Su7-ja-LME"/>
+                            <constraint firstItem="IxN-Pv-MHY" firstAttribute="height" secondItem="Av9-Po-Vpd" secondAttribute="height" id="UcS-Pn-zzZ"/>
+                            <constraint firstItem="s1z-pw-DHz" firstAttribute="trailing" secondItem="IxN-Pv-MHY" secondAttribute="trailing" constant="91" id="iW3-0E-Fz0"/>
+                            <constraint firstItem="LAV-dz-R2g" firstAttribute="centerX" secondItem="es2-ab-uIC" secondAttribute="centerX" id="ncM-J7-6mP"/>
+                            <constraint firstItem="IxN-Pv-MHY" firstAttribute="baseline" secondItem="Av9-Po-Vpd" secondAttribute="baseline" id="oq5-eD-F1S"/>
+                            <constraint firstItem="s1z-pw-DHz" firstAttribute="bottom" secondItem="IxN-Pv-MHY" secondAttribute="bottom" constant="88" id="pRi-jj-ufD"/>
+                            <constraint firstAttribute="bottom" secondItem="iLM-pF-Xfj" secondAttribute="bottom" constant="358" id="q7B-fk-xPE"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="s1z-pw-DHz"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Download Video" id="OUa-nj-Mvm"/>
+                    <connections>
+                        <outlet property="descriptionLabel" destination="iLM-pF-Xfj" id="ek7-db-FGD"/>
+                        <outlet property="titleLabel" destination="LAV-dz-R2g" id="Inx-Ww-YiC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7tC-yK-3oB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3000.0000000000005" y="-969.64285714285711"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="gd4-zk-deb">
             <objects>
@@ -840,12 +909,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p1F-j8-0Xm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3000.0000000000005" y="-646.20535714285711"/>
+            <point key="canvasLocation" x="3067" y="-433"/>
         </scene>
     </scenes>
     <resources>
-        <image name="play.fill" catalog="system" width="32" height="32"/>
-        <image name="square.and.arrow.down" catalog="system" width="60" height="64"/>
-        <image name="square.and.arrow.up" catalog="system" width="56" height="64"/>
+        <image name="play.fill" catalog="system" width="116" height="128"/>
+        <image name="square.and.arrow.down" catalog="system" width="121" height="128"/>
+        <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
     </resources>
 </document>
