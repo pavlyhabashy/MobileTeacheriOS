@@ -95,14 +95,16 @@ class DownloadVC: UIViewController {
                                             return }
                                         // Compatibility check succeeded, continue with export.
                                     }
-                                    
+                                    //https://developer.apple.com/documentation/avfoundation/media_assets_and_metadata/exporting_video_to_alternative_formats
                                     guard let exportSession = AVAssetExportSession(asset: vid,
                                                                                    presetName: preset) else { return }
                                     exportSession.outputFileType = outFileType
                                     exportSession.outputURL = destinationURL
                                     exportSession.exportAsynchronously {
                                         // Handle export results.
-                                        print(UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(destinationURL.path))
+                                        print(UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(destinationURL.path))//https://medium.com/@Dougly/persisting-image-data-locally-swift-3-8bae72673f8a
+                                        
+                                        //https://www.tutorialspoint.com/how-to-download-a-video-using-a-url-and-save-it-in-an-photo-album-using-swift
                                         DispatchQueue.main.async {
                                             print("Downloading to gallery")
                                             PHPhotoLibrary.requestAuthorization({ (authorizationStatus: PHAuthorizationStatus) -> Void in
