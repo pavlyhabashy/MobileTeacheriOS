@@ -20,6 +20,13 @@ class DownloadVC: UIViewController {
     
     var video: Video!
     
+    private var assetCollection: PHAssetCollection!
+    var albumFound : Bool = false
+    var assetCollectionPlaceholder: PHObjectPlaceholder!
+    
+    var photosAsset: PHFetchResult<PHAsset>!
+
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,8 +36,91 @@ class DownloadVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    func createAlbum() {
+        //Get PHFetch Options
+        let fetchOptions = PHFetchOptions()
+        fetchOptions.predicate = NSPredicate(format: "title = %@", "Mobile Teacher")
+        let collection : PHFetchResult = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .any, options: fetchOptions)
+        //Check return value - If found, then get the first album out
+        if let _: AnyObject = collection.firstObject {
+            self.albumFound = true
+            assetCollection = collection.firstObject as! PHAssetCollection
+        } else {
+            //If not found - Then create a new album
+            PHPhotoLibrary.shared().performChanges({
+                let createAlbumRequest : PHAssetCollectionChangeRequest = PHAssetCollectionChangeRequest.creationRequestForAssetCollection(withTitle: "Mobile Teacher")
+                self.assetCollectionPlaceholder = createAlbumRequest.placeholderForCreatedAssetCollection
+                }, completionHandler: { success, error in
+                    self.albumFound = success
+
+                    if (success) {
+                        let collectionFetchResult = PHAssetCollection.fetchAssetCollections(withLocalIdentifiers: [self.assetCollectionPlaceholder.localIdentifier], options: nil)
+                        print(collectionFetchResult)
+                        self.assetCollection = collectionFetchResult.firstObject as! PHAssetCollection
+                    }
+            })
+        }
+    }
+    //https://stackoverflow.com/questions/27008641/save-images-with-phimagemanager-to-custom-album
+    
+    private func checkAuthorizationWithHandler(completion: @escaping ((_ success: Bool) -> Void)) {
+      if PHPhotoLibrary.authorizationStatus() == .notDetermined {
+        PHPhotoLibrary.requestAuthorization({ (status) in
+          self.checkAuthorizationWithHandler(completion: completion)
+        })
+      }
+      else if PHPhotoLibrary.authorizationStatus() == .authorized {
+        self.createAlbumIfNeeded { (success) in
+          if success {
+            completion(true)
+          } else {
+            completion(false)
+          }
+
+        }
+
+      }
+      else {
+        completion(false)
+      }
+    }
+    
+    private func createAlbumIfNeeded(completion: @escaping ((_ success: Bool) -> Void)) {
+      if let assetCollection = fetchAssetCollectionForAlbum() {
+        // Album already exists
+        self.assetCollection = assetCollection
+        completion(true)
+      } else {
+        PHPhotoLibrary.shared().performChanges({
+          PHAssetCollectionChangeRequest.creationRequestForAssetCollection(withTitle: "Mobile Teacher")   // create an asset collection with the album name
+        }) { success, error in
+          if success {
+            self.assetCollection = self.fetchAssetCollectionForAlbum()
+            completion(true)
+          } else {
+            // Unable to create album
+            completion(false)
+          }
+        }
+      }
+    }
+    
+    private func fetchAssetCollectionForAlbum() -> PHAssetCollection? {
+      let fetchOptions = PHFetchOptions()
+      fetchOptions.predicate = NSPredicate(format: "title = %@", "Mobile Teacher")
+      let collection = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .any, options: fetchOptions)
+
+      if let _: AnyObject = collection.firstObject {
+        return collection.firstObject
+      }
+      return nil
+    }
+    
+    
 
     @IBAction func downloadClick(_ sender: Any) {
+        
+        createAlbum()
         
         //https://drive.google.com/open?id=1jlgGUrFWtDsGu8DQW5QiZGsm7v6rykB0
         print(video.downloadURL.absoluteString)
@@ -42,31 +132,38 @@ class DownloadVC: UIViewController {
         let storage = Storage.storage()
         let pathReference = storage.reference(withPath: video.storage)
         
-        /*pathReference.getData(maxSize: 1000000000){ data, error in
-            if let error = error{
-                print(error)
-            }else{
-               let vid = AVFoundation(data)
-                UIImageWriteToSavedPhotosAlbum(image!, nil, nil, nil)
-            }
-            
-        }*/
-        
+
         pathReference.downloadURL{ url, error in
             var vid = AVAsset(url: url!)
-            print(vid)
+            
+            let date = Date()
+            let formatter = DateFormatter()
+            formatter.dateFormat = "YYYY-MM-DD"
+            
+            //vid.creationDate?.setValue(formatter.string(from:date), forKey: "value")
+            
+            print(vid.creationDate)
+            //print(vid.modificationDate)
             //print(vid.isCompatibleWithSavedPhotosAlbum)
             //print(UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(url!.absoluteString))
             
+            let attributes = [
+                FileAttributeKey.creationDate: NSDate(),
+                FileAttributeKey.modificationDate: NSDate()
+            ]
             
-            
+            print(NSDate())
+           
+        
+         
             
             let urlData = NSData(contentsOf: url!)
             
             
-            
             let docsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
             let destinationURL = docsURL.appendingPathComponent(UUID.init().uuidString + ".mov")
+            
+            
             
             var request = URLRequest(url: url!)
             request.httpMethod = "GET"
@@ -87,6 +184,12 @@ class DownloadVC: UIViewController {
                                     print("Converting format")
                                     let preset = AVAssetExportPresetHighestQuality
                                     let outFileType = AVFileType.mov
+                                    
+                                    /*do{
+                                        try FileManager.default.setAttributes(attributes, ofItemAtPath:destinationURL.path)
+                                    }catch{
+                                        print(error)
+                                    }*/
                                     
                                     AVAssetExportSession.determineCompatibility(ofExportPreset: preset,
                                                                                 with: vid, outputFileType: outFileType) { isCompatible in
@@ -112,8 +215,13 @@ class DownloadVC: UIViewController {
                                                 if authorizationStatus == .authorized { //https://stackoverflow.com/questions/35503723/swift-downloading-video-with-downloadtaskwithurl
                                                     urlData!.write(toFile:destinationURL.absoluteString, atomically: true) //https://stackoverflow.com/questions/39543214/declaring-url-in-swift-3/39546882
                                                     PHPhotoLibrary.shared().performChanges({
-                                                        PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: destinationURL)
-                                                
+                                                        let assetChangeRequest = PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: destinationURL)
+                                                        let assetPlaceholder = assetChangeRequest?.placeholderForCreatedAsset
+                                                        self.photosAsset = PHAsset.fetchAssets(in: self.assetCollection, options: nil)
+
+                                                        let albumChangeRequest = PHAssetCollectionChangeRequest(for: self.assetCollection, assets: self.photosAsset)
+                                                        albumChangeRequest!.addAssets([assetPlaceholder!] as NSFastEnumeration)
+                                                        
                                                     }){ complete, error in
                                                         if complete {
                                                             print("Complete")
