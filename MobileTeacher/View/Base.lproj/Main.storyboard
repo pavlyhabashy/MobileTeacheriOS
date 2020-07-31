@@ -886,50 +886,67 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LAV-dz-R2g">
-                                <rect key="frame" x="207" y="263" width="0.0" height="0.0"/>
+                                <rect key="frame" x="172.5" y="263" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iLM-pF-Xfj">
-                                <rect key="frame" x="207" y="538" width="0.0" height="0.0"/>
+                                <rect key="frame" x="172.5" y="538" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Are you sure you want to download this file?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XTf-Lv-Sob">
-                                <rect key="frame" x="39" y="664" width="336" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Are you sure you want to download this file?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XTf-Lv-Sob">
+                                <rect key="frame" x="4.5" y="664" width="336" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Av9-Po-Vpd">
-                                <rect key="frame" x="111" y="744" width="69" height="30"/>
-                                <state key="normal" title="Download"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Av9-Po-Vpd">
+                                <rect key="frame" x="30" y="738" width="159" height="57"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="kDL-Eb-X3J"/>
+                                </constraints>
+                                <state key="normal" title="Download">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="downloadClick:" destination="hcP-7U-6iS" eventType="touchUpInside" id="EWG-5u-Yuc"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IxN-Pv-MHY">
-                                <rect key="frame" x="254" y="744" width="69" height="30"/>
-                                <state key="normal" title="Button"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bhv-ZJ-nCy">
+                                <rect key="frame" x="219" y="738" width="165" height="57"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="yR5-FD-IFf"/>
+                                </constraints>
+                                <state key="normal" title="Back">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="downloadClick:" destination="hcP-7U-6iS" eventType="touchUpInside" id="RaL-ID-4n8"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="XTf-Lv-Sob" firstAttribute="centerX" secondItem="es2-ab-uIC" secondAttribute="centerX" id="2mG-Y4-CgH"/>
-                            <constraint firstItem="IxN-Pv-MHY" firstAttribute="top" secondItem="XTf-Lv-Sob" secondAttribute="bottom" constant="59" id="7UA-Cw-A4V"/>
-                            <constraint firstItem="IxN-Pv-MHY" firstAttribute="width" secondItem="Av9-Po-Vpd" secondAttribute="width" id="9FS-W1-qyf"/>
+                            <constraint firstItem="Bhv-ZJ-nCy" firstAttribute="leading" secondItem="Av9-Po-Vpd" secondAttribute="trailing" constant="32" id="3rg-rI-sqs"/>
+                            <constraint firstItem="Bhv-ZJ-nCy" firstAttribute="width" secondItem="Av9-Po-Vpd" secondAttribute="width" id="8jD-FK-YZa"/>
+                            <constraint firstItem="Bhv-ZJ-nCy" firstAttribute="leading" secondItem="Av9-Po-Vpd" secondAttribute="trailing" constant="75" id="Duj-27-vrV"/>
                             <constraint firstItem="iLM-pF-Xfj" firstAttribute="centerX" secondItem="es2-ab-uIC" secondAttribute="centerX" id="I7k-fw-W9X"/>
+                            <constraint firstItem="Bhv-ZJ-nCy" firstAttribute="leading" secondItem="Av9-Po-Vpd" secondAttribute="trailing" constant="25" id="JcP-ze-2AD"/>
                             <constraint firstItem="LAV-dz-R2g" firstAttribute="top" secondItem="s1z-pw-DHz" secondAttribute="top" constant="123" id="K6d-sR-x4A"/>
                             <constraint firstItem="Av9-Po-Vpd" firstAttribute="leading" secondItem="s1z-pw-DHz" secondAttribute="leading" constant="111" id="N1W-fQ-2xC"/>
-                            <constraint firstItem="IxN-Pv-MHY" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Av9-Po-Vpd" secondAttribute="trailing" constant="8" symbolic="YES" id="Su7-ja-LME"/>
-                            <constraint firstItem="IxN-Pv-MHY" firstAttribute="height" secondItem="Av9-Po-Vpd" secondAttribute="height" id="UcS-Pn-zzZ"/>
-                            <constraint firstItem="s1z-pw-DHz" firstAttribute="trailing" secondItem="IxN-Pv-MHY" secondAttribute="trailing" constant="91" id="iW3-0E-Fz0"/>
+                            <constraint firstItem="Av9-Po-Vpd" firstAttribute="leading" secondItem="s1z-pw-DHz" secondAttribute="leading" constant="40" id="Y7R-8c-iyw"/>
+                            <constraint firstItem="s1z-pw-DHz" firstAttribute="trailing" secondItem="Bhv-ZJ-nCy" secondAttribute="trailing" constant="196" id="dKb-Ff-ZUh"/>
+                            <constraint firstItem="Bhv-ZJ-nCy" firstAttribute="height" secondItem="Av9-Po-Vpd" secondAttribute="height" id="nD4-pd-r2c"/>
                             <constraint firstItem="LAV-dz-R2g" firstAttribute="centerX" secondItem="es2-ab-uIC" secondAttribute="centerX" id="ncM-J7-6mP"/>
-                            <constraint firstItem="IxN-Pv-MHY" firstAttribute="baseline" secondItem="Av9-Po-Vpd" secondAttribute="baseline" id="oq5-eD-F1S"/>
-                            <constraint firstItem="s1z-pw-DHz" firstAttribute="bottom" secondItem="IxN-Pv-MHY" secondAttribute="bottom" constant="88" id="pRi-jj-ufD"/>
                             <constraint firstAttribute="bottom" secondItem="iLM-pF-Xfj" secondAttribute="bottom" constant="358" id="q7B-fk-xPE"/>
+                            <constraint firstItem="s1z-pw-DHz" firstAttribute="trailing" secondItem="Bhv-ZJ-nCy" secondAttribute="trailing" constant="40" id="sjB-ZS-FwO"/>
+                            <constraint firstItem="s1z-pw-DHz" firstAttribute="trailing" secondItem="Bhv-ZJ-nCy" secondAttribute="trailing" constant="40" id="zqx-Ij-723"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="s1z-pw-DHz"/>
                     </view>
