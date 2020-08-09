@@ -122,6 +122,9 @@ class DownloadVC: UIViewController {
         
         createAlbum()
         
+        var array = video.downloadURL.absoluteString.components(separatedBy: "id=")
+        
+        print(array)
         //https://drive.google.com/open?id=1jlgGUrFWtDsGu8DQW5QiZGsm7v6rykB0
         print(video.downloadURL.absoluteString)
         var id = video.downloadURL.absoluteString.dropFirst("https://drive.google.com/open?id=".count)
@@ -132,8 +135,9 @@ class DownloadVC: UIViewController {
         let storage = Storage.storage()
         let pathReference = storage.reference(withPath: video.storage)
         
+        var url = video.downloadURL
 
-        pathReference.downloadURL{ url, error in
+        //pathReference.downloadURL{ url, error in
             var vid = AVAsset(url: url!)
             
             let date = Date()
@@ -417,7 +421,7 @@ class DownloadVC: UIViewController {
     }
     */
 
-}
+//}
 }
 
 /*extension UIImageView {
