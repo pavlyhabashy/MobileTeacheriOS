@@ -236,8 +236,8 @@ class BrowseTVC: UITableViewController, VideoCellDelegate, AVPlayerViewControlle
 
            let assetUrl = baseUrl.appendingPathComponent("MyFileSaveName.mp4")
 
-           let url = assetUrl
-           print(url)
+           //let url = assetUrl
+           //print(url)
            let avAssest = AVAsset(url: url)
            let playerItem = AVPlayerItem(asset: avAssest)
 

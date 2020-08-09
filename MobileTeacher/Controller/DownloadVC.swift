@@ -229,6 +229,7 @@ class DownloadVC: UIViewController {
                                                     }){ complete, error in
                                                         if complete {
                                                             print("Complete")
+                                                            
                                                         }
                                                 
                                                         if error != nil{

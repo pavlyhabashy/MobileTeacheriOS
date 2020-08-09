@@ -72,7 +72,7 @@ class VideoTableViewCell: UITableViewCell {
     }
     
     @IBAction func playButtonTapped(_ sender: Any) {
-        delegate?.didTapPlayButton(url: videoItem.url)
+        delegate?.didTapPlayButton(url: videoItem.downloadURL)
     }
     @IBAction func shareButtonTapped(_ sender: Any) {
         delegate?.didTapShareButton(url: videoItem.url)
