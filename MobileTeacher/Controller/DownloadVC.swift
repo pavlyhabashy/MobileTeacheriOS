@@ -55,6 +55,7 @@ class DownloadVC: UIViewController {
 
                     if (success) {
                         let collectionFetchResult = PHAssetCollection.fetchAssetCollections(withLocalIdentifiers: [self.assetCollectionPlaceholder.localIdentifier], options: nil)
+                        print("Successfully created album")
                         print(collectionFetchResult)
                         self.assetCollection = collectionFetchResult.firstObject as! PHAssetCollection
                     }
@@ -96,9 +97,13 @@ class DownloadVC: UIViewController {
         }) { success, error in
           if success {
             self.assetCollection = self.fetchAssetCollectionForAlbum()
+            print("Success")
+            print(success)
             completion(true)
           } else {
             // Unable to create album
+            print("PROBLEM")
+            print(error)
             completion(false)
           }
         }
@@ -120,7 +125,14 @@ class DownloadVC: UIViewController {
 
     @IBAction func downloadClick(_ sender: Any) {
         
-        createAlbum()
+        //DispatchQueue.main.sync{
+         //   createAlbum()
+        //}
+        
+        self.checkAuthorizationWithHandler(completion: {_ in
+            
+            print("Created Album Successfully")
+        })
         
         var array = video.downloadURL.absoluteString.components(separatedBy: "id=")
         
@@ -221,6 +233,7 @@ class DownloadVC: UIViewController {
                                                     PHPhotoLibrary.shared().performChanges({
                                                         let assetChangeRequest = PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: destinationURL)
                                                         let assetPlaceholder = assetChangeRequest?.placeholderForCreatedAsset
+                                                        print(self.assetCollection)
                                                         self.photosAsset = PHAsset.fetchAssets(in: self.assetCollection, options: nil)
 
                                                         let albumChangeRequest = PHAssetCollectionChangeRequest(for: self.assetCollection, assets: self.photosAsset)
