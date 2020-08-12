@@ -11,6 +11,7 @@ import FirebaseStorage
 import Photos
 import AVKit
 import AVFoundation
+import UserNotifications
 
 class DownloadVC: UIViewController {
 
@@ -193,6 +194,14 @@ class DownloadVC: UIViewController {
                 
                 if error != nil{
                     print("Some error occured")
+                    let content = UNMutableNotificationContent()
+                    content.title = "Error"
+                    content.body = "Video cannot be downloaded"
+                    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+                    let request = UNNotificationRequest(identifier: "Video Download Error", content: content, trigger: trigger)
+                    UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+                    //Todo: Notify user of an error
+                    //Format: Error: Video cannot be downloaded
                     return
                 }
                 
@@ -211,6 +220,15 @@ class DownloadVC: UIViewController {
                                                                                 with: vid, outputFileType: outFileType) { isCompatible in
                                         guard isCompatible else
                                         { print("Not compatible")
+                                            let content1 = UNMutableNotificationContent()
+                                            content1.title = "Error"
+                                            content1.body = "Video cannot be downloaded due to incompatible type"
+                                            let trigger1 = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+                                            let request1 = UNNotificationRequest(identifier: "Video Download Error Incompatible Type", content: content1, trigger: trigger1)
+                                            UNUserNotificationCenter.current().add(request1, withCompletionHandler: nil)
+                                            //TODO: Notify user that the video is not compatible for download
+                                            
+                                            //String format: <Name of video> cannot be downloaded
                                             return }
                                         // Compatibility check succeeded, continue with export.
                                     }
@@ -242,11 +260,27 @@ class DownloadVC: UIViewController {
                                                     }){ complete, error in
                                                         if complete {
                                                             print("Complete")
+                                                            let content2 = UNMutableNotificationContent()
+                                                            content2.title = "Success"
+                                                            content2.body = "Download complete"
+                                                            let trigger2 = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+                                                            let request2 = UNNotificationRequest(identifier: "Video Download Success", content: content2, trigger: trigger2)
+                                                            UNUserNotificationCenter.current().add(request2, withCompletionHandler: nil)
+                                                            //TODO: Notify user that the downloading of the video is complete
                                                             
+                                                            //String format: <Name of Video> has been downloaded to your device
                                                         }
                                                 
                                                         if error != nil{
                                                             print(error)
+                                                            
+                                                            //TODO: Notify user of the error
+                                                            let content3 = UNMutableNotificationContent()
+                                                            content3.title = "Error"
+                                                            content3.body = "\(String(describing: error))"
+                                                            let trigger3 = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+                                                            let request3 = UNNotificationRequest(identifier: "Other Error", content: content3, trigger: trigger3)
+                                                            UNUserNotificationCenter.current().add(request3, withCompletionHandler: nil)
                                                         }
                                                 
                                                     }
