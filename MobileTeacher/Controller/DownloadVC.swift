@@ -149,7 +149,8 @@ class DownloadVC: UIViewController {
         
         
         let concurrentQueue = DispatchQueue(label: "swiftlee.concurrent.queue", attributes: .concurrent)
-
+        
+        var incompatible = false
         
         //let storage = Storage.storage()
         //let pathReference = storage.reference(withPath: video.storage)
@@ -215,11 +216,13 @@ class DownloadVC: UIViewController {
                                     let preset = AVAssetExportPresetHighestQuality
                                     let outFileType = AVFileType.mov
                                     
+                                    var failed = false
                                     
                                     AVAssetExportSession.determineCompatibility(ofExportPreset: preset,
                                                                                 with: vid, outputFileType: outFileType) { isCompatible in
                                         guard isCompatible else
                                         { print("Not compatible")
+                                            failed = true
                                             let content1 = UNMutableNotificationContent()
                                             content1.title = "Error"
                                             content1.body = "Video cannot be downloaded due to incompatible type"
@@ -229,9 +232,12 @@ class DownloadVC: UIViewController {
                                             //TODO: Notify user that the video is not compatible for download
                                             
                                             //String format: <Name of video> cannot be downloaded
+                                            incompatible = true
                                             return }
                                         // Compatibility check succeeded, continue with export.
                                     }
+                                    
+                                    
                                     //https://developer.apple.com/documentation/avfoundation/media_assets_and_metadata/exporting_video_to_alternative_formats
                                     guard let exportSession = AVAssetExportSession(asset: vid,
                                                                                    presetName: preset) else { return }
@@ -261,8 +267,9 @@ class DownloadVC: UIViewController {
                                                         if complete {
                                                             print("Complete")
                                                             let content2 = UNMutableNotificationContent()
-                                                            content2.title = "Success"
-                                                            content2.body = "Download complete"
+                                                            content2.title = "Downloading Complete"
+                                                            content2.body = "\"\(self.video.title)\" has been downloaded to your device"
+                                                            //https://docs.swift.org/swift-book/LanguageGuide/StringsAndCharacters.html
                                                             let trigger2 = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
                                                             let request2 = UNNotificationRequest(identifier: "Video Download Success", content: content2, trigger: trigger2)
                                                             UNUserNotificationCenter.current().add(request2, withCompletionHandler: nil)
@@ -270,7 +277,10 @@ class DownloadVC: UIViewController {
                                                             
                                                             //String format: <Name of Video> has been downloaded to your device
                                                         }
-                                                
+                                                        
+                                                        if(incompatible){
+                                                            return
+                                                        }
                                                         if error != nil{
                                                             print(error)
                                                             
@@ -298,6 +308,8 @@ class DownloadVC: UIViewController {
                                 }
                             }else{
                                 print("Error")
+                                
+                                
                             }
                         }
                     }

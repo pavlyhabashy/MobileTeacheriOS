@@ -11,16 +11,28 @@ import CoreData
 import Firebase
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
 
+   func userNotificationCenter(_ center: UNUserNotificationCenter,
+             willPresent notification: UNNotification,
+             withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void){
+    
+        completionHandler([.alert, .badge, .sound])
+    }
+    //https://medium.com/flawless-app-stories/local-notifications-in-swift-5-and-ios-13-with-unusernotificationcenter-190e654a5615
+    //https://developer.apple.com/documentation/usernotifications/unusernotificationcenterdelegate/1649518-usernotificationcenter
+    
 
+    //https://stackoverflow.com/questions/30852870/displaying-a-stock-ios-notification-banner-when-your-app-is-open-and-in-the-fore/37844312#37844312
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
         
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) {(granted,error) in print("granted: \(granted)")}
+        
+        UNUserNotificationCenter.current().delegate = self
         return true
     }
 
