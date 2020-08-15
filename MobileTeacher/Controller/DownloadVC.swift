@@ -27,7 +27,8 @@ class DownloadVC: UIViewController {
     var assetCollectionPlaceholder: PHObjectPlaceholder!
     
     var photosAsset: PHFetchResult<PHAsset>!
-
+    
+    var completed: Bool = false
     
     
     override func viewDidLoad() {
@@ -39,9 +40,18 @@ class DownloadVC: UIViewController {
     }
     
     //https://medium.com/@abhimuralidharan/finite-length-tasks-in-background-ios-swift-60f2db4fa01b
+    //newer versions of iOS will crash
     func registerBackgroundTask() {
         backgroundTask = UIApplication.shared.beginBackgroundTask { [weak self] in
-            self?.endBackgroundTask()
+            
+            //if(self!.completed){
+                self?.endBackgroundTask()
+            //}
+            //else{
+            //    print("Refreshing background")
+            //    self?.registerBackgroundTask()
+            //}
+            
         }
         assert(backgroundTask != UIBackgroundTaskIdentifier.invalid)
     }
@@ -141,7 +151,16 @@ class DownloadVC: UIViewController {
 
     @IBAction func downloadClick(_ sender: Any) {
         
+        /*
+         TODO: alert user to keep app running for best results
+            title will be "Keep App Running"
+            message says "Keep app running to ensure video downloads"
+         
+            button that says "OK"
+         */
 
+        
+        //code below here will be for the action handler
         self.checkAuthorizationWithHandler(completion: {_ in
             
             print("Created Album Successfully")
@@ -159,6 +178,9 @@ class DownloadVC: UIViewController {
         //https://stackoverflow.com/questions/24056205/how-to-use-background-thread-in-swift
         
         registerBackgroundTask()
+        
+        let processinfo = ProcessInfo()
+        
         DispatchQueue.global(qos: .background).async{
             var url = self.video.downloadURL
 
@@ -265,6 +287,7 @@ class DownloadVC: UIViewController {
                                                         
                                                     }){ complete, error in
                                                         if complete {
+                                                            self.completed = true
                                                             print("Complete")
                                                             let content2 = UNMutableNotificationContent()
                                                             content2.title = "Downloading Complete"
