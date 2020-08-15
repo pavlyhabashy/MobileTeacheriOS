@@ -898,26 +898,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Av9-Po-Vpd">
-                                <rect key="frame" x="30" y="812" width="120" height="30"/>
+                                <rect key="frame" x="30" y="812" width="354" height="30"/>
                                 <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Download">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <action selector="downloadClick:" destination="hcP-7U-6iS" eventType="touchUpInside" id="EWG-5u-Yuc"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bhv-ZJ-nCy">
-                                <rect key="frame" x="264" y="812" width="120" height="30"/>
-                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="120" id="yR5-FD-IFf"/>
-                                </constraints>
-                                <state key="normal" title="Back">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="downloadClick:" destination="hcP-7U-6iS" eventType="touchUpInside" id="RaL-ID-4n8"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iLM-pF-Xfj">
@@ -931,21 +918,18 @@
                         <constraints>
                             <constraint firstItem="Av9-Po-Vpd" firstAttribute="top" secondItem="XTf-Lv-Sob" secondAttribute="bottom" constant="20" id="3a4-Hm-luo"/>
                             <constraint firstItem="LAV-dz-R2g" firstAttribute="centerX" secondItem="es2-ab-uIC" secondAttribute="centerX" id="BbX-eh-pGn"/>
-                            <constraint firstItem="s1z-pw-DHz" firstAttribute="trailing" secondItem="Bhv-ZJ-nCy" secondAttribute="trailing" constant="30" id="KHO-oQ-5Ao"/>
                             <constraint firstItem="LAV-dz-R2g" firstAttribute="top" secondItem="s1z-pw-DHz" secondAttribute="top" constant="10" id="Kbs-AO-0sf"/>
                             <constraint firstItem="s1z-pw-DHz" firstAttribute="bottom" secondItem="Av9-Po-Vpd" secondAttribute="bottom" constant="20" id="MPw-Uu-ibe"/>
                             <constraint firstItem="iLM-pF-Xfj" firstAttribute="leading" secondItem="s1z-pw-DHz" secondAttribute="leading" constant="20" id="Mhv-la-eaY"/>
                             <constraint firstItem="s1z-pw-DHz" firstAttribute="trailing" secondItem="LAV-dz-R2g" secondAttribute="trailing" constant="20" id="NQt-lJ-TUZ"/>
                             <constraint firstItem="iLM-pF-Xfj" firstAttribute="centerX" secondItem="es2-ab-uIC" secondAttribute="centerX" id="OSP-sy-sjH"/>
-                            <constraint firstItem="Bhv-ZJ-nCy" firstAttribute="height" secondItem="Av9-Po-Vpd" secondAttribute="height" id="Tb1-EM-nST"/>
-                            <constraint firstItem="s1z-pw-DHz" firstAttribute="bottom" secondItem="Bhv-ZJ-nCy" secondAttribute="bottom" constant="20" id="Ug2-DU-bIU"/>
                             <constraint firstItem="LAV-dz-R2g" firstAttribute="leading" secondItem="s1z-pw-DHz" secondAttribute="leading" constant="20" id="Vl7-4X-0hg"/>
                             <constraint firstItem="s1z-pw-DHz" firstAttribute="trailing" secondItem="iLM-pF-Xfj" secondAttribute="trailing" constant="20" id="X7W-qg-Pq0"/>
                             <constraint firstItem="XTf-Lv-Sob" firstAttribute="leading" secondItem="es2-ab-uIC" secondAttribute="leading" constant="20" id="Xh7-FZ-dpa"/>
                             <constraint firstItem="iLM-pF-Xfj" firstAttribute="top" secondItem="LAV-dz-R2g" secondAttribute="bottom" constant="20" id="jOE-Nq-lEC"/>
                             <constraint firstItem="Av9-Po-Vpd" firstAttribute="leading" secondItem="s1z-pw-DHz" secondAttribute="leading" constant="30" id="nzA-V2-4m0"/>
+                            <constraint firstItem="s1z-pw-DHz" firstAttribute="trailing" secondItem="Av9-Po-Vpd" secondAttribute="trailing" constant="30" id="qPu-yh-hPO"/>
                             <constraint firstItem="s1z-pw-DHz" firstAttribute="trailing" secondItem="XTf-Lv-Sob" secondAttribute="trailing" constant="20" id="qoZ-ca-aht"/>
-                            <constraint firstItem="Bhv-ZJ-nCy" firstAttribute="width" secondItem="Av9-Po-Vpd" secondAttribute="width" id="s0A-XS-flo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="s1z-pw-DHz"/>
                     </view>

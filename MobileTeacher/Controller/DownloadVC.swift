@@ -159,7 +159,7 @@ class DownloadVC: UIViewController {
             button that says "OK"
          */
          
-        let alert = UIAlertController(title: "Keep App Running", message: "Keep app running to ensure the video downloads",preferredStyle: UIAlertController.Style.alert)
+        let alert = UIAlertController(title: "Keep App Running", message: "Keep app running until notified that download is complete to ensure the video downloads",preferredStyle: UIAlertController.Style.alert)
 
         
        
@@ -360,6 +360,12 @@ class DownloadVC: UIViewController {
         
        
         
-
+    @IBAction func backPressed(_ sender: Any) {
+        
+        dismiss(animated: true, completion: nil)
+        //https://medium.com/@mimicatcodes/create-unwind-segues-in-swift-3-8793f7d23c6f
+        
+    }
+    
 }
 
