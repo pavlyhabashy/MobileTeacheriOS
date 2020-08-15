@@ -23,6 +23,7 @@ var globalTags = [String:[Video]]()
 
 
 class BrowseTVC: UITableViewController, VideoCellDelegate, AVPlayerViewControllerDelegate, SkeletonTableViewDataSource, SkeletonTableViewDelegate {
+
     
     
     var videos = [Video]()
@@ -235,8 +236,8 @@ class BrowseTVC: UITableViewController, VideoCellDelegate, AVPlayerViewControlle
 
            let assetUrl = baseUrl.appendingPathComponent("MyFileSaveName.mp4")
 
-           let url = assetUrl
-           print(url)
+           //let url = assetUrl
+           //print(url)
            let avAssest = AVAsset(url: url)
            let playerItem = AVPlayerItem(asset: avAssest)
 
@@ -264,9 +265,12 @@ class BrowseTVC: UITableViewController, VideoCellDelegate, AVPlayerViewControlle
     // Tapping the download button starts downloading the video.
     // Once it's done, an AV Player will pop up asynchronously.
     // Currently does not work.
-    func didTapDownloadButton(url: String) {
+    func didTapDownloadButton(video: Video) {
         
         print("Attempting to download file")
+        
+        //print(video)
+        performSegue(withIdentifier: "downloadSegue", sender: video)
         
         // Cancel previous task
 //        downloadTask?.cancel()
@@ -340,6 +344,10 @@ class BrowseTVC: UITableViewController, VideoCellDelegate, AVPlayerViewControlle
 //            }
 //        }
 //    }
+        
+        
+        
+        
     
     let storage = Storage.storage()
     let storageRef = storage.reference()
@@ -391,6 +399,30 @@ class BrowseTVC: UITableViewController, VideoCellDelegate, AVPlayerViewControlle
         }
     }
 }
+ 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+        
+        
+        if segue.identifier == "downloadSegue"  {
+            let vc = segue.destination as? DownloadVC
+
+            print("Prepare")
+            
+            print(sender as! Video)
+            vc?.video = sender as? Video
+            print(vc?.video.title ?? "")
+            vc?.titleLabel?.text = vc?.video?.title
+            vc?.descriptionLabel?.text = vc?.video?.description
+            
+            print(vc?.video ?? nil)
+            print(vc?.titleLabel?.text)
+            print(vc?.descriptionLabel?.text)
+            
+            //print(vc?.titleLabel.text)
+        }
+    }
 }
 
 extension String {
@@ -431,5 +463,7 @@ extension UITableViewController: SFSafariViewControllerDelegate, MFMessageCompos
     public func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
         controller.dismiss(animated: true, completion: nil)
     }
+    
+    
     
 }

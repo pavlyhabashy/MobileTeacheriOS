@@ -13,7 +13,7 @@ import SkeletonView
 protocol VideoCellDelegate {
     func didTapPlayButton(url: URL)
     func didTapShareButton(url: URL)
-    func didTapDownloadButton(url: String)
+    func didTapDownloadButton(video: Video)
 }
 
 class VideoTableViewCell: UITableViewCell {
@@ -72,14 +72,17 @@ class VideoTableViewCell: UITableViewCell {
     }
     
     @IBAction func playButtonTapped(_ sender: Any) {
-        delegate?.didTapPlayButton(url: videoItem.url)
+        delegate?.didTapPlayButton(url: videoItem.downloadURL)
     }
     @IBAction func shareButtonTapped(_ sender: Any) {
         delegate?.didTapShareButton(url: videoItem.url)
     }
     @IBAction func downloadButtonTapped(_ sender: Any) {
-        delegate?.didTapDownloadButton(url: videoItem.storage)
+        print("Download Press")
+        
+        delegate?.didTapDownloadButton(video: videoItem)
     }
+    
     
 }
 

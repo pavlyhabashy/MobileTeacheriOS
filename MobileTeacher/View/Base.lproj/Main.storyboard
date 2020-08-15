@@ -1,13 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QZK-Rv-449">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QZK-Rv-449">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Item 2-->
+        <scene sceneID="LPR-EU-jK1">
+            <objects>
+                <viewController id="Yh2-QV-dgr" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Alv-sr-0FZ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="Ju0-oY-2Wa"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 2" id="klT-VQ-i6y"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rzt-2y-JIK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2325" y="-1333"/>
+        </scene>
+        <!--Item 1-->
+        <scene sceneID="UwO-rV-mv1">
+            <objects>
+                <viewController id="eId-gD-rkz" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="t67-zO-vWH">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="cu2-AO-aLy"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 1" id="4vl-3w-KyV"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fcu-K2-JaR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2325" y="-1669"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="DtE-sV-wwA">
+            <objects>
+                <tabBarController id="Xe9-Qk-FxV" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0ML-7h-rx9">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="eId-gD-rkz" kind="relationship" relationship="viewControllers" id="Ynn-R5-Rzw"/>
+                        <segue destination="Yh2-QV-dgr" kind="relationship" relationship="viewControllers" id="awe-7W-WjX"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="puR-Kg-YqV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1406" y="-1345"/>
+        </scene>
         <!--Videos-->
         <scene sceneID="o87-dO-Zl2">
             <objects>
@@ -191,10 +241,13 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="hcP-7U-6iS" kind="show" identifier="downloadSegue" id="KKW-1g-7tx"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uxQ-4i-F4r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2156.521739130435" y="-646.20535714285711"/>
+            <point key="canvasLocation" x="2126" y="-749"/>
         </scene>
         <!--Search-->
         <scene sceneID="E4K-2a-s7A">
@@ -824,6 +877,72 @@
             </objects>
             <point key="canvasLocation" x="4928.985507246377" y="93.75"/>
         </scene>
+        <!--Download Video-->
+        <scene sceneID="xTJ-MS-ojf">
+            <objects>
+                <viewController id="hcP-7U-6iS" customClass="DownloadVC" customModule="MobileTeacher" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="es2-ab-uIC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LAV-dz-R2g">
+                                <rect key="frame" x="20" y="150" width="374" height="41"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Are you sure you want to download this file?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XTf-Lv-Sob">
+                                <rect key="frame" x="20" y="771.5" width="374" height="20.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Av9-Po-Vpd">
+                                <rect key="frame" x="30" y="812" width="354" height="30"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Download">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="downloadClick:" destination="hcP-7U-6iS" eventType="touchUpInside" id="EWG-5u-Yuc"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iLM-pF-Xfj">
+                                <rect key="frame" x="20" y="211" width="374" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Av9-Po-Vpd" firstAttribute="top" secondItem="XTf-Lv-Sob" secondAttribute="bottom" constant="20" id="3a4-Hm-luo"/>
+                            <constraint firstItem="LAV-dz-R2g" firstAttribute="centerX" secondItem="es2-ab-uIC" secondAttribute="centerX" id="BbX-eh-pGn"/>
+                            <constraint firstItem="LAV-dz-R2g" firstAttribute="top" secondItem="s1z-pw-DHz" secondAttribute="top" constant="10" id="Kbs-AO-0sf"/>
+                            <constraint firstItem="s1z-pw-DHz" firstAttribute="bottom" secondItem="Av9-Po-Vpd" secondAttribute="bottom" constant="20" id="MPw-Uu-ibe"/>
+                            <constraint firstItem="iLM-pF-Xfj" firstAttribute="leading" secondItem="s1z-pw-DHz" secondAttribute="leading" constant="20" id="Mhv-la-eaY"/>
+                            <constraint firstItem="s1z-pw-DHz" firstAttribute="trailing" secondItem="LAV-dz-R2g" secondAttribute="trailing" constant="20" id="NQt-lJ-TUZ"/>
+                            <constraint firstItem="iLM-pF-Xfj" firstAttribute="centerX" secondItem="es2-ab-uIC" secondAttribute="centerX" id="OSP-sy-sjH"/>
+                            <constraint firstItem="LAV-dz-R2g" firstAttribute="leading" secondItem="s1z-pw-DHz" secondAttribute="leading" constant="20" id="Vl7-4X-0hg"/>
+                            <constraint firstItem="s1z-pw-DHz" firstAttribute="trailing" secondItem="iLM-pF-Xfj" secondAttribute="trailing" constant="20" id="X7W-qg-Pq0"/>
+                            <constraint firstItem="XTf-Lv-Sob" firstAttribute="leading" secondItem="es2-ab-uIC" secondAttribute="leading" constant="20" id="Xh7-FZ-dpa"/>
+                            <constraint firstItem="iLM-pF-Xfj" firstAttribute="top" secondItem="LAV-dz-R2g" secondAttribute="bottom" constant="20" id="jOE-Nq-lEC"/>
+                            <constraint firstItem="Av9-Po-Vpd" firstAttribute="leading" secondItem="s1z-pw-DHz" secondAttribute="leading" constant="30" id="nzA-V2-4m0"/>
+                            <constraint firstItem="s1z-pw-DHz" firstAttribute="trailing" secondItem="Av9-Po-Vpd" secondAttribute="trailing" constant="30" id="qPu-yh-hPO"/>
+                            <constraint firstItem="s1z-pw-DHz" firstAttribute="trailing" secondItem="XTf-Lv-Sob" secondAttribute="trailing" constant="20" id="qoZ-ca-aht"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="s1z-pw-DHz"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Download Video" id="OUa-nj-Mvm"/>
+                    <connections>
+                        <outlet property="descriptionLabel" destination="iLM-pF-Xfj" id="ek7-db-FGD"/>
+                        <outlet property="titleLabel" destination="LAV-dz-R2g" id="Inx-Ww-YiC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7tC-yK-3oB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3089.8550724637685" y="-1140.4017857142856"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="gd4-zk-deb">
             <objects>
@@ -840,12 +959,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p1F-j8-0Xm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3000.0000000000005" y="-646.20535714285711"/>
+            <point key="canvasLocation" x="3067" y="-433"/>
         </scene>
     </scenes>
     <resources>
-        <image name="play.fill" catalog="system" width="32" height="32"/>
-        <image name="square.and.arrow.down" catalog="system" width="60" height="64"/>
-        <image name="square.and.arrow.up" catalog="system" width="56" height="64"/>
+        <image name="play.fill" catalog="system" width="116" height="128"/>
+        <image name="square.and.arrow.down" catalog="system" width="121" height="128"/>
+        <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
     </resources>
 </document>
