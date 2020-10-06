@@ -14,6 +14,8 @@ protocol VideoCellDelegate {
     func didTapPlayButton(url: URL)
     func didTapShareButton(url: URL)
     func didTapDownloadButton(video: Video)
+    func didTapProblemButton(video: Video)
+    func didTapOfflineButton(video: Video )
 }
 
 class VideoTableViewCell: UITableViewCell {
@@ -28,7 +30,7 @@ class VideoTableViewCell: UITableViewCell {
     @IBOutlet weak var cellContainerView: UIView!
     @IBOutlet weak var downloadButtonOutlet: UIButton!
     @IBOutlet weak var stackViewOutlet: UIStackView!
-    
+    @IBOutlet weak var problemButtonOutlet: UIButton!
     
     
     var videoItem: Video!
@@ -73,6 +75,8 @@ class VideoTableViewCell: UITableViewCell {
     
     @IBAction func playButtonTapped(_ sender: Any) {
         delegate?.didTapPlayButton(url: videoItem.downloadURL)
+        print("URLLLL")
+        print(videoItem.downloadURL)
     }
     @IBAction func shareButtonTapped(_ sender: Any) {
         delegate?.didTapShareButton(url: videoItem.url)
@@ -80,9 +84,13 @@ class VideoTableViewCell: UITableViewCell {
     @IBAction func downloadButtonTapped(_ sender: Any) {
         print("Download Press")
         
-        delegate?.didTapDownloadButton(video: videoItem)
+//        delegate?.didTapDownloadButton(video: videoItem)
+        delegate?.didTapOfflineButton(video: videoItem)
     }
     
+    @IBAction func problemButtonTapped(_ sender: Any) {
+        delegate?.didTapProblemButton(video: videoItem)
+    }
     
 }
 

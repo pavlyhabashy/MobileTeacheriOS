@@ -14,7 +14,7 @@ import SafariServices
 import AVKit
 import SkeletonView
 import FirebaseStorage
-
+import Photos
 
 
 var downloadTask: URLSessionDownloadTask?
@@ -33,7 +33,6 @@ class BrowseTVC: UITableViewController, VideoCellDelegate, AVPlayerViewControlle
     let db = Firestore.firestore()
     var player = AVPlayer()
     var playerVC = AVPlayerViewController()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         DataManager.shared.browseTVC = self
@@ -161,14 +160,14 @@ class BrowseTVC: UITableViewController, VideoCellDelegate, AVPlayerViewControlle
                         let array = string.components(separatedBy: "id=")
                         
                         video.downloadURL = URL(string: "https://drive.google.com/uc?export=download&id=\(array[1])")
-                        
+                        print(video.downloadURL)
                     } else if string.contains("/file/d") {
                         let array = string.components(separatedBy: "/")
                         video.downloadURL = URL(string: "https://drive.google.com/uc?export=download&id=\(array[5])")
                     } else {
                         print("nope")
                     }
-                    
+                    video.downloadURL = video.url
                     if let storage = document.get("storage") as? String {
                         video.storage = storage
                         print(storage)
@@ -235,7 +234,8 @@ class BrowseTVC: UITableViewController, VideoCellDelegate, AVPlayerViewControlle
         let baseUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
 
            let assetUrl = baseUrl.appendingPathComponent("MyFileSaveName.mp4")
-
+            print("HOLLAA")
+            print(assetUrl)
            //let url = assetUrl
            //print(url)
            let avAssest = AVAsset(url: url)
@@ -261,7 +261,20 @@ class BrowseTVC: UITableViewController, VideoCellDelegate, AVPlayerViewControlle
         present(ac, animated: true)
         
     }
-    
+    func didTapProblemButton(video: Video) {
+           print("Press Problem")
+           let title = video.title
+           print(title)
+           let description = video.description
+           //check to see if device can compose email
+           guard MFMailComposeViewController.canSendMail() else{return}
+           let mailComposer = MFMailComposeViewController()
+           mailComposer.mailComposeDelegate = self
+           mailComposer.setToRecipients(["mobileteacher.org@gmail.com"])
+           mailComposer.setSubject("Reporting a problem on "+title)
+           mailComposer.setMessageBody("Hello, \nI am reporting a problem on the following video: "+title+".", isHTML: false)
+           present(mailComposer,animated: true)
+       }
     // Tapping the download button starts downloading the video.
     // Once it's done, an AV Player will pop up asynchronously.
     // Currently does not work.
@@ -355,6 +368,7 @@ class BrowseTVC: UITableViewController, VideoCellDelegate, AVPlayerViewControlle
     starsRef.downloadURL { (url, error) in
 
         print(url?.absoluteString)
+        print("ABCDEFG")
         if let error = error {
             // Handle any errors
             // Show unable to play video at this time
@@ -399,7 +413,29 @@ class BrowseTVC: UITableViewController, VideoCellDelegate, AVPlayerViewControlle
         }
     }
 }
- 
+    func didTapOfflineButton(video: Video) {
+        // use guard to make sure you have a valid url
+        guard let videoURL = URL(string: video.downloadURL.absoluteString) else { return }
+        guard let documentsDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+        print(documentsDirectoryURL)
+        // check if the file already exist at the destination folder if you don't want to download it twice
+        if !FileManager.default.fileExists(atPath: documentsDirectoryURL.appendingPathComponent(videoURL.lastPathComponent).path) {
+
+            // set up your download task
+            URLSession.shared.downloadTask(with: videoURL) { (location, response, error) -> Void in
+
+                // use guard to unwrap your optional url
+                guard let location = location else { return }
+
+                // create a deatination url with the server response suggested file name
+                let destinationURL = documentsDirectoryURL.appendingPathComponent(response?.suggestedFilename ?? videoURL.lastPathComponent)
+            }.resume()
+
+        } else {
+            print("File already exists at destination url")
+        }
+
+    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.

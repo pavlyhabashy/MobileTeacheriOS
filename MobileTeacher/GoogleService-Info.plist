@@ -3,23 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>998373011267-uf0li5rklvu7q2pdiq8lufsijobpetqe.apps.googleusercontent.com</string>
+	<string>1092660973973-2hukf2tdhl7bnhp2ids4govtqv67b8ql.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.998373011267-uf0li5rklvu7q2pdiq8lufsijobpetqe</string>
-	<key>ANDROID_CLIENT_ID</key>
-	<string>998373011267-f629an89i7jcj80ib9m54ckb8iuimmu4.apps.googleusercontent.com</string>
+	<string>com.googleusercontent.apps.1092660973973-2hukf2tdhl7bnhp2ids4govtqv67b8ql</string>
 	<key>API_KEY</key>
-	<string>AIzaSyDimpAFL1czXPBN5Iu0BRbl7Qk2oOICOQw</string>
+	<string>AIzaSyD9lObPcMH9tu9Qv8B_rgl0T2IK9Nc3VVM</string>
 	<key>GCM_SENDER_ID</key>
-	<string>998373011267</string>
+	<string>1092660973973</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.phabashy.MobileTeacher</string>
+	<string>com.admin.alfonsorojas</string>
 	<key>PROJECT_ID</key>
-	<string>mobile-teacher-2f1ac</string>
+	<string>mobileteacher-3f302</string>
 	<key>STORAGE_BUCKET</key>
-	<string>mobile-teacher-2f1ac.appspot.com</string>
+	<string>mobileteacher-3f302.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -31,8 +29,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:998373011267:ios:edc82cf10abc08dc1a09f6</string>
+	<string>1:1092660973973:ios:67020d2352a45f5df9269c</string>
 	<key>DATABASE_URL</key>
-	<string>https://mobile-teacher-2f1ac.firebaseio.com</string>
+	<string>https://mobileteacher-3f302.firebaseio.com</string>
 </dict>
 </plist>

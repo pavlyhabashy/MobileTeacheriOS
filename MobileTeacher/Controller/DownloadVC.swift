@@ -188,7 +188,8 @@ class DownloadVC: UIViewController {
                    
                    DispatchQueue.global(qos: .background).async{
                        var url = self.video.downloadURL
-
+                        print("HOLAAAAAA")
+                    print(url)
                    //pathReference.downloadURL{ url, error in
                        var vid = AVAsset(url: url!)
                        
@@ -213,8 +214,8 @@ class DownloadVC: UIViewController {
                        let docsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
                        let destinationURL = docsURL.appendingPathComponent(UUID.init().uuidString + ".mov")
                        
-                       
-                       
+                       print(destinationURL)
+                       print("WXYZ!!!!")
                        var request = URLRequest(url: url!)
                        request.httpMethod = "GET"
                        

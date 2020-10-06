@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		055E50FF252AB13700A896DD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 055E50FE252AB13700A896DD /* GoogleService-Info.plist */; };
+		05F1D691252B96CA002A8F39 /* OfflineTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F1D690252B96CA002A8F39 /* OfflineTVC.swift */; };
 		0B0A1E312356D045002D7052 /* InstructionButtonTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0A1E302356D045002D7052 /* InstructionButtonTVCell.swift */; };
 		0B206B1A23440D2300C90777 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B206B1923440D2300C90777 /* HomeVC.swift */; };
 		0B2A8FAD235D5F0D000D1B86 /* FilterTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2A8FAC235D5F0D000D1B86 /* FilterTVC.swift */; };
@@ -26,7 +28,6 @@
 		0BBEC2ED23798A7900BAB407 /* ContactTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBEC2EC23798A7900BAB407 /* ContactTVCell.swift */; };
 		0BC25EFF238A553B00AC48CF /* VideoFormVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC25EFE238A553A00AC48CF /* VideoFormVC.swift */; };
 		0BC25F03238A60CE00AC48CF /* UploadingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC25F02238A60CE00AC48CF /* UploadingVC.swift */; };
-		0BDF337F23329C7500860624 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BDF337E23329C7500860624 /* GoogleService-Info.plist */; };
 		2FF1DAA824C1951D00F2A239 /* DownloadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF1DAA724C1951D00F2A239 /* DownloadVC.swift */; };
 		9828895223F4E74F00264B13 /* VideoDOA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9828895123F4E74F00264B13 /* VideoDOA.swift */; };
 		9828895423F4EA5900264B13 /* VideoStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9828895323F4EA5900264B13 /* VideoStorage.swift */; };
@@ -34,6 +35,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		055E50FE252AB13700A896DD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		05F1D690252B96CA002A8F39 /* OfflineTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OfflineTVC.swift; path = MobileTeacher/Controller/OfflineTVC.swift; sourceTree = SOURCE_ROOT; };
 		0B0A1E302356D045002D7052 /* InstructionButtonTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionButtonTVCell.swift; sourceTree = "<group>"; };
 		0B206B1923440D2300C90777 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		0B2A8FAC235D5F0D000D1B86 /* FilterTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FilterTVC.swift; path = MobileTeacher/Controller/FilterTVC.swift; sourceTree = SOURCE_ROOT; };
@@ -55,7 +58,6 @@
 		0BBEC2EC23798A7900BAB407 /* ContactTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTVCell.swift; sourceTree = "<group>"; };
 		0BC25EFE238A553A00AC48CF /* VideoFormVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoFormVC.swift; sourceTree = "<group>"; };
 		0BC25F02238A60CE00AC48CF /* UploadingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadingVC.swift; sourceTree = "<group>"; };
-		0BDF337E23329C7500860624 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0FDD0D89004215AFFFE93015 /* Pods-MobileTeacher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileTeacher.release.xcconfig"; path = "Pods/Target Support Files/Pods-MobileTeacher/Pods-MobileTeacher.release.xcconfig"; sourceTree = "<group>"; };
 		2FF1DAA724C1951D00F2A239 /* DownloadVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadVC.swift; sourceTree = "<group>"; };
 		474168E1F9723A7F6264F9EB /* Pods-MobileTeacher.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileTeacher.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MobileTeacher/Pods-MobileTeacher.debug.xcconfig"; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 			children = (
 				0B2B60DF233065110023C2BF /* Table View Cells */,
 				0B206B1923440D2300C90777 /* HomeVC.swift */,
+				05F1D690252B96CA002A8F39 /* OfflineTVC.swift */,
 				0B65036A23248D96003375A2 /* BrowseTVC.swift */,
 				0B2A8FAC235D5F0D000D1B86 /* FilterTVC.swift */,
 				0BC25EFE238A553A00AC48CF /* VideoFormVC.swift */,
@@ -153,9 +156,9 @@
 		0B65035423247FF0003375A2 /* MobileTeacher */ = {
 			isa = PBXGroup;
 			children = (
+				055E50FE252AB13700A896DD /* GoogleService-Info.plist */,
 				0B65035523247FF0003375A2 /* AppDelegate.swift */,
 				0B65036423247FF1003375A2 /* Info.plist */,
-				0BDF337E23329C7500860624 /* GoogleService-Info.plist */,
 				0B2B60DB2330644B0023C2BF /* Model */,
 				0B2B60DD2330646F0023C2BF /* Controller */,
 				0B2B60DC233064610023C2BF /* View */,
@@ -243,7 +246,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B65036323247FF1003375A2 /* LaunchScreen.storyboard in Resources */,
-				0BDF337F23329C7500860624 /* GoogleService-Info.plist in Resources */,
+				055E50FF252AB13700A896DD /* GoogleService-Info.plist in Resources */,
 				0B65036023247FF1003375A2 /* Assets.xcassets in Resources */,
 				0B65035B23247FF0003375A2 /* Main.storyboard in Resources */,
 			);
@@ -305,6 +308,7 @@
 				0B6DD7F1235FF33700AA9EBF /* TagTVCell.swift in Sources */,
 				0B2A8FAD235D5F0D000D1B86 /* FilterTVC.swift in Sources */,
 				0B206B1A23440D2300C90777 /* HomeVC.swift in Sources */,
+				05F1D691252B96CA002A8F39 /* OfflineTVC.swift in Sources */,
 				0B65035623247FF0003375A2 /* AppDelegate.swift in Sources */,
 				0B6DD7F523604F4900AA9EBF /* ObjectsStruct.swift in Sources */,
 				0BC25F03238A60CE00AC48CF /* UploadingVC.swift in Sources */,
@@ -465,7 +469,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 59C658HP79;
+				DEVELOPMENT_TEAM = 58ZV2R7PBW;
 				INFOPLIST_FILE = MobileTeacher/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -473,7 +477,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.admin.willieshen;
+				PRODUCT_BUNDLE_IDENTIFIER = com.admin.alfonsorojas;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -488,7 +492,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 59C658HP79;
+				DEVELOPMENT_TEAM = 58ZV2R7PBW;
 				INFOPLIST_FILE = MobileTeacher/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -496,7 +500,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.admin.willieshen;
+				PRODUCT_BUNDLE_IDENTIFIER = com.admin.alfonsorojas;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Mobile Teacher";
 				SWIFT_VERSION = 5.0;
