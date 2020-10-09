@@ -12,6 +12,7 @@ import AVFoundation
 
 class OfflineTVC: UITableViewController {
     var urlArr = [URL]()
+    var videos_arr = [OfflinedVideo]()
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,6 +22,12 @@ class OfflineTVC: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         print("ENTERED OFFLINE")
+         let documents = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let decoder = PropertyListDecoder()
+        guard let data = try? Data.init(contentsOf: documents.appendingPathComponent("Preferences.plist")),
+            var videos = try? decoder.decode(Plist.self, from: data)
+            else { return }
+        videos_arr = videos.videos
         let fileManager = FileManager.default
         let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
         do {
@@ -44,7 +51,7 @@ class OfflineTVC: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return urlArr.count
+        return videos_arr.count
     }
 
     
@@ -60,14 +67,14 @@ class OfflineTVC: UITableViewController {
     }
     
     func playDownload(indexPath:IndexPath){
-                let videoURL = urlArr[indexPath.row]
-                let player = AVPlayer(url: videoURL)
-                let playerViewController = AVPlayerViewController()
-                playerViewController.player = player
-                self.present(playerViewController, animated: true) {
-                playerViewController.player!.play()
-                }
-            }
+        let videoURL = videos_arr[indexPath.row].downloadLocation
+        let player = AVPlayer(url: videoURL)
+        let playerViewController = AVPlayerViewController()
+        playerViewController.player = player
+        self.present(playerViewController, animated: true) {
+        playerViewController.player!.play()
+        }
+    }
     
     override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
         let cell = tableView.dequeueReusableCell(withIdentifier: "OfflineCell", for: indexPath)

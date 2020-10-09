@@ -416,6 +416,7 @@ class BrowseTVC: UITableViewController, VideoCellDelegate, AVPlayerViewControlle
     func didTapOfflineButton(video: Video) {
         // use guard to make sure you have a valid url
         guard let videoURL = URL(string: video.downloadURL.absoluteString) else { return }
+        // intialize temp array
         guard let documentsDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
         print(documentsDirectoryURL)
         // check if the file already exist at the destination folder if you don't want to download it twice
@@ -429,6 +430,30 @@ class BrowseTVC: UITableViewController, VideoCellDelegate, AVPlayerViewControlle
 
                 // create a deatination url with the server response suggested file name
                 let destinationURL = documentsDirectoryURL.appendingPathComponent(response?.suggestedFilename ?? videoURL.lastPathComponent)
+                var videos_for_plist = [OfflinedVideo]()
+                        // check for existing videos in the plist
+                        let documents = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+                        let decoder = PropertyListDecoder()
+
+                        guard let data = try? Data.init(contentsOf: documents.appendingPathComponent("Preferences.plist")),
+                            let preferences_old = try? decoder.decode(Plist.self, from: data)
+                          else { return }
+                        videos_for_plist.append(contentsOf: preferences_old.videos)
+                        let preferences = OfflinedVideo(title: video.title, description : video.description, tags: video.tags, url: videoURL, downloadURL:videoURL, hours: video.hours, minutes: video.minutes, seconds: video.seconds, downloadLocation:destinationURL)
+                        let encoder = PropertyListEncoder()
+                        encoder.outputFormat = .xml
+
+                        let path_new = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("Preferences.plist")
+                        // append new video to temp list
+                        videos_for_plist.append(preferences)
+                        // write new plist file
+                        let data_to_plist = Plist(videos: videos_for_plist)
+                        do {
+                            let data = try encoder.encode(data_to_plist)
+                            try data.write(to: path_new)
+                        } catch {
+                            print(error)
+                        }
             }.resume()
 
         } else {

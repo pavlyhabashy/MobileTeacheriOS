@@ -25,3 +25,17 @@ struct Video : Hashable {
         return lhs.url == rhs.url
     }
 }
+struct OfflinedVideo : Codable {
+    var title: String
+    var description: String
+    var tags: [String]
+    var url: URL
+    var downloadURL: URL
+    var hours: Int
+    var minutes: Int
+    var seconds: Int
+    var downloadLocation: URL
+}
+struct Plist : Codable {
+    var videos: [OfflinedVideo]
+}
