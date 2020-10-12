@@ -435,10 +435,10 @@ class BrowseTVC: UITableViewController, VideoCellDelegate, AVPlayerViewControlle
                         let documents = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
                         let decoder = PropertyListDecoder()
 
-                        guard let data = try? Data.init(contentsOf: documents.appendingPathComponent("Preferences.plist")),
-                            let preferences_old = try? decoder.decode(Plist.self, from: data)
-                          else { return }
-                        videos_for_plist.append(contentsOf: preferences_old.videos)
+                if let data = try? Data.init(contentsOf: documents.appendingPathComponent("Preferences.plist")) {
+                    let preferences_old = try? decoder.decode(Plist.self, from: data);
+                    videos_for_plist.append(contentsOf: preferences_old?.videos ?? []);
+                        }
                         let preferences = OfflinedVideo(title: video.title, description : video.description, tags: video.tags, url: videoURL, downloadURL:videoURL, hours: video.hours, minutes: video.minutes, seconds: video.seconds, downloadLocation:destinationURL)
                         let encoder = PropertyListEncoder()
                         encoder.outputFormat = .xml
