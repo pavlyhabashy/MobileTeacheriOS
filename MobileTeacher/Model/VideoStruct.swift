@@ -38,4 +38,8 @@ struct OfflinedVideo : Codable {
 }
 struct Plist : Codable {
     var videos: [OfflinedVideo]
+    
+    mutating func deleteAtRow(row: Int){
+        videos.remove(at: row)
+    }
 }

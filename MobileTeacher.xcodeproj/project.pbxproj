@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		055E50FF252AB13700A896DD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 055E50FE252AB13700A896DD /* GoogleService-Info.plist */; };
+		0597B2962534D36600B23B82 /* OfflineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0597B2952534D36600B23B82 /* OfflineTableViewCell.swift */; };
 		05F1D691252B96CA002A8F39 /* OfflineTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F1D690252B96CA002A8F39 /* OfflineTVC.swift */; };
 		0B0A1E312356D045002D7052 /* InstructionButtonTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0A1E302356D045002D7052 /* InstructionButtonTVCell.swift */; };
 		0B206B1A23440D2300C90777 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B206B1923440D2300C90777 /* HomeVC.swift */; };
@@ -36,6 +37,7 @@
 
 /* Begin PBXFileReference section */
 		055E50FE252AB13700A896DD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0597B2952534D36600B23B82 /* OfflineTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineTableViewCell.swift; sourceTree = "<group>"; };
 		05F1D690252B96CA002A8F39 /* OfflineTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OfflineTVC.swift; path = MobileTeacher/Controller/OfflineTVC.swift; sourceTree = SOURCE_ROOT; };
 		0B0A1E302356D045002D7052 /* InstructionButtonTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionButtonTVCell.swift; sourceTree = "<group>"; };
 		0B206B1923440D2300C90777 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 				0B0A1E302356D045002D7052 /* InstructionButtonTVCell.swift */,
 				0B6DD7F0235FF33700AA9EBF /* TagTVCell.swift */,
 				0BBEC2EC23798A7900BAB407 /* ContactTVCell.swift */,
+				0597B2952534D36600B23B82 /* OfflineTableViewCell.swift */,
 			);
 			path = "Table View Cells";
 			sourceTree = "<group>";
@@ -314,6 +317,7 @@
 				0BC25F03238A60CE00AC48CF /* UploadingVC.swift in Sources */,
 				0B65036B23248D96003375A2 /* BrowseTVC.swift in Sources */,
 				0B0A1E312356D045002D7052 /* InstructionButtonTVCell.swift in Sources */,
+				0597B2962534D36600B23B82 /* OfflineTableViewCell.swift in Sources */,
 				0B7DCBBF2332EFF9006E6AFE /* VideoStruct.swift in Sources */,
 				0BBEC2ED23798A7900BAB407 /* ContactTVCell.swift in Sources */,
 				0B2B60E1233066860023C2BF /* HowToUseTVC.swift in Sources */,

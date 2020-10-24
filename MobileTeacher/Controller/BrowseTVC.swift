@@ -26,6 +26,7 @@ class BrowseTVC: UITableViewController, VideoCellDelegate, AVPlayerViewControlle
 
     
     
+    @IBOutlet weak var backButton: UIBarButtonItem!
     var videos = [Video]()
     var selectedVideos = [Video]()
     var allVideos = [Video]()
@@ -38,7 +39,8 @@ class BrowseTVC: UITableViewController, VideoCellDelegate, AVPlayerViewControlle
         DataManager.shared.browseTVC = self
         self.tableView.allowsSelection = false
         self.readDatabase()
-        
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Home", style: .plain, target: nil, action: nil)
+
         playerVC.delegate = self
         
         if #available(iOS 13.0, *) {
@@ -103,6 +105,9 @@ class BrowseTVC: UITableViewController, VideoCellDelegate, AVPlayerViewControlle
         return cell
     }
     
+    @IBAction func backButtonPressed(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     
     // Read from the database
     fileprivate func readDatabase() {
@@ -119,7 +124,6 @@ class BrowseTVC: UITableViewController, VideoCellDelegate, AVPlayerViewControlle
                 //                print(querySnapshot!.documents.count)
                 for document in querySnapshot!.documents {
                     var video = Video()
-                    
                     // For some reason, the lengths stored in the database are either strings or numbers.
                     // The following block takes care of that.
                     var length: Int
@@ -413,7 +417,9 @@ class BrowseTVC: UITableViewController, VideoCellDelegate, AVPlayerViewControlle
         }
     }
 }
-    func didTapOfflineButton(video: Video) {
+    
+    func proceedToDownload(video: Video){
+        print("PROCEED TO DOWNLOAD")
         // use guard to make sure you have a valid url
         guard let videoURL = URL(string: video.downloadURL.absoluteString) else { return }
         // intialize temp array
@@ -424,12 +430,20 @@ class BrowseTVC: UITableViewController, VideoCellDelegate, AVPlayerViewControlle
 
             // set up your download task
             URLSession.shared.downloadTask(with: videoURL) { (location, response, error) -> Void in
-
+                //input the notification banner here
+                let content2 = UNMutableNotificationContent()
+                content2.title = "Downloading Complete"
+                content2.body =  "\"\(video.title)\" has been downloaded to your device"
+                //https://docs.swift.org/swift-book/LanguageGuide/StringsAndCharacters.html
+                let trigger2 = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+                let request2 = UNNotificationRequest(identifier: "Video Download Success", content: content2, trigger: trigger2)
+                UNUserNotificationCenter.current().add(request2, withCompletionHandler: nil)
                 // use guard to unwrap your optional url
                 guard let location = location else { return }
 
                 // create a deatination url with the server response suggested file name
                 let destinationURL = documentsDirectoryURL.appendingPathComponent(response?.suggestedFilename ?? videoURL.lastPathComponent)
+                
                 var videos_for_plist = [OfflinedVideo]()
                         // check for existing videos in the plist
                         let documents = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
@@ -449,17 +463,29 @@ class BrowseTVC: UITableViewController, VideoCellDelegate, AVPlayerViewControlle
                         // write new plist file
                         let data_to_plist = Plist(videos: videos_for_plist)
                         do {
+                            try FileManager.default.moveItem(at: location, to: destinationURL)
                             let data = try encoder.encode(data_to_plist)
                             try data.write(to: path_new)
                         } catch {
-                            print(error)
+                            print("ERROR\(error)")
                         }
             }.resume()
 
         } else {
             print("File already exists at destination url")
         }
-
+    }
+    func didTapOfflineButton(video: Video) {
+        //alert the user that they are about to download
+        let alert = UIAlertController(title: "Download Video", message: "You are about to download a file size of \(video.storage). Do you wish to proceed?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {action in
+            self.proceedToDownload(video: video)
+        }))
+        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: { action in
+            return
+        }))
+        self.present(alert,animated: true)
+    
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
