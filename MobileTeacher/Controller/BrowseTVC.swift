@@ -417,9 +417,8 @@ class BrowseTVC: UITableViewController, VideoCellDelegate, AVPlayerViewControlle
         }
     }
 }
-    
+    //if user presses 'yes' then we begin download
     func proceedToDownload(video: Video){
-        print("PROCEED TO DOWNLOAD")
         // use guard to make sure you have a valid url
         guard let videoURL = URL(string: video.downloadURL.absoluteString) else { return }
         // intialize temp array
@@ -448,7 +447,7 @@ class BrowseTVC: UITableViewController, VideoCellDelegate, AVPlayerViewControlle
                         // check for existing videos in the plist
                         let documents = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
                         let decoder = PropertyListDecoder()
-
+                //we will write all the metadata of videos to a plist so that we can grab metadata once offline
                 if let data = try? Data.init(contentsOf: documents.appendingPathComponent("Preferences.plist")) {
                     let preferences_old = try? decoder.decode(Plist.self, from: data);
                     videos_for_plist.append(contentsOf: preferences_old?.videos ?? []);
@@ -475,17 +474,21 @@ class BrowseTVC: UITableViewController, VideoCellDelegate, AVPlayerViewControlle
             print("File already exists at destination url")
         }
     }
-   
+   //gets called when user wants to download video
     func didTapOfflineButton(video: Video) {
         //alert the user that they are about to download
         let data = NSData(contentsOf: video.downloadURL)
+        //grab video size to alert user of how much space video will take up
         var fileSize = Double(data!.length)
         fileSize /= (1024*1024)
-        let doubleStr = String(format: "%.2f", fileSize) // "3.14"
+        let doubleStr = String(format: "%.2f", fileSize)
+        //the alert banner
         let alert = UIAlertController(title: "Download Video", message: "You are about to download a file size of \(doubleStr) MB. Do you wish to proceed?", preferredStyle: .alert)
+        //if yes, then proceed to download
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {action in
             self.proceedToDownload(video: video)
         }))
+        //else cancel and return
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: { action in
             return
         }))

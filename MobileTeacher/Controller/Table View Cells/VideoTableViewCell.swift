@@ -75,16 +75,12 @@ class VideoTableViewCell: UITableViewCell {
     
     @IBAction func playButtonTapped(_ sender: Any) {
         delegate?.didTapPlayButton(url: videoItem.downloadURL)
-        print("URLLLL")
         print(videoItem.downloadURL)
     }
     @IBAction func shareButtonTapped(_ sender: Any) {
         delegate?.didTapShareButton(url: videoItem.url)
     }
     @IBAction func downloadButtonTapped(_ sender: Any) {
-        print("Download Press")
-        
-//        delegate?.didTapDownloadButton(video: videoItem)
         delegate?.didTapOfflineButton(video: videoItem)
     }
     

@@ -33,7 +33,7 @@ class OfflineTVC: UITableViewController,OfflineVideoCellDelegate, UITabBarContro
     }
     override func viewWillAppear(_ animated:Bool) {
         super.viewWillAppear(animated)
-        
+        //load data before offline view appears
         loadDocumentData()
         tableView?.reloadData()
     }
@@ -65,7 +65,7 @@ class OfflineTVC: UITableViewController,OfflineVideoCellDelegate, UITabBarContro
 
         return cell
     }
-    
+    //grabs data from plist
     func loadDocumentData(){
         let documents = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
        let decoder = PropertyListDecoder()
@@ -93,7 +93,7 @@ class OfflineTVC: UITableViewController,OfflineVideoCellDelegate, UITabBarContro
         playerViewController.player!.play()
     }
     }
-    
+    //sharing video instead of url
     func didTapShareButton(url: URL) {
         // Bring up Share Sheet
         let items = [url]
@@ -138,6 +138,7 @@ class OfflineTVC: UITableViewController,OfflineVideoCellDelegate, UITabBarContro
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
+    //if a video ever gets deleted, we delete the entire plist and create a new one without the deletions
     func deleteVideoFile(video: OfflinedVideo){
         let deleteURL = video.downloadLocation
         let deleteURLString = video.downloadLocation.absoluteString
@@ -175,21 +176,9 @@ class OfflineTVC: UITableViewController,OfflineVideoCellDelegate, UITabBarContro
                 catch let error as NSError {
                     print("An error took place: \(error)")
                 }
-//        print(array.last)
-//        do{
-//            let fileManager = FileManager.default
-//            if fileManager.fileExists(atPath: deleteURLString){
-//                try fileManager.removeItem(at: deleteURL)
-//            }else{
-//                print(deleteURL)
-//                print("File does not exist")
-//                print(deleteURLString)
-//            }
-//        }catch let error as NSError{
-//            print(error)
-//        }
         
     }
+    //function that deletes plist
     override func viewDidDisappear(_ animated: Bool) {
         if deletedVideos == 0{
             return
