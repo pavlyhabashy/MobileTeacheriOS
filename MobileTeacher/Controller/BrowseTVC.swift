@@ -475,9 +475,14 @@ class BrowseTVC: UITableViewController, VideoCellDelegate, AVPlayerViewControlle
             print("File already exists at destination url")
         }
     }
+   
     func didTapOfflineButton(video: Video) {
         //alert the user that they are about to download
-        let alert = UIAlertController(title: "Download Video", message: "You are about to download a file size of \(video.storage). Do you wish to proceed?", preferredStyle: .alert)
+        let data = NSData(contentsOf: video.downloadURL)
+        var fileSize = Double(data!.length)
+        fileSize /= (1024*1024)
+        let doubleStr = String(format: "%.2f", fileSize) // "3.14"
+        let alert = UIAlertController(title: "Download Video", message: "You are about to download a file size of \(doubleStr) MB. Do you wish to proceed?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {action in
             self.proceedToDownload(video: video)
         }))

@@ -27,7 +27,6 @@ class OfflineTVC: UITableViewController,OfflineVideoCellDelegate, UITabBarContro
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        print("ENTERED OFFLINE")
         backButton.title = "Home"
          
         self.navigationItem.rightBarButtonItem = self.editButtonItem
@@ -35,7 +34,6 @@ class OfflineTVC: UITableViewController,OfflineVideoCellDelegate, UITabBarContro
     override func viewWillAppear(_ animated:Bool) {
         super.viewWillAppear(animated)
         
-        print("CALLED VIEW WILL APPEAR")
         loadDocumentData()
         tableView?.reloadData()
     }
@@ -89,7 +87,6 @@ class OfflineTVC: UITableViewController,OfflineVideoCellDelegate, UITabBarContro
 
     func didTapPlayButton(url: URL) {
         let player = AVPlayer(url: url)
-        print("PLAYER: \(url)")
         let playerViewController = AVPlayerViewController()
         playerViewController.player = player
         self.present(playerViewController, animated: true) {
@@ -105,7 +102,6 @@ class OfflineTVC: UITableViewController,OfflineVideoCellDelegate, UITabBarContro
     }
     
     func didTapProblemButton(video: Video) {
-        print("Press Problem")
         let title = video.title
         print(title)
         let description = video.description
@@ -195,7 +191,6 @@ class OfflineTVC: UITableViewController,OfflineVideoCellDelegate, UITabBarContro
         
     }
     override func viewDidDisappear(_ animated: Bool) {
-        print("ENRTERED VIEWDIDDISAPPEAR")
         if deletedVideos == 0{
             return
         }
