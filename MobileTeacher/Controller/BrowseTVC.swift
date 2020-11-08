@@ -164,7 +164,6 @@ class BrowseTVC: UITableViewController, VideoCellDelegate, AVPlayerViewControlle
                         let array = string.components(separatedBy: "id=")
                         
                         video.downloadURL = URL(string: "https://drive.google.com/uc?export=download&id=\(array[1])")
-                        print(video.downloadURL)
                     } else if string.contains("/file/d") {
                         let array = string.components(separatedBy: "/")
                         video.downloadURL = URL(string: "https://drive.google.com/uc?export=download&id=\(array[5])")
@@ -269,7 +268,6 @@ class BrowseTVC: UITableViewController, VideoCellDelegate, AVPlayerViewControlle
            print("Press Problem")
            let title = video.title
            print(title)
-           let description = video.description
            //check to see if device can compose email
            guard MFMailComposeViewController.canSendMail() else{return}
            let mailComposer = MFMailComposeViewController()
@@ -522,29 +520,6 @@ class BrowseTVC: UITableViewController, VideoCellDelegate, AVPlayerViewControlle
         }))
         self.present(alert,animated: true)
     
-    }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-        
-        
-        if segue.identifier == "downloadSegue"  {
-            let vc = segue.destination as? DownloadVC
-
-            print("Prepare")
-            
-            print(sender as! Video)
-            vc?.video = sender as? Video
-            print(vc?.video.title ?? "")
-            vc?.titleLabel?.text = vc?.video?.title
-            vc?.descriptionLabel?.text = vc?.video?.description
-            
-            print(vc?.video ?? nil)
-            print(vc?.titleLabel?.text)
-            print(vc?.descriptionLabel?.text)
-            
-            //print(vc?.titleLabel.text)
-        }
     }
 }
 
