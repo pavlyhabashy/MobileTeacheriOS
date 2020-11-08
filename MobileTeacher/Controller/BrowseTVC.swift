@@ -474,8 +474,36 @@ class BrowseTVC: UITableViewController, VideoCellDelegate, AVPlayerViewControlle
             print("File already exists at destination url")
         }
     }
+    //checks to see whether video exists. if it does, then the user won't be prompted to download again
+    func fileExists(title: String) -> Bool
+    {
+        let myManager = FileManager.default
+        if let url = myManager.urls(for: .documentDirectory,
+                                  in: .userDomainMask).first {
+            let filePath = url.appendingPathComponent("Preferences.plist").path
+            print ("filepath: \(filePath)")
+            if myManager.fileExists(atPath: filePath){
+                if let myArray = NSDictionary(contentsOfFile: filePath){
+                    if let videos = myArray["videos"] as? [[String:AnyObject]] {
+                        for videoDict in videos {
+                            if let thisTitle = videoDict["title"]{
+                                if thisTitle as! String == title{
+                                    return true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return false
+    }
    //gets called when user wants to download video
     func didTapOfflineButton(video: Video) {
+        //checks to see if video already is downloaded. if it is, then the user will not be prompted.
+        if(fileExists(title:video.title)){
+            return
+        }
         //alert the user that they are about to download
         let data = NSData(contentsOf: video.downloadURL)
         //grab video size to alert user of how much space video will take up
