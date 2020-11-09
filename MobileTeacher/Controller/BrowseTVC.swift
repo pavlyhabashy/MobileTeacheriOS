@@ -237,7 +237,6 @@ class BrowseTVC: UITableViewController, VideoCellDelegate, AVPlayerViewControlle
         let baseUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
 
            let assetUrl = baseUrl.appendingPathComponent("MyFileSaveName.mp4")
-            print("HOLLAA")
             print(assetUrl)
            //let url = assetUrl
            //print(url)
