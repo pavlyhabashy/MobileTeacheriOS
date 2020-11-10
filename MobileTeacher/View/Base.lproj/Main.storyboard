@@ -296,61 +296,39 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="StepOne" rowHeight="206" id="Ljf-93-ERc" customClass="InstructionButtonTVCell" customModule="MobileTeacher" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="StepOne" rowHeight="206" id="iYe-NS-61c" userLabel="StepOne">
                                 <rect key="frame" x="0.0" y="28" width="414" height="206"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ljf-93-ERc" id="ONs-cG-DJU">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iYe-NS-61c" id="g0R-Kw-4eI">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="206"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step 1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rrv-ff-H0i">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step 1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vTa-Iy-Cea">
                                             <rect key="frame" x="20" y="27" width="374" height="30"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="30" id="I7x-SI-Upz"/>
+                                                <constraint firstAttribute="height" constant="30" id="Qc1-ie-aoH"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DKj-Rl-4pS">
-                                            <rect key="frame" x="20" y="65" width="374" height="48"/>
-                                            <string key="text">You need Google Drive to use Mobile Teacher. Download Google Drive from the App Store and sign in with your Google account.
-</string>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Open the Mobile Teacher app and tap Watch Videos" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ekB-sW-nZd">
+                                            <rect key="frame" x="20" y="65" width="374" height="114"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lQI-wn-nuu">
-                                            <rect key="frame" x="20" y="129" width="374" height="50"/>
-                                            <color key="backgroundColor" systemColor="linkColor"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="50" id="r0A-s4-rGl"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                                            <state key="normal" title="Download Google Drive">
-                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="downloadDriveButtonTapped:" destination="Ljf-93-ERc" eventType="touchUpInside" id="crD-es-NJw"/>
-                                            </connections>
-                                        </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="lQI-wn-nuu" firstAttribute="top" secondItem="DKj-Rl-4pS" secondAttribute="bottom" constant="16" id="137-Tr-ABa"/>
-                                        <constraint firstItem="lQI-wn-nuu" firstAttribute="trailing" secondItem="ONs-cG-DJU" secondAttribute="trailingMargin" id="3Sv-KX-5D7"/>
-                                        <constraint firstItem="lQI-wn-nuu" firstAttribute="leading" secondItem="ONs-cG-DJU" secondAttribute="leadingMargin" id="9Hz-fC-igS"/>
-                                        <constraint firstItem="Rrv-ff-H0i" firstAttribute="top" secondItem="ONs-cG-DJU" secondAttribute="topMargin" constant="16" id="WIo-HC-gpn"/>
-                                        <constraint firstItem="Rrv-ff-H0i" firstAttribute="leading" secondItem="ONs-cG-DJU" secondAttribute="leadingMargin" id="b5E-3j-dXS"/>
-                                        <constraint firstItem="Rrv-ff-H0i" firstAttribute="trailing" secondItem="ONs-cG-DJU" secondAttribute="trailingMargin" id="gQg-6b-o3a"/>
-                                        <constraint firstItem="DKj-Rl-4pS" firstAttribute="trailing" secondItem="ONs-cG-DJU" secondAttribute="trailingMargin" id="ori-0w-CJ9"/>
-                                        <constraint firstItem="DKj-Rl-4pS" firstAttribute="top" secondItem="Rrv-ff-H0i" secondAttribute="bottom" constant="8" id="pLR-mG-jRP"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="lQI-wn-nuu" secondAttribute="bottom" constant="16" id="vWq-Hw-09a"/>
-                                        <constraint firstItem="DKj-Rl-4pS" firstAttribute="leading" secondItem="ONs-cG-DJU" secondAttribute="leadingMargin" id="wd8-64-ijp"/>
+                                        <constraint firstItem="vTa-Iy-Cea" firstAttribute="top" secondItem="g0R-Kw-4eI" secondAttribute="topMargin" constant="16" id="FGd-ZC-R6N"/>
+                                        <constraint firstItem="ekB-sW-nZd" firstAttribute="top" secondItem="vTa-Iy-Cea" secondAttribute="bottom" constant="8" id="MRY-FA-il0"/>
+                                        <constraint firstItem="ekB-sW-nZd" firstAttribute="trailing" secondItem="g0R-Kw-4eI" secondAttribute="trailingMargin" id="NU6-oA-dvd"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="ekB-sW-nZd" secondAttribute="bottom" constant="16" id="S65-gP-o6S"/>
+                                        <constraint firstItem="vTa-Iy-Cea" firstAttribute="leading" secondItem="g0R-Kw-4eI" secondAttribute="leadingMargin" id="ZM9-fb-7aB"/>
+                                        <constraint firstItem="vTa-Iy-Cea" firstAttribute="trailing" secondItem="g0R-Kw-4eI" secondAttribute="trailingMargin" id="vma-fE-5ua"/>
+                                        <constraint firstItem="ekB-sW-nZd" firstAttribute="leading" secondItem="g0R-Kw-4eI" secondAttribute="leadingMargin" id="wvJ-cP-GGJ"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="downloadButtonOutlet" destination="lQI-wn-nuu" id="WBh-FC-3Jf"/>
-                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="StepTwo" rowHeight="206" id="BPL-rG-yV5">
                                 <rect key="frame" x="0.0" y="234" width="414" height="206"/>
@@ -368,7 +346,7 @@
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Open the Mobile Teacher app and tap &quot;Watch Videos&quot;." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uUR-XU-ldz">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose a video you want to watch and tap &quot;Play&quot;." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uUR-XU-ldz">
                                             <rect key="frame" x="20" y="65" width="374" height="114"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <nil key="textColor"/>
@@ -402,7 +380,7 @@
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose a video you want to watch and tap &quot;Play&quot;. The Google Drive app will open and start playing the video." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Rp-yc-WD1">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To download a video to watch offline tap the Download button " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Rp-yc-WD1">
                                             <rect key="frame" x="20" y="65" width="374" height="114"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <nil key="textColor"/>
@@ -436,7 +414,7 @@
                                             <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To download a video to watch offline  in Google Drive, tap ••• at the top right and then tap &quot;Make available offline&quot;." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4e0-0L-eBH">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To watch videos offline tap the Offline tab at the bottom of the Watch Videos page" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4e0-0L-eBH">
                                             <rect key="frame" x="20" y="65" width="374" height="114"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <nil key="textColor"/>
@@ -454,73 +432,13 @@
                                     </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="StepFive" rowHeight="206" id="B0i-uo-gSi">
-                                <rect key="frame" x="0.0" y="852" width="414" height="206"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="B0i-uo-gSi" id="jxd-c6-Xkc">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="206"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step 5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bnw-Hd-nbZ">
-                                            <rect key="frame" x="20" y="27" width="374" height="30"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="30" id="jmn-Dx-dLL"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To watch videos offline, open the Google Drive app, tap the ☰ on the top left, tap &quot;Offline&quot;, and find the video in the list." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C8s-p5-NOl">
-                                            <rect key="frame" x="20" y="65" width="374" height="114"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="C8s-p5-NOl" firstAttribute="leading" secondItem="jxd-c6-Xkc" secondAttribute="leadingMargin" id="Elb-Mj-dCt"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="C8s-p5-NOl" secondAttribute="bottom" constant="16" id="HML-Dy-40F"/>
-                                        <constraint firstItem="C8s-p5-NOl" firstAttribute="trailing" secondItem="jxd-c6-Xkc" secondAttribute="trailingMargin" id="Ocs-Wy-xfd"/>
-                                        <constraint firstItem="C8s-p5-NOl" firstAttribute="top" secondItem="bnw-Hd-nbZ" secondAttribute="bottom" constant="8" id="OmW-CK-3mC"/>
-                                        <constraint firstItem="bnw-Hd-nbZ" firstAttribute="leading" secondItem="jxd-c6-Xkc" secondAttribute="leadingMargin" id="jCO-26-vQq"/>
-                                        <constraint firstItem="bnw-Hd-nbZ" firstAttribute="top" secondItem="jxd-c6-Xkc" secondAttribute="topMargin" constant="16" id="uCT-cv-HAc"/>
-                                        <constraint firstItem="bnw-Hd-nbZ" firstAttribute="trailing" secondItem="jxd-c6-Xkc" secondAttribute="trailingMargin" id="uHb-pR-ufu"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                            </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Contact" rowHeight="132" id="MnM-pe-ZC2" customClass="ContactTVCell" customModule="MobileTeacher" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="1058" width="414" height="132"/>
+                                <rect key="frame" x="0.0" y="852" width="414" height="132"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MnM-pe-ZC2" id="m5p-9o-Fac">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="132"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BJ7-2S-37I">
-                                            <rect key="frame" x="147" y="41" width="120" height="50"/>
-                                            <color key="backgroundColor" systemColor="systemBlueColor"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="TY7-fI-ewc"/>
-                                                <constraint firstAttribute="height" constant="50" id="Vs5-zF-0np"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                                            <state key="normal" title="Contact Us">
-                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="contactButtonPressed:" destination="MnM-pe-ZC2" eventType="touchUpInside" id="Fuq-AQ-Pqd"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="BJ7-2S-37I" firstAttribute="centerY" secondItem="m5p-9o-Fac" secondAttribute="centerY" id="10a-p7-mf7"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="BJ7-2S-37I" secondAttribute="bottom" constant="30" id="McA-uj-cSx"/>
-                                        <constraint firstItem="BJ7-2S-37I" firstAttribute="top" secondItem="m5p-9o-Fac" secondAttribute="topMargin" constant="30" id="O7Q-Pm-Zqm"/>
-                                        <constraint firstItem="BJ7-2S-37I" firstAttribute="centerX" secondItem="m5p-9o-Fac" secondAttribute="centerX" id="nBt-c3-tnw"/>
-                                    </constraints>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="contactUsButton" destination="BJ7-2S-37I" id="PA2-8f-RcL"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -1120,9 +1038,6 @@
         <image name="play.fill" catalog="system" width="116" height="128"/>
         <image name="square.and.arrow.down" catalog="system" width="121" height="128"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
-        <systemColor name="linkColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="quaternaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.17999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
@@ -1131,9 +1046,6 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

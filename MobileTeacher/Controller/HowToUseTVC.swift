@@ -27,7 +27,7 @@ class HowToUseTVC: UITableViewController, UINavigationControllerDelegate {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 6
+        return 4
     }
 
     
@@ -35,10 +35,7 @@ class HowToUseTVC: UITableViewController, UINavigationControllerDelegate {
         let placeholderCell: UITableViewCell = UITableViewCell()
         
         if (indexPath.row == 0) {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "StepOne", for: indexPath) as! InstructionButtonTVCell
-            cell.delegate = self
-            cell.url = URL(string: "itms-apps://apps.apple.com/us/app/google-drive/id507874739")!
-            cell.buttonType = "openApp"
+            let cell = tableView.dequeueReusableCell(withIdentifier: "StepOne", for: indexPath)
             return cell
         } else if (indexPath.row == 1) {
             let cell = tableView.dequeueReusableCell(withIdentifier: "StepTwo", for: indexPath)
@@ -48,13 +45,6 @@ class HowToUseTVC: UITableViewController, UINavigationControllerDelegate {
             return cell
         } else if (indexPath.row == 3) {
             let cell = tableView.dequeueReusableCell(withIdentifier: "StepFour", for: indexPath)
-            return cell
-        } else if (indexPath.row == 4) {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "StepFive", for: indexPath)
-            return cell
-        } else if (indexPath.row == 5) {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "Contact", for: indexPath) as! ContactTVCell
-            cell.delegate = self
             return cell
         }
 
