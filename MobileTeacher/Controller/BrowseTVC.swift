@@ -237,7 +237,6 @@ class BrowseTVC: UITableViewController, VideoCellDelegate, AVPlayerViewControlle
         let baseUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
 
            let assetUrl = baseUrl.appendingPathComponent("MyFileSaveName.mp4")
-            print("HOLLAA")
             print(assetUrl)
            //let url = assetUrl
            //print(url)
@@ -503,9 +502,17 @@ class BrowseTVC: UITableViewController, VideoCellDelegate, AVPlayerViewControlle
             return
         }
         //alert the user that they are about to download
-        let data = NSData(contentsOf: video.downloadURL)
+        guard let data = NSData(contentsOf: video.downloadURL) else{
+            let alert2 = UIAlertController(title: "Error", message: "You are not connected to the internet. Please try again later.", preferredStyle: .alert)
+            //else cancel and return
+            alert2.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: { action in
+                return
+            }))
+            self.present(alert2, animated: true)
+            return
+        }
         //grab video size to alert user of how much space video will take up
-        var fileSize = Double(data!.length)
+        var fileSize = Double(data.length)
         fileSize /= (1024*1024)
         let doubleStr = String(format: "%.2f", fileSize)
         //the alert banner

@@ -183,7 +183,10 @@ class OfflineTVC: UITableViewController,OfflineVideoCellDelegate, UITabBarContro
         if deletedVideos == 0{
             return
         }
+        docURL?.appendPathComponent("Preferences.plist")
         guard let myURL = docURL else{return}
+        print("myURL/docURL: \(myURL)")
+        
         let path_new = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("Preferences.plist")
         do{
             try FileManager.default.removeItem(at: path_new)
@@ -196,9 +199,9 @@ class OfflineTVC: UITableViewController,OfflineVideoCellDelegate, UITabBarContro
         let encoder = PropertyListEncoder()
         encoder.outputFormat = .xml
         do {
-            try FileManager.default.moveItem(at: myURL, to: myURL)
+            let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("Preferences.plist")
             let data = try encoder.encode(data_to_plist)
-            try data.write(to: path_new)
+            try data.write(to: path)
         } catch {
             print(error)
         }
