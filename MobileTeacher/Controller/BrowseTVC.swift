@@ -516,10 +516,17 @@ class BrowseTVC: UITableViewController, VideoCellDelegate, AVPlayerViewControlle
         fileSize /= (1024*1024)
         let doubleStr = String(format: "%.2f", fileSize)
         //the alert banner
-        let alert = UIAlertController(title: "Download Video", message: "You are about to download a file size of \(doubleStr) MB. Do you wish to proceed?", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Download Video", message: "Download is \(doubleStr) MB. Ok?", preferredStyle: .alert)
         //if yes, then proceed to download
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {action in
-            self.proceedToDownload(video: video)
+//            //warning
+            let alert2 = UIAlertController(title: "Warning", message: "Please leave app open until download is complete.", preferredStyle: .alert)
+            //else cancel and return
+            alert2.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: { action in
+//                return
+                self.proceedToDownload(video: video)
+            }))
+            self.present(alert2, animated: true)
         }))
         //else cancel and return
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: { action in
